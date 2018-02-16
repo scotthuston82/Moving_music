@@ -1,0 +1,46 @@
+***** NEED TO HAVE ******
+ As a USER I can view a list of available DJ/BANDS.
+ As a USER I can book a band/dj for a specific time and place.
+ As a USER I can contact a band/dj.
+ As a DJ/BAND I can actept jobs.
+ AS a DJ/BAND I can view all my bookings.
+
+
+****** SHOULD HAVE *******
+As a USER I can search for dj/bands by type of music.
+As a USER I can search for dj/bands by area.
+As a USER I can see what equipment each entertainer has/what I need to have.
+As a USER I can book DJ/BANDS by mood.
+As a USER I can see reviews on the dj/band.
+As a USER I can leave a review once the show gig is done.
+As a DJ/BAND I can set the distance I am willing to travel.
+As a DJ/BAND I can set the type of music I play.
+As a DJ/BAND I can list all the available equipment I own.
+As a DJ/BAND I can create diffent packages.
+As a DJ/BAND I can review the user after the gig.
+As a DJ/BAND I can set my price.
+As a DJ/BAND I can see party size, age range, type of venue, mood before acepting
+As a DJ/BAND I know start time, finished time before acepting
+As a DJ/BAND I can get directions to the venue.
+As a DJ/BAND from the homepage I get a sales pitch about the site.
+
+
+****** NICE TO HAVE ******
+As a USER I can listen to sample music of a DJ/BAND before booking.
+As a USER I have a access to their spotify/other list of music.
+As a USER I can pay right on the website.
+As a USER or DJ/BAND I can chat directly with the other person.
+As a USER of DJ/BAND I can use the app to update my calender.
+As a USER I can select entertainment by a sliding mood meter.
+As a USER I can upload pictures of the venue for the DJ/BAND to see.
+As a USER I can use an API to see aveage local prices.
+As DJ/BAND I can set a deposit amount for booking me.
+
+***** MODELS*******
+Muscian
+Client
+booking
+Tags
+chat
+reviews
+equipment

@@ -34,6 +34,8 @@ gem 'awesome_print'
 
 gem 'pry-rails'
 
+gem 'factory_bot_rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

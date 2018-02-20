@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # README
 
 This README would normally document whatever steps are necessary to get the
@@ -22,3 +23,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+=======
+# moving_music
+>>>>>>> 2a7746812b347b9abe01806a3e799caa60a3789c
+# Moving_music

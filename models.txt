@@ -1,0 +1,11 @@
+User
+| email | PWD | kind | img | bio/content | rate | links | lat | long | packages |
+
+Booking
+| Musician ID | Client ID | confirmed | start time | end time | date | address | lat | long | client review | musician review | party size | age range |
+
+Availability
+| date | musician review
+
+Style
+| ID | genre |

@@ -10,12 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180220205632) do
+ActiveRecord::Schema.define(version: 20180220210548) do
 
   create_table "bookings", force: :cascade do |t|
     t.integer "musician_id"
     t.integer "client_id"
-    t.boolean "confirmed"
     t.datetime "start_time"
     t.datetime "end_time"
     t.string "address"
@@ -27,6 +26,7 @@ ActiveRecord::Schema.define(version: 20180220205632) do
     t.string "age_range"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "confirmed", default: false
   end
 
   create_table "users", force: :cascade do |t|

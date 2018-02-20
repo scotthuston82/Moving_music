@@ -1,10 +1,9 @@
 ***** NEED TO HAVE ******
- As a USER I can view a list of available DJ/BANDS.
- As a USER I can book a band/dj for a specific time and place.
- As a USER I can contact a band/dj.
- As a DJ/BAND I can accept jobs.
- AS a DJ/BAND I can view all my bookings.
-
+As a USER I can view a list of available DJ/BANDS. -
+As a USER I can contact a band/dj. -
+As a DJ/BAND I can accept jobs.
+AS a DJ/BAND I can view all my bookings.
+As a USER I can book a band/dj for a specific time and place.
 
 ****** SHOULD HAVE *******
 As a USER I can search for dj/bands by type of music.

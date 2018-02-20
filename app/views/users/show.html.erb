@@ -9,6 +9,9 @@
     <% if current_user %>
       <li><%= @user.email %></li>
     <% end %>
+    <% if !current_user %>
+      <li> Please log in to view contact information. </li>
+    <% end %>
     <li><%= @user.profile_picture %></li>
     <li><%= @user.bio %></li>
     <li><%= @user.hourly_rate_in_cents %></li>

@@ -16,3 +16,5 @@
     <li><%= @user.bio %></li>
     <li><%= @user.hourly_rate_in_cents %></li>
   </ul>
+
+  <%= link_to 'Book Me Now!', new_user_booking_path(@user) %>

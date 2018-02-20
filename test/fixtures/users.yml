@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: MyString
+  password_digest: MyString
+  kind: MyString
+  profile_picture: MyString
+  bio: MyText
+  hourly_rate_in_cents: 1.5
+  lat: 1.5
+  long: 1.5
+
+two:
+  email: MyString
+  password_digest: MyString
+  kind: MyString
+  profile_picture: MyString
+  bio: MyText
+  hourly_rate_in_cents: 1.5
+  lat: 1.5
+  long: 1.5

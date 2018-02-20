@@ -6,8 +6,5 @@ FactoryBot.define do
     password              'passpass'
     password_confirmation 'passpass'
 
-    # trait :duplicate_email do
-    #   email   "email@web.com"
-    # end
   end
 end

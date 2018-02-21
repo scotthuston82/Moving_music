@@ -3,11 +3,13 @@ class UsersController < ApplicationController
   before_action :ensure_user_profile_owner, only: [:edit, :update, :destroy]
 
   def index
-    @users = User.where('kind = ?',  'musician')
+    @users = User.where('kind = ?', 'musician')
   end
 
   def show
     @user = User.find(params[:id])
+    @pendingbookings = current_user.gigs.where('confirmed = ?', false)
+    @confirmedbookings = current_user.gigs.where('confirmed = ?', true)
   end
 
   def new

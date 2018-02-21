@@ -1,0 +1,30 @@
+<%= form_for [@musician, @booking] do |f| %>
+
+  <p>
+    <%= f.label :start_time %>
+    <%= f.datetime_field :start_time %>
+  </p>
+
+  <p>
+    <%= f.label :end_time %>
+    <%= f.datetime_field :end_time %>
+  </p>
+
+  <p>
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </p>
+
+  <p>
+    <%= f.label :party_size %>
+    <%= f.number_field :party_size %>
+  </p>
+
+  <p>
+    <%= f.label :age_range %>
+    <%= f.text_field :age_range %>
+  </p>
+
+  <%= f.submit 'Book!' %>
+
+<% end %>

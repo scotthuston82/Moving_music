@@ -15,7 +15,7 @@ As a USER I can leave a review once the show gig is done.
 As a DJ/BAND I can set the distance I am willing to travel.
 As a DJ/BAND I can set the type of music I play.
 As a DJ/BAND I can list all the available equipment I own.
-As a DJ/BAND I can create differnt packages.
+As a DJ/BAND I can create different packages.
 As a DJ/BAND I can review the user after the gig.
 As a DJ/BAND I can set my price.
 As a DJ/BAND I can see party size, age range, type of venue, mood before accepting

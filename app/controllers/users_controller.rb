@@ -26,6 +26,9 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       empty_profile_picture?
       redirect_to users_url
+    else
+      flash.now[:alert] = @user.errors.full_messages
+      render "new"
     end
   end
 

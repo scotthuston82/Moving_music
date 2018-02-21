@@ -1,10 +1,5 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+User.destroy_all
+Booking.destroy_all
 
 5.times do
   User.create!(
@@ -36,4 +31,19 @@ end
     long: (-79.41 + rand * 0.01),
     profile_picture: "https://picsum.photos/200/300/?random"
   )
+end
+
+20.times do
+  Booking.create!(
+    musician_id: rand(6..15),
+    client_id: rand(1..5),
+    start_time: Time.now + rand(3..30).days,
+    address: "220 King St W, Suite 200, Toronto, ON M5H 1K4",
+    party_size: [nil, rand(50..200)].sample,
+    age_range: [nil, "18 - 24", "25 - 35", "35 - 45", "45+"].sample
+  )
+end
+
+Booking.all.each do |booking|
+  booking.end_time = booking.start_time + rand(3..6).hours
 end

@@ -21,6 +21,7 @@ class UsersController < ApplicationController
     @user.kind = params[:kind]
 
     if @user.save
+      session[:user_id] = @user.id
       redirect_to users_url
     end
   end

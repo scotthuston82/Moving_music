@@ -1,9 +1,5 @@
 <h1>User Profile</h1>
 
-  <% if current_user && current_user.id == @user.id %>
-    <%= link_to 'Edit Profile', edit_user_path(@user) %>
-  <% end %>
-
   <ul>
     <li><%= @user.first_name %> <%= @user.last_name %></li>
     <% if current_user %>
@@ -16,3 +12,37 @@
     <li><%= @user.bio %></li>
     <li><%= @user.hourly_rate_in_cents %></li>
   </ul>
+
+
+  <% if current_user && current_user.kind == 'client' %>
+    <%= link_to 'Book Me Now!', new_user_booking_path(@user) %>
+  <% end %>
+
+  <% if current_user && current_user.id == @user.id %>
+  <p>My Pending Bookings:</p>
+    <ul>
+      <% @pendingbookings.each do |booking| %>
+        <li>Client name: <%= booking.client.first_name %></li>
+        <li>Address: <%= booking.address %></li>
+        <li>Start Time: <%= booking.start_time %></li>
+        <li>End Time: <%= booking.end_time %></li>
+        <li>Age Range: <%= booking.age_range %></li>
+        <li>Party Size: <%= booking.party_size %></li>
+      <% end %>
+    </ul>
+  <p>My Confirmed Bookings:</p>
+    <ul>
+      <% @confirmedbookings.each do |booking| %>
+        <li>booking.client.first_name</li>
+        <li>Address: <%= booking.address %></li>
+        <li>Start Time: <%= booking.start_time %></li>
+        <li>End Time: <%= booking.end_time %></li>
+        <li>Age Range: <%= booking.age_range %></li>
+        <li>Party Size: <%= booking.party_size %></li>
+      <% end %>
+    </ul>
+      <%= link_to 'Edit Profile', edit_user_path(@user) %>
+  <% end %>
+
+
+<%= console %>

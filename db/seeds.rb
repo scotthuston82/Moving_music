@@ -45,7 +45,7 @@ end
 end
 
 20.times do
-  Booking.create!(
+  Booking.new(
     musician_id: rand(6..15),
     client_id: rand(1..5),
     start_time: Time.now + rand(3..30).days,
@@ -57,4 +57,5 @@ end
 
 Booking.all.each do |booking|
   booking.end_time = booking.start_time + rand(3..6).hours
+  booking.save
 end

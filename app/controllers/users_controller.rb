@@ -23,6 +23,7 @@ class UsersController < ApplicationController
     @user.kind = params[:kind]
 
     if @user.save
+      session[:user_id] = @user.id
       empty_profile_picture?
       redirect_to users_url
     end

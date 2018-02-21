@@ -14,7 +14,7 @@ class BookingsController < ApplicationController
       redirect_to user_url(@musician)
     else
       flash.now[:alert] = ["Something went wrong, please try again!"]
-      render
+      render "new"
     end
   end
 

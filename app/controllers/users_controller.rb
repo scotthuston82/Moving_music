@@ -8,8 +8,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @pendingbookings = current_user.gigs.where('confirmed = ?', false)
-    @confirmedbookings = current_user.gigs.where('confirmed = ?', true)
+    if current_user
+      @pendingbookings = current_user.gigs.where('confirmed = ?', false)
+      @confirmedbookings = current_user.gigs.where('confirmed = ?', true)
+    end
   end
 
   def new
@@ -22,6 +24,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
+      empty_profile_picture?
       redirect_to users_url
     end
   end
@@ -55,4 +58,13 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :bio, :profile_picture)
   end
+
+  def empty_profile_picture?
+    if @user.profile_picture == nil
+      @user.update(profile_picture: "empty_profile.png")
+    else
+      @user.profile_picture
+    end
+  end
+
 end

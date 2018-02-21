@@ -10,13 +10,21 @@
 
   <body>
     <header>
-      <% if flash[:alert] %>
-        <ul>
-          <% flash[:alert].each do |alert| %>
-            <li><%= alert %></li>
-          <% end %>
-        </ul>
-      <% end %>
+      <div class="flash">
+         <% if flash && flash.any?  %>
+           <% flash.each do |key, message| %>
+             <div class="">
+               <% if message && message.class != String && message.any?  %>
+                 <% message.each do |sub_message|  %>
+                   <h5><%= sub_message %></h5>
+                 <% end  %>
+               <% else  %>
+                 <h5><%= message %></h5>
+               <% end  %>
+             </div>
+           <% end %>
+         <% end  %>
+       </div>
       <%= link_to 'Home', users_path %>
       <% if current_user %>
         <div class="user-info">
@@ -35,3 +43,5 @@
     <%= yield %>
   </body>
 </html>
+
+<%=  console  %>

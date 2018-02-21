@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :style do
+  factory :genre do
     
   end
 end

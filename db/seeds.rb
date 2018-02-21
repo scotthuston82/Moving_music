@@ -1,5 +1,16 @@
 User.destroy_all
 Booking.destroy_all
+Genre.destroy_all
+
+Genre.create!(name: "Hip-Hop")
+Genre.create!(name: "Reggae")
+Genre.create!(name: "Jazz")
+Genre.create!(name: "Motown")
+Genre.create!(name: "Punk")
+Genre.create!(name: "80's Hair Metal")
+Genre.create!(name: "Bluegrass")
+Genre.create!(name: "Cajun Slam-grass")
+Genre.create!(name: "Nickelback-Trash-Rock")
 
 5.times do
   User.create!(

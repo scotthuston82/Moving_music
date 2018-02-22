@@ -24,8 +24,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      empty_profile_picture?
-      redirect_to users_url
+      render "edit"
     else
       flash.now[:alert] = @user.errors.full_messages
       render "new"
@@ -39,6 +38,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update!(user_params)
+    empty_profile_picture?
 
     if @user.save
       redirect_to user_url

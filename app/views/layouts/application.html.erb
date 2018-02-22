@@ -17,19 +17,22 @@
           <% end %>
         </ul>
       <% end %>
-      <%= link_to 'Home', users_path %>
-      <% if current_user %>
-        <div class="user-info">
-          <p>Logged in as: <%= current_user.email %> </p>
-          <p><%= link_to "Sign Out", logout_path, method: :delete %></p>
-        </div>
-      <% else %>
-        <div class="register">
-          <%= link_to "Register / Sign Up", new_user_path %>
-        </div>
-        <div class="log-in">
-          <%= link_to "Log In", new_session_path%>
-        </div>
+
+        <nav class='layout-links'>
+          <%= link_to 'Home', users_path %>
+          <% if current_user %>
+          <div class="user-info">
+            <p>Logged in as: <%= current_user.email %> </p>
+            <p><%= link_to "Sign Out", logout_path, method: :delete %></p>
+          </div>
+        <% else %>
+          <div class="register">
+            <%= link_to "Register / Sign Up", new_user_path %>
+          </div>
+          <div class="log-in">
+            <%= link_to "Log In", new_session_path%>
+          </div>
+        </nav>
       <% end %>
     </header>
     <%= yield %>

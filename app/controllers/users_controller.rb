@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def index
     @users = User.where('kind = ?', 'musician')
     @users = if params[:term]
-      User.where('first_name LIKE ?', "%#{params[:term]}%")
+      User.where('first_name LIKE ? OR last_name LIKE ?', "%#{params[:term]}%", "%#{params[:term]}%")
     else
       User.where('kind = ?', 'musician')
     end

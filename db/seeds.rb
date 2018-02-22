@@ -41,6 +41,7 @@ end
     lat: (43.76 + rand * 0.01),
     long: (-79.41 + rand * 0.01),
     profile_picture: "https://picsum.photos/200/300/?random"
+    stage_name: Faker::Kpop.boy_bands
   )
 end
 

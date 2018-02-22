@@ -1,4 +1,4 @@
-<% if user.bio && user.hourly_rate_in_cents %>
+<% if user.bio && user.hourly_rate %>
   <h2>Update My Profile</h2>
 <% else %>
   <h2>Please provide details for your profile</h2>
@@ -50,6 +50,12 @@
   <p>
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation %>
+  </p>
+
+  <p>
+    <%= field_set_tag 'Genres' do %>
+    <%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :name) %>
+    <% end %>
   </p>
 
   <%= f.submit 'Update' %>

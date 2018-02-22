@@ -13,6 +13,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @review = @user.musician_reviews.new
+    @reviews = @user.musician_reviews
+    @review.client_id = current_user.id
     if current_user
       @pendingbookings = current_user.gigs.where('confirmed = ?', false)
       @confirmedbookings = current_user.gigs.where('confirmed = ?', true)

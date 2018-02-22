@@ -10,15 +10,23 @@
 
   <body>
     <header>
-      <% if flash[:alert] %>
-        <ul>
-          <% flash[:alert].each do |alert| %>
-            <li><%= alert %></li>
-          <% end %>
-        </ul>
-      <% end %>
-
-        <nav class='layout-links'>
+      <div class="flash">
+         <% if flash && flash.any?  %>
+           <% flash.each do |key, message| %>
+             <div class="">
+               <% if message && message.class != String && message.any?  %>
+                 <% message.each do |sub_message|  %>
+                   <h5><%= sub_message %></h5>
+                 <% end  %>
+               <% else  %>
+                 <h5><%= message %></h5>
+               <% end  %>
+             </div>
+           <% end %>
+         <% end  %>
+       </div>
+      
+      <nav class='layout-links'>
           <%= link_to 'Home', users_path %>
           <% if current_user %>
           <div class="user-info">
@@ -34,9 +42,14 @@
           </div>
         </nav>
       <% end %>
+      <div class = "search">
+          <%= form_tag(users_path, :method => "get", id: "search-form") do %>
+            <%= text_field_tag :term, params[:term], placeholder: "Search" %>
+            <%= submit_tag "Search", name: nil %>
+          <% end %>
+        </div>
     </header>
     <%= yield %>
   </body>
 </html>
 
-<%= console %>

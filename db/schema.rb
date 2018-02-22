@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180221163621) do
+ActiveRecord::Schema.define(version: 20180222165419) do
 
 
   create_table "bookings", force: :cascade do |t|
@@ -49,13 +49,14 @@ ActiveRecord::Schema.define(version: 20180221163621) do
     t.string "kind"
     t.string "profile_picture"
     t.text "bio"
-    t.float "hourly_rate_in_cents"
+    t.float "hourly_rate"
     t.float "lat"
     t.float "long"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "first_name"
     t.string "last_name"
+    t.string "stage_name"
   end
 
 end

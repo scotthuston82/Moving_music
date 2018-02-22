@@ -1,6 +1,7 @@
-<h1>User Profile</h1>
+<h1>Artist Profile</h1>
 
   <ul>
+    <li class="stage-name"><%= @user.stage_name %></li>
     <li class='musician-name'><%= @user.first_name %> <%= @user.last_name %></li>
     <% if current_user %>
       <li><%= @user.email %></li>
@@ -13,6 +14,16 @@
     <li><%= @user.hourly_rate %></li>
   </ul>
 
+<% if @genres.any? %>
+  <div class="genres">
+    <h3>My Genres:</h3>
+    <ul>
+      <% @genres.each do |genre| %>
+        <li><%= genre.name %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
   <% if current_user && current_user.kind == 'client' %>
     <%= link_to 'Book Me Now!', new_user_booking_path(@user) %>
@@ -45,10 +56,12 @@
       <%= link_to 'Edit Profile', edit_user_path(@user) %>
   <% end %>
 
-  <ul>
-  <% @user.musician_reviews.each do |review|  %>
-    <li><%= review.comment %></li>
+  <% if @user.musician_reviews.first.comment %>
+    <ul>
+    <% @user.musician_reviews.each do |review|  %>
+      <li><%= review.comment %></li>
+    <% end %>
+    </ul>
   <% end %>
-  </ul>
 
   <%= render 'reviews/reviews_form', user: @user, review: @review %>

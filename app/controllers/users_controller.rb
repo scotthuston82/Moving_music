@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @review = @user.musician_reviews.new
     @reviews = @user.musician_reviews
+    @genres = @user.genres
     if current_user
       @review.client_id = current_user.id
       @pendingbookings = current_user.gigs.where('confirmed = ?', false)
@@ -70,7 +71,7 @@ class UsersController < ApplicationController
 
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :bio, :profile_picture)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :bio, :profile_picture, :stage_name, :hourly_rate, genre_ids: [])
   end
 
   def empty_profile_picture?

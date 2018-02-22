@@ -21,7 +21,7 @@ Genre.create!(name: "Nickelback-Trash-Rock")
     password_confirmation: 'password',
     kind: 'client',
     bio: Faker::Lorem.paragraph,
-    hourly_rate_in_cents: nil,
+    hourly_rate: nil,
     lat: (43.76 + rand * 0.01),
     long: (-79.41 + rand * 0.01),
     profile_picture: nil
@@ -37,7 +37,7 @@ end
     password_confirmation: 'password',
     kind: 'musician',
     bio: Faker::Lorem.paragraph,
-    hourly_rate_in_cents: rand(10000..40000),
+    hourly_rate: rand(100..400),
     lat: (43.76 + rand * 0.01),
     long: (-79.41 + rand * 0.01),
     profile_picture: "https://picsum.photos/200/300/?random",

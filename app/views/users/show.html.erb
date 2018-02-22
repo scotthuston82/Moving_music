@@ -1,7 +1,7 @@
 <h1>User Profile</h1>
 
   <ul>
-    <li><%= @user.first_name %> <%= @user.last_name %></li>
+    <li class='musician-name'><%= @user.first_name %> <%= @user.last_name %></li>
     <% if current_user %>
       <li><%= @user.email %></li>
     <% end %>
@@ -28,6 +28,7 @@
         <li>End Time: <%= booking.end_time %></li>
         <li>Age Range: <%= booking.age_range %></li>
         <li>Party Size: <%= booking.party_size %></li>
+        <li><button type="button" name="Confirm Booking"></button></li>
       <% end %>
     </ul>
   <p>My Confirmed Bookings:</p>
@@ -44,5 +45,10 @@
       <%= link_to 'Edit Profile', edit_user_path(@user) %>
   <% end %>
 
+  <ul>
+  <% @user.musician_reviews.each do |review|  %>
+    <li><%= review.comment %></li>
+  <% end %>
+  </ul>
 
-<%= console %>
+  <%= render 'reviews/reviews_form', user: @user, review: @review %>

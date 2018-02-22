@@ -4,11 +4,19 @@ class UsersController < ApplicationController
 
   def index
     @users = User.where('kind = ?', 'musician')
+    @users = if params[:term]
+      User.where('first_name LIKE ? OR last_name LIKE ?', "%#{params[:term]}%", "%#{params[:term]}%")
+    else
+      User.where('kind = ?', 'musician')
+    end
   end
 
   def show
     @user = User.find(params[:id])
+    @review = @user.musician_reviews.new
+    @reviews = @user.musician_reviews
     if current_user
+      @review.client_id = current_user.id
       @pendingbookings = current_user.gigs.where('confirmed = ?', false)
       @confirmedbookings = current_user.gigs.where('confirmed = ?', true)
     end
@@ -69,5 +77,14 @@ class UsersController < ApplicationController
       @user.profile_picture
     end
   end
+
+  def self.search(term)
+    if term
+      where("title ILIKE ?", "%#{term}%")
+    else
+      all
+    end
+  end
+
 
 end

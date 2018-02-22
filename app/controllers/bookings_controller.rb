@@ -13,7 +13,7 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to user_url(@musician)
     else
-      flash.now[:alert] = ["Something went wrong, please try again!"]
+
       render "new"
     end
   end

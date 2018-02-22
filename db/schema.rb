@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20180222165419) do
 
+
   create_table "bookings", force: :cascade do |t|
     t.integer "musician_id"
     t.integer "client_id"
@@ -27,6 +28,13 @@ ActiveRecord::Schema.define(version: 20180222165419) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "confirmed", default: false
+  end
+
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "comment"
+    t.integer "client_id"
+    t.integer "musician_id"
   end
 
   create_table "genres", force: :cascade do |t|

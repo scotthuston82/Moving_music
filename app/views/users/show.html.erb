@@ -44,5 +44,10 @@
       <%= link_to 'Edit Profile', edit_user_path(@user) %>
   <% end %>
 
+  <ul>
+  <% @user.musician_reviews.each do |review|  %>
+    <li><%= review.comment %></li>
+  <% end %>
+  </ul>
 
-<%= console %>
+  <%= render 'reviews/reviews_form', user: @user, review: @review %>

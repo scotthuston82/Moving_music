@@ -1,22 +1,25 @@
-<h1>User Profile</h1>
+<section class='user-show'>
+  <h1><%= @user.stage_name %></h1>
 
-  <ul>
-    <li class='musician-name'><%= @user.first_name %> <%= @user.last_name %></li>
+  <div class='artist-info'>
+    <p class='musician-name'>Artist <%= @user.first_name %> <%= @user.last_name %></p>
     <% if current_user %>
-      <li><%= @user.email %></li>
+      <p><%= @user.email %></p>
     <% end %>
-    <% if !current_user %>
-      <li> Please log in to view contact information. </li>
-    <% end %>
-    <li><%= @user.profile_picture %></li>
-    <li><%= @user.bio %></li>
-    <li><%= @user.hourly_rate_in_cents %></li>
-  </ul>
 
+    <div class=musician-picture>
+      <%= image_tag(@user.profile_picture) %>
+    </div>
+    <h2>Biography</h2>
+    <p><%= @user.bio %></p>
+    <p> Rate: $<%= @user.hourly_rate %>0 /hour</p>
+  </div>
 
+  <div class='book-button'>
   <% if current_user && current_user.kind == 'client' %>
     <%= link_to 'Book Me Now!', new_user_booking_path(@user) %>
   <% end %>
+  </div>
 
   <% if current_user && current_user.id == @user.id %>
   <p>My Pending Bookings:</p>
@@ -52,3 +55,7 @@
   </ul>
 
   <%= render 'reviews/reviews_form', user: @user, review: @review %>
+  <% if !current_user %>
+    <p> Please log in to view contact information. </p>
+  <% end %>
+</section>

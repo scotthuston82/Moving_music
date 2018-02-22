@@ -11,7 +11,7 @@
   <body>
 
     <header class='clearfix'>
-     
+
     <header>
       <div class="flash">
          <% if flash && flash.any?  %>
@@ -35,7 +35,6 @@
           <%= link_to 'Home', users_path %>
           <% if current_user %>
           <div class="user-info clearfix">
-            <p>Logged in as: <%= current_user.email %> </p>
             <p><%= link_to "Sign Out", logout_path, method: :delete %></p>
           </div>
         <% else %>

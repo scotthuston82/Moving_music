@@ -1,0 +1,47 @@
+<% if user.bio && user.hourly_rate_in_cents %>
+  <h2>Update My Profile</h2>
+<% else %>
+  <h2>Please provide details for your profile</h2>
+<% end %>
+
+<%= form_for user do |f| %>
+  <p>
+    <%= f.label :bio %>
+    <%= f.text_area :bio %>
+  </p>
+
+  <p>
+    <%= f.label :profile_picture %>
+    <%= f.text_field :profile_picture %>
+  </p>
+
+  <p>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </p>
+
+  <p>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </p>
+
+  <p>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </p>
+
+  <h3>Update Password:</h3>
+
+  <p>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </p>
+
+  <p>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </p>
+
+  <%= f.submit 'Update' %>
+
+<% end %>

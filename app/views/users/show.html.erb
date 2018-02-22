@@ -14,6 +14,16 @@
     <li><%= @user.hourly_rate %></li>
   </ul>
 
+<% if @genres.any? %>
+  <div class="genres">
+    <h3>My Genres:</h3>
+    <ul>
+      <% @genres.each do |genre| %>
+        <li><%= genre.name %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
   <% if current_user && current_user.kind == 'client' %>
     <%= link_to 'Book Me Now!', new_user_booking_path(@user) %>

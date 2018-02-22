@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @review = @user.musician_reviews.new
     @reviews = @user.musician_reviews
+    @genres = @user.genres
     if current_user
       @review.client_id = current_user.id
       @pendingbookings = current_user.gigs.where('confirmed = ?', false)

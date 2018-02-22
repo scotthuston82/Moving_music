@@ -1,0 +1,26 @@
+<script>
+document.addEventListener("turbolinks:load", function() {
+  if (document.body.id != 'users_show')
+    return
+
+  var confirmBookings = document.querySelectorAll('.confirm_booking');
+
+  confirmBookings.forEach(function(confirmBooking){
+    confirmBooking.addEventListener('click', function(e) {
+      var bookingId = e.path[0].getAttribute('data-booking_id');
+      var url = '/users/<%= @user.id %>/bookings/' + bookingId
+      var method = 'PATCH'
+
+      fetch(url, {method})
+      .then(response => response.json())
+      .catch(error => console.error('error', error))
+      .then(response => {
+        var list = document.querySelector('#booking_' + bookingId)
+        list.querySelector('.button_container').remove()
+        confirmed_bookings.prepend(list);
+        console.log('Success:', response)
+      })
+    })
+  })
+});
+</script>

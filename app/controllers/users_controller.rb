@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    # raise
     @user = User.find(params[:id])
     @review = @user.musician_reviews.new
     @reviews = @user.musician_reviews

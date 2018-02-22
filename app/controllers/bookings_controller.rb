@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
   def new
     @booking = Booking.new
@@ -16,6 +17,11 @@ class BookingsController < ApplicationController
 
       render "new"
     end
+  end
+
+  def update
+    Booking.find(params[:id]).update(confirmed: true)
+    render json: {status: 'okay'}
   end
 
   def destroy

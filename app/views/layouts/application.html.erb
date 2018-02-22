@@ -3,15 +3,15 @@
   <head>
     <title>MovingMusic</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body id=<%="#{params[:controller]}_#{params[:action]}"%>>
+
 
     <header class='clearfix'>
-     
+
     <header>
       <div class="flash">
          <% if flash && flash.any?  %>

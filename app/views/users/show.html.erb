@@ -1,3 +1,4 @@
+
 <section class='user-show'>
   <h1><%= @user.stage_name %></h1>
 
@@ -6,14 +7,24 @@
     <% if current_user %>
       <p><%= @user.email %></p>
     <% end %>
-
-    <div class=musician-picture>
+    
+    <div class="musician-picture">
       <%= image_tag(@user.profile_picture) %>
     </div>
     <h2>Biography</h2>
     <p><%= @user.bio %></p>
     <p> Rate: $<%= @user.hourly_rate %>0 /hour</p>
   </div>
+<% if @genres.any? %>
+  <div class="genres">
+    <h3>My Genres:</h3>
+    <ul>
+      <% @genres.each do |genre| %>
+        <li><%= genre.name %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
   <div class='book-button'>
   <% if current_user && current_user.kind == 'client' %>
@@ -48,11 +59,13 @@
       <%= link_to 'Edit Profile', edit_user_path(@user) %>
   <% end %>
 
-  <ul>
-  <% @user.musician_reviews.each do |review|  %>
-    <li><%= review.comment %></li>
+  <% if @user.musician_reviews.first.comment %>
+    <ul>
+    <% @user.musician_reviews.each do |review|  %>
+      <li><%= review.comment %></li>
+    <% end %>
+    </ul>
   <% end %>
-  </ul>
 
   <%= render 'reviews/reviews_form', user: @user, review: @review %>
   <% if !current_user %>

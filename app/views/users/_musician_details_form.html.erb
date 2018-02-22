@@ -6,6 +6,11 @@
 
 <%= form_for user do |f| %>
   <p>
+    <%= f.label :stage_name %>
+    <%= f.text_field :stage_name %>
+  </p>
+
+  <p>
     <%= f.label :bio %>
     <%= f.text_area :bio %>
   </p>

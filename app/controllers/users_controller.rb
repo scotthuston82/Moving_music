@@ -5,9 +5,12 @@ class UsersController < ApplicationController
   def index
     @users = User.where('kind = ?', 'musician')
     @users = if params[:term]
-      User.where('first_name LIKE ? OR last_name LIKE ?', "%#{params[:term]}%", "%#{params[:term]}%")
+      User.where('first_name LIKE ? OR last_name LIKE ? OR stage_name LIKE ?', "%#{params[:term]}%", "%#{params[:term]}%", "%#{params[:term]}%")
     else
       User.where('kind = ?', 'musician')
+    end
+    if @users==[]
+      flash.now[:alert] = "No search results found. Please try again."
     end
   end
 

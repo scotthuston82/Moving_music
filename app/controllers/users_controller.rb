@@ -4,6 +4,11 @@ class UsersController < ApplicationController
 
   def index
     @users = User.where('kind = ?', 'musician')
+    @users = if params[:term]
+      User.where('first_name LIKE ? OR last_name LIKE ?', "%#{params[:term]}%", "%#{params[:term]}%")
+    else
+      User.where('kind = ?', 'musician')
+    end
   end
 
   def show
@@ -69,5 +74,14 @@ class UsersController < ApplicationController
       @user.profile_picture
     end
   end
+
+  def self.search(term)
+    if term
+      where("title ILIKE ?", "%#{term}%")
+    else
+      all
+    end
+  end
+
 
 end

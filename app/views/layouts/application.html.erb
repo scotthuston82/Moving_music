@@ -39,6 +39,12 @@
           <%= link_to "Log In", new_session_path%>
         </div>
       <% end %>
+      <div class = "search">
+          <%= form_tag(users_path, :method => "get", id: "search-form") do %>
+            <%= text_field_tag :term, params[:term], placeholder: "Search" %>
+            <%= submit_tag "Search", name: nil %>
+          <% end %>
+        </div>
     </header>
     <%= yield %>
   </body>

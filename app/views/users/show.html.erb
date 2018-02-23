@@ -19,13 +19,14 @@
 
 <section class='user-show'>
   <h1><%= @user.stage_name %></h1>
+  <h3>Act Type: <%= @user.act_type.capitalize %></h3>
 
   <div class='artist-info'>
     <p class='musician-name'>Artist <%= @user.first_name %> <%= @user.last_name %></p>
     <% if current_user %>
       <p><%= @user.email %></p>
     <% end %>
-    
+
     <div class="musician-picture">
       <%= image_tag(@user.profile_picture) %>
     </div>
@@ -105,4 +106,3 @@
     <p> Please log in to view contact information. </p>
   <% end %>
 </section>
-

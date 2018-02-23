@@ -1,5 +1,5 @@
 <section class='signup-form'>
-  <h2>Update My Profile</h2>
+  <h2>Please provide details for your profile</h2>
 
   <%= form_for user do |f| %>
     <p>
@@ -33,33 +33,6 @@
       <%= field_set_tag 'Genres' do %>
       <%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :name) %>
       <% end %>
-    </p>
-
-    <p>
-      <%= f.label :first_name %>
-      <%= f.text_field :first_name %>
-    </p>
-
-    <p>
-      <%= f.label :last_name %>
-      <%= f.text_field :last_name %>
-    </p>
-
-    <p>
-      <%= f.label :email %>
-      <%= f.text_field :email %>
-    </p>
-
-    <h3>Update Password:</h3>
-
-    <p>
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-    </p>
-
-    <p>
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation %>
     </p>
 
     <%= f.submit 'Update' %>

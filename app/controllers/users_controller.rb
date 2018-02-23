@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      render "edit"
+      render "onboarding"
     else
       flash.now[:alert] = @user.errors.full_messages
       render "new"
@@ -51,6 +51,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update!(user_params)
+    @user.act_type = params[:act_type]
     empty_profile_picture?
 
     if @user.save

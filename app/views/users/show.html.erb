@@ -1,5 +1,6 @@
 <section class='user-show clearfix'>
   <h1><%= @user.stage_name %></h1>
+  <h3>Act Type: <%= @user.act_type.capitalize %></h3>
 
   <div class="musician-picture">
     <%= image_tag(@user.profile_picture) %>
@@ -10,7 +11,6 @@
     <% if current_user %>
       <p><%= @user.email %></p>
     <% end %>
-
 
       <h2>Biography</h2>
       <p><%= @user.bio %></p>
@@ -81,4 +81,3 @@
     <p> Please log in to view contact information. </p>
   <% end %>
 </section>
-

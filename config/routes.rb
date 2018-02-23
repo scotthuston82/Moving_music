@@ -9,4 +9,8 @@ root 'users#home'
 
   resources :sessions, only: [:new, :create]
   delete 'logout' => 'sessions#destroy'
+
+#  get 'update' => 'user_controller#update'
+# end
+get 'users/updatepassword', :to => 'users#updatepassword'
 end

@@ -52,11 +52,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update!(user_params)
     empty_profile_picture?
-
     if @user.save
       redirect_to user_url
     end
   end
+
+  def updatepassword
+    render "updatepassword"
+  end
+
 
   def destroy
 

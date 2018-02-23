@@ -31,11 +31,12 @@
 
 
 
-      <nav class='layout-links'>
+      <nav class='layout-links clearfix'>
           <%= link_to 'Home', users_path %>
           <% if current_user %>
           <div class="user-info clearfix">
-            <p><%= link_to "Sign Out", logout_path, method: :delete %></p>
+            <%= link_to "Sign Out", logout_path, method: :delete %>
+            <%= link_to "My Profile", current_user%>
           </div>
         <% else %>
           <div class="register">

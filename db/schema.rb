@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20180222165419) do
     t.datetime "updated_at", null: false
   end
 
+
   create_table "reviews", force: :cascade do |t|
     t.text "comment"
     t.integer "client_id"

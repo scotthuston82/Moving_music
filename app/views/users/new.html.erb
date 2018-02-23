@@ -20,14 +20,13 @@
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %>
 </p>
-<p>
-  Are you a:
+<p class='radio-buttons'>
     <%= radio_button_tag(:kind, "musician") %>
     <%= label_tag(:kind_musician, "Musician") %>
     <%= radio_button_tag(:kind, "client") %>
     <%= label_tag(:kind_client, "Client") %>
 </p>
-
-<%= f.submit 'Sign Up' %>
-
+<div class='signup-button'>
+  <%= f.submit 'Sign Up' %>
+</div>
 <% end %>

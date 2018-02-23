@@ -23,41 +23,50 @@
 
 <div class='musician-pending-bookings'>
   <h2>My Pending Bookings:</h2>
-    <ul>
-      <% @pendingbookings.each do |booking| %>
+  <div id="pending_bookings">
+    <% @pendingbookings.each do |booking| %>
+      <ul id="booking_<%= booking.id %>">
         <li>Client name: <%= booking.client.first_name %></li>
         <li>Address: <%= booking.address %></li>
         <li>Start Time: <%= booking.start_time %></li>
         <li>End Time: <%= booking.end_time %></li>
         <li>Age Range: <%= booking.age_range %></li>
         <li>Party Size: <%= booking.party_size %></li>
+        <li class="button_container"><button class="confirm_booking" type="button" name="confirm_booking" data-booking_id="<%= booking.id %>">Confirm!</button></li>
+      </ul>
       <% end %>
-    </ul>
 </div>
 <div class='musician-confirmed-bookings'>
-  <h2>My Confirmed Bookings:</h2>
-    <ul>
-      <% @confirmedbookings.each do |booking| %>
-        <li>booking.client.first_name</li>
+  <p>My Confirmed Bookings:</p>
+  <div id="confirmed_bookings">
+    <% @confirmedbookings.each do |booking| %>
+      <ul id="booking_<%= booking.id %>">
+        <li>Client name: <%= booking.client.first_name %></li>
         <li>Address: <%= booking.address %></li>
         <li>Start Time: <%= booking.start_time %></li>
         <li>End Time: <%= booking.end_time %></li>
         <li>Age Range: <%= booking.age_range %></li>
         <li>Party Size: <%= booking.party_size %></li>
+      </ul>
       <% end %>
-    </ul>
   </div>
-  <% end %>
-<div class='reviews'>
-  <% if @user.musician_reviews.first.comment %>
-    <div class='musician-reviews'>
-    <% @user.musician_reviews.each do |review|  %>
-      <p><%= review.comment %></p>
-    <% end %>
-  </div>
+  <h2>My Past Bookings:</h2>
+  <div id="past_bookings">
+    <% @pastbookings.each do |booking| %>
+      <ul id="booking_<%= booking.id %>">
+        <li>Client name: <%= booking.client.first_name %></li>
+        <li>Address: <%= booking.address %></li>
+        <li>Start Time: <%= booking.start_time %></li>
+        <li>End Time: <%= booking.end_time %></li>
+        <li>Age Range: <%= booking.age_range %></li>
+        <li>Party Size: <%= booking.party_size %></li>
+        <li><%= link_to 'Write review', new_user_booking_review_path(@user, booking) %></li>
+      </ul>
   <% end %>
 
-  <%= render 'reviews/reviews_form', user: @user, review: @review %>
+  <% end %>
+  <%= render 'bookings.js' %>
+
 </div>
   <% if !current_user %>
     <p> Please log in to view contact information. </p>

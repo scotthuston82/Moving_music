@@ -14,7 +14,6 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to user_url(@musician)
     else
-
       render "new"
     end
   end

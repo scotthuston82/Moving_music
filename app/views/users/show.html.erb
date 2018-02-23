@@ -1,21 +1,4 @@
 
-<ul>
-  <li class='musician-name'><%= @user.first_name %> <%= @user.last_name %></li>
-  <% if current_user %>
-    <li><%= @user.email %></li>
-  <% end %>
-  <% if !current_user %>
-    <li> Please log in to view contact information. </li>
-  <% end %>
-  <li><%= @user.profile_picture %></li>
-  <li><%= @user.bio %></li>
-  <li><%= @user.hourly_rate %></li>
-</ul>
-
-
-<% if current_user && current_user.kind == 'client' %>
-  <%= link_to 'Book Me Now!', new_user_booking_path(@user) %>
-<% end %>
 
 <section class='user-show'>
   <h1><%= @user.stage_name %></h1>
@@ -25,7 +8,7 @@
     <% if current_user %>
       <p><%= @user.email %></p>
     <% end %>
-    
+
     <div class="musician-picture">
       <%= image_tag(@user.profile_picture) %>
     </div>
@@ -69,7 +52,7 @@
   <div id="confirmed_bookings">
     <% @confirmedbookings.each do |booking| %>
       <ul id="booking_<%= booking.id %>">
-        <li>booking.client.first_name</li>
+        <li>Client name: <%= booking.client.first_name %></li>
         <li>Address: <%= booking.address %></li>
         <li>Start Time: <%= booking.start_time %></li>
         <li>End Time: <%= booking.end_time %></li>
@@ -78,31 +61,29 @@
       </ul>
     <% end %>
   </div>
+  <p>My Past Bookings:</p>
+  <div id="past_bookings">
+    <% @pastbookings.each do |booking| %>
+      <ul id="booking_<%= booking.id %>">
+        <li>Client name: <%= booking.client.first_name %></li>
+        <li>Address: <%= booking.address %></li>
+        <li>Start Time: <%= booking.start_time %></li>
+        <li>End Time: <%= booking.end_time %></li>
+        <li>Age Range: <%= booking.age_range %></li>
+        <li>Party Size: <%= booking.party_size %></li>
+        <li><%= link_to 'Write review', new_user_booking_review_path(@user, booking) %></li>
+      </ul>
+    <% end %>
+  </div>
   <%= link_to 'Edit Profile', edit_user_path(@user) %>
 <% end %>
 
 
-<ul>
-<% @user.musician_reviews.each do |review|  %>
-  <li><%= review.comment %></li>
-<% end %>
-</ul>
 
-<%= render 'reviews/reviews_form', user: @user, review: @review %>
 
 <%= render 'bookings.js' %>
 
-  <% if @user.musician_reviews.first.comment %>
-    <ul>
-    <% @user.musician_reviews.each do |review|  %>
-      <li><%= review.comment %></li>
-    <% end %>
-    </ul>
-  <% end %>
 
-  <%= render 'reviews/reviews_form', user: @user, review: @review %>
-  <% if !current_user %>
-    <p> Please log in to view contact information. </p>
-  <% end %>
+
+
 </section>
-

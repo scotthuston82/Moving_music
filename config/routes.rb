@@ -3,8 +3,9 @@ root 'users#home'
 
   resources :musicians  , only: [:index]
   resources :users do
-    resources :bookings, only: [:new, :create, :update]
-    resources :reviews, only:[:new, :create, :index]
+    resources :bookings, only: [:new, :create, :update] do
+      resources :reviews, only:[:new, :create, :index]
+    end
   end
 
   resources :sessions, only: [:new, :create]

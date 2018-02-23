@@ -24,6 +24,7 @@ class UsersController < ApplicationController
       @review.client_id = current_user.id
       @pendingbookings = current_user.gigs.where('confirmed = ?', false)
       @confirmedbookings = current_user.gigs.where('confirmed = ?', true)
+      @pastbookings = current_user.gigs.where('confirmed = ?', true)
     end
   end
 

@@ -83,8 +83,9 @@
   font-weight: bold;
 }
 
-#user-bio {
+#user_bio {
   width: 100%;
+  min-height: 100px;
 }
 
 @media(min-width:480px){
@@ -92,4 +93,26 @@
     max-width: 800px;
     margin: 50px auto;
   }
+  .musicians {
+    width: 30%;
+    float: left;
+    background-color: #f1f1f1;
+    margin: 1%;
+  }
+  .musician-image {
+    float: left;
+    width: 30%;
+    margin: 0;
+  }
+  .musician-bio {
+    float: left;
+    width:60%;
+    h3 {
+      text-align: center;
+    }
+    p {
+      padding-left: 10%;
+    }
+  }
+
 }

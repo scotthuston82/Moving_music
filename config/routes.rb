@@ -3,7 +3,7 @@ root 'users#home'
 
   resources :musicians  , only: [:index]
   resources :users do
-    resources :bookings, only: [:new, :create]
+    resources :bookings, only: [:new, :create, :update]
     resources :reviews, only:[:new, :create, :index]
   end
 

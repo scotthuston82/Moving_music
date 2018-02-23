@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    # raise
     @user = User.find(params[:id])
     @review = @user.musician_reviews.new
     @reviews = @user.musician_reviews
@@ -75,7 +76,7 @@ class UsersController < ApplicationController
   end
 
   def empty_profile_picture?
-    if @user.profile_picture == nil
+    if @user.profile_picture == nil || @user.profile_picture == ""
       @user.update(profile_picture: "empty_profile.png")
     else
       @user.profile_picture

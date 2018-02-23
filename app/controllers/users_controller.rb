@@ -53,11 +53,16 @@ class UsersController < ApplicationController
     @user.update!(user_params)
     @user.act_type = params[:act_type]
     empty_profile_picture?
-
     if @user.save
       redirect_to user_url
     end
   end
+
+  def updatepassword
+    @user = current_user
+    render "updatepassword"
+  end
+
 
   def destroy
 

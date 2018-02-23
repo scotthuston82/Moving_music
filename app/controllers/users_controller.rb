@@ -58,6 +58,7 @@ class UsersController < ApplicationController
   end
 
   def updatepassword
+    @user = current_user
     render "updatepassword"
   end
 

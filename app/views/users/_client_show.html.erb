@@ -19,9 +19,9 @@
   <% if current_user && current_user.id == @user.id %>
   <div class='edit-profile'>
     <%= link_to 'Edit Profile', edit_user_path(@user)%>
-    <div class='updatepassword'>
-      <%= link_to 'Update Password', users_updatepassword_path%>
-    </div>
+  </div>
+  <div class='updatepassword'>
+    <%= link_to 'Update Password', users_updatepassword_path%>
   </div>
 
 <div class='musician-pending-bookings'>

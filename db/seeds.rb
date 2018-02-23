@@ -2,12 +2,15 @@ User.destroy_all
 Booking.destroy_all
 Genre.destroy_all
 
+Genre.create!(name: "Pop/Top 40")
 Genre.create!(name: "Hip-Hop")
+Genre.create!(name: "Motown")
+Genre.create!(name: "Funk")
+Genre.create!(name: "Rock")
 Genre.create!(name: "Reggae")
 Genre.create!(name: "Jazz")
-Genre.create!(name: "Motown")
 Genre.create!(name: "Punk")
-Genre.create!(name: "80's Hair Metal")
+Genre.create!(name: "80's")
 Genre.create!(name: "Bluegrass")
 Genre.create!(name: "Cajun Slam-grass")
 Genre.create!(name: "Nickelback-Trash-Rock")
@@ -41,7 +44,8 @@ end
     lat: (43.76 + rand * 0.01),
     long: (-79.41 + rand * 0.01),
     profile_picture: "https://picsum.photos/200/300/?random",
-    stage_name: Faker::Kpop.boy_bands
+    stage_name: Faker::Kpop.boy_bands,
+    act_type: ["dj", "band"].sample
   )
 end
 

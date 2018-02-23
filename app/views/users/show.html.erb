@@ -1,3 +1,8 @@
+
+  <%= link_to 'Edit Profile', edit_user_path(@user) %>
+  <div class='updatepassword'>
+  <%= link_to 'Update Password', users_updatepassword_path%>
+
 <% if @user.kind == 'client' %>
 <%=  render 'client_show' %>
 <% elsif @user.kind == 'musician' %>

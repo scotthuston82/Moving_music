@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180223164202) do
+ActiveRecord::Schema.define(version: 20180223204410) do
 
   create_table "bookings", force: :cascade do |t|
     t.integer "musician_id"
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 20180223164202) do
     t.integer "booking_id"
     t.text "musicians_review"
     t.text "clients_review"
+    t.boolean "musician_reviewed", default: false
+    t.boolean "client_reviewed", default: false
   end
 
   create_table "users", force: :cascade do |t|

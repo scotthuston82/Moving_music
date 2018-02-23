@@ -17,7 +17,7 @@ class ReviewsController < ApplicationController
         if current_user.kind == "client"
           @review.musicians_review = params[:review][:musicians_review]
         elsif current_user.kind == "musician"
-          @review.client_review = params[:review][:clients_review]
+          @review.clients_review = params[:review][:clients_review]
         end
     else
       @review = @booking.review

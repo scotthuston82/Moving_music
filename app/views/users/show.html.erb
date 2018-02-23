@@ -76,6 +76,9 @@
     <% end %>
   </div>
   <%= link_to 'Edit Profile', edit_user_path(@user) %>
+  <div class='updatepassword'>
+  <%= link_to 'Update Password', users_updatepassword_path%>
+</div>x
 <% end %>
 
 
@@ -93,4 +96,3 @@
 <% elsif @user.kind == 'musician' %>
 <%=  render 'musician_show' %>
 <% end %>
-

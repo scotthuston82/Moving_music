@@ -59,9 +59,117 @@
   font-size: 15px;
 }
 
-// User Profile ==============
+.signup-form input[type=text],
+.signup-form input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 15px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
 
-.musician-picture {
-  height: 100px;
-  width: 100px;
+.signup-form input[type=submit] {
+  background-color: orange;
+  padding: 10px 20px;
+  margin-top: 20px;
+}
+
+.signup-form input[type=radio]{
+}
+
+.signup-form label {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#user_bio {
+  width: 100%;
+  min-height: 100px;
+}
+
+.musician-pending-bookings button {
+  text-transform: uppercase;
+  width: 120px;
+  height: 30px;
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.edit-profile {
+  width: 60%;
+  margin: 20px 0 20px 10%;
+  float:left;
+}
+
+.edit-profile a{
+  color: black;
+  text-decoration: none;
+  padding: 10px 20px;
+  background-color: orange;
+}
+
+@media(min-width:480px){
+  .form-wrapper{
+    max-width: 800px;
+    margin: 50px auto;
+  }
+  .musicians {
+    width: 30%;
+    float: left;
+    background-color: #f1f1f1;
+    margin: 1%;
+  }
+  .musician-image {
+    float: left;
+    width: 30%;
+    margin: 0;
+  }
+  .musician-bio {
+    float: left;
+    width:60%;
+    h3 {
+      text-align: center;
+    }
+    p {
+      padding-left: 10%;
+    }
+  }
+  .index-musicians {
+    margin-top: 50px;
+  }
+
+  .musician-picture {
+    width: 30%;
+    float: left;
+  }
+
+  .user-show h1 {
+    font-size: 50px;
+  }
+
+  .artist-info {
+    margin-left: 10%;
+    width: 60%;
+    float:left;
+  }
+  .musician-pending-bookings {
+    margin-left: 10%;
+    width: 60%;
+    float:left;
+  }
+  .musician-confirmed-bookings {
+    margin-left: 10%;
+    width: 60%;
+    float: left;
+  }
+  .reviews {
+    margin-left: 10%;
+    width: 30%;
+    float: left;
+  }
+  #review_comment {
+    width: 100%;
+    min-height: 100px;
+  }
 }

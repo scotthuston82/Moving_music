@@ -13,7 +13,8 @@
  *= require_tree .
  *= require_self
  */
-@import normalize.scss; 
+@import normalize.scss;
 @import home.scss;
 @import layout.scss;
 @import users.scss;
+@import bookings.scss;

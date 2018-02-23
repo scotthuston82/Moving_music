@@ -1,3 +1,4 @@
+<div class= 'new-booking'>
 <% if @booking.errors %>
   <% @booking.errors.messages.each do |key, value|  %>
     <% value.each do |error| %>
@@ -36,5 +37,4 @@
   <%= f.submit 'Book!' %>
 
 <% end %>
-
-<%= console %>
+</div>

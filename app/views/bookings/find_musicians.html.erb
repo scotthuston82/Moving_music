@@ -1,0 +1,16 @@
+<% @musicians.each do |musician| %>
+  <h3><%= musician.stage_name %></h3>
+  <p>Plays:</p>
+  <ul>
+    <% musician.genres.each do |genre| %>
+      <li><%= genre.name %></li>
+    <% end %>
+  </ul>
+  <%= form_for [musician, @booking] do |f| %>
+  <%= hidden_field_tag('booking[start_time]', value: @booking.start_time) %>
+    <!-- Need the name attribute of the tag to be booking[attribute] -->
+    <!-- And the "value" attribute to be the booking.attribute itself -->
+    <%= f.submit 'Book!' %>
+  <% end %>
+</div>
+<% end %>

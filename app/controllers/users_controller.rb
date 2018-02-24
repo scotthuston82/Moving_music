@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    # raise
+
     @user = User.find(params[:id])
     @review = @user.musician_reviews.new
     @reviews = @user.musician_reviews
@@ -24,6 +24,7 @@ class UsersController < ApplicationController
       @review.client_id = current_user.id
       @pendingbookings = current_user.gigs.where('confirmed = ?', false)
       @confirmedbookings = current_user.gigs.where('confirmed = ?', true)
+      @pastbookings = current_user.gigs.where('confirmed = ?', true)
     end
   end
 
@@ -51,13 +52,20 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update!(user_params)
-    @user.act_type = params[:act_type]
+    if @user.act_type == nil
+      @user.act_type = params[:act_type]
+    end
     empty_profile_picture?
-
     if @user.save
       redirect_to user_url
     end
   end
+
+  def updatepassword
+    @user = current_user
+    render "updatepassword"
+  end
+
 
   def destroy
 

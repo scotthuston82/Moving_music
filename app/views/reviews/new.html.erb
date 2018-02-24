@@ -1,0 +1,16 @@
+<%= form_for [@user, @booking, @review] do |f|%>
+  <% if current_user.kind == "client" %>
+    <p>
+      <%= f.label :review_for_musician %>
+      <%= f.text_area :musicians_review  %>
+    </p>
+  <% elsif current_user.kind == "musician" %>
+    <p>
+      <%= f.label :review_for_client %>
+      <%= f.text_area :clients_review  %>
+    </p>
+  <% end %>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

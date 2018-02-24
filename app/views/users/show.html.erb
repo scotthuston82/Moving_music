@@ -36,7 +36,7 @@
   <% if current_user && current_user.id == @user.id %>
   <div class='edit-profile'>
     <%= link_to 'Edit Profile', edit_user_path(@user)%>
-  </div>  
+  </div>
 
 <div class='musician-pending-bookings'>
   <h2>My Pending Bookings:</h2>
@@ -44,8 +44,8 @@
       <% @pendingbookings.each do |booking| %>
         <li>Client name: <%= booking.client.first_name %></li>
         <li>Address: <%= booking.address %></li>
-        <li>Start Time: <%= booking.start_time %></li>
-        <li>End Time: <%= booking.end_time %></li>
+        <li>Start Time: <%= booking.start_time.strftime('%a %b %e at %l:%M %p') %></li>
+        <li>End Time: <%= booking.end_time.strftime('%a %b %e at %l:%M %p') %></li>
         <li>Age Range: <%= booking.age_range %></li>
         <li>Party Size: <%= booking.party_size %></li>
         <button type="button" name="Confirm Booking">confirm</button>
@@ -58,8 +58,8 @@
       <% @confirmedbookings.each do |booking| %>
         <li>booking.client.first_name</li>
         <li>Address: <%= booking.address %></li>
-        <li>Start Time: <%= booking.start_time %></li>
-        <li>End Time: <%= booking.end_time %></li>
+        <li>Start Time: <%= booking.start_time.strftime('%a %b %e at %l:%M %p') %></li>
+        <li>End Time: <%= booking.end_time.strftime('%a %b %e at %l:%M %p') %></li>
         <li>Age Range: <%= booking.age_range %></li>
         <li>Party Size: <%= booking.party_size %></li>
       <% end %>

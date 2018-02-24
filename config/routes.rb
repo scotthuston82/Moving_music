@@ -9,7 +9,7 @@ root 'users#home'
 
   get '/bookings/new' => 'bookings#new_no_musician'
 
-  get '/bookings/new/find_musician' => 'bookings#find_musician'
+  get '/bookings/new/find_musicians' => 'bookings#find_musicians'
 
   resources :sessions, only: [:new, :create]
   delete 'logout' => 'sessions#destroy'

@@ -22,5 +22,23 @@ document.addEventListener("turbolinks:load", function() {
       })
     })
   })
+
+  var rejectBooking = document.querySelectorAll('.reject_booking');
+
+  rejectBooking.forEach(function(rejectBooking){
+    rejectBooking.addEventListener('click',function(e){
+      var bookingId = e.path[0].getAttribute('data-booking_id');
+
+
+      fetch('/users/<%= @user.id %>/bookings/' + bookingId, {method:'DELETE'})
+      .then(response => response.json())
+      .catch(error => console.error('error', error))
+      .then(response => {
+        console.log('success')
+        var list = document.querySelector('#booking_' + bookingId)
+        list.remove()
+      })
+    });
+  });
 });
 </script>

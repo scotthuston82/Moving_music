@@ -17,14 +17,24 @@ class UsersController < ApplicationController
   def show
 
     @user = User.find(params[:id])
-    @review = @user.musician_reviews.new
-    @reviews = @user.musician_reviews
-    @genres = @user.genres
-    if current_user
-      @review.client_id = current_user.id
-      @pendingbookings = current_user.gigs.where('confirmed = ?', false)
-      @confirmedbookings = current_user.gigs.where('confirmed = ?', true)
-      @pastbookings = current_user.gigs.where('confirmed = ?', true)
+    if @user.kind == 'musician'
+      @review = @user.musician_reviews.new
+      @reviews = @user.musician_reviews
+      @genres = @user.genres
+      if current_user  # what if logged in as musician?, do we add && current_user.kind == 'client'?
+        @review.client_id = current_user.id # not sure this line makes sense
+        @pendingbookings = current_user.gigs.where('confirmed = ?', false)
+        @confirmedbookings = current_user.gigs.where('confirmed = ?', true)
+        @pastbookings = current_user.gigs.where('confirmed = ? AND end_time < ?', true, Time.now)
+      end
+    elsif @user.kind == 'client'
+      @review = @user.client_reviews.new
+      @reviews = @user.client_reviews
+      if current_user && current_user == @user
+        @pendingbookings = current_user.events.where('confirmed = ?', false)
+        @confirmedbookings = current_user.events.where('confirmed = ?', true)
+        @pastbookings = current_user.events.where('confirmed = ? AND end_time < ?', true, Time.now)
+      end
     end
   end
 

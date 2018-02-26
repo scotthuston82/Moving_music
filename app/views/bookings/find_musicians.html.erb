@@ -7,7 +7,11 @@
     <% end %>
   </ul>
   <%= form_for [musician, @booking] do |f| %>
-  <%= hidden_field_tag('booking[start_time]', value: @booking.start_time) %>
+  <%= hidden_field_tag('booking[start_time]', @booking.start_time) %>
+  <%= hidden_field_tag('booking[end_time]', @booking.end_time) %>
+  <%= hidden_field_tag('booking[address]', @booking.address) %>
+  <%= hidden_field_tag('booking[party_size]', @booking.party_size) %>
+  <%= hidden_field_tag('booking[age_range]', @booking.age_range) %>
     <!-- Need the name attribute of the tag to be booking[attribute] -->
     <!-- And the "value" attribute to be the booking.attribute itself -->
     <%= f.submit 'Book!' %>

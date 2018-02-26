@@ -49,11 +49,11 @@
 
   <p>
     <%= field_set_tag 'Genres' do %>
-    <%= collection_check_boxes(:musician, :genre_ids, Genre.all, :id, :name) %>
+    <%= collection_check_boxes(:musician, :genre_ids, Genre.all, :id, :name, class: 'genre-checkbox') %>
     <% end %>
   </p>
 
-  <%= f.submit 'Find Musicians!' %>
+  <%= f.submit 'Find Musicians!', :id=> "find_musicians_button", data: { disable_with: false } %>
 
 <% end %>
 </div>

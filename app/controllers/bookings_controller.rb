@@ -38,6 +38,9 @@ class BookingsController < ApplicationController
   def destroy
   end
 
+  def map
+  end
+
   def booking_params
     params.require(:booking).permit(:start_time, :end_time, :address, :party_size, :age_range)
   end

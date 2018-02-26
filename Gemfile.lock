@@ -68,6 +68,7 @@ GEM
     faker (1.8.7)
       i18n (>= 0.7)
     ffi (1.9.18)
+    geocoder (1.4.5)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     i18n (0.9.5)
@@ -194,6 +195,7 @@ DEPENDENCIES
   capybara (~> 2.13)
   factory_bot_rails
   faker
+  geocoder
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)

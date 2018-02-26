@@ -38,6 +38,8 @@ gem 'factory_bot_rails'
 
 gem 'jquery-rails'
 
+gem 'geocoder'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

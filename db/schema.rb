@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20180223204410) do
 
+
   create_table "bookings", force: :cascade do |t|
     t.integer "musician_id"
     t.integer "client_id"
@@ -65,6 +66,7 @@ ActiveRecord::Schema.define(version: 20180223204410) do
     t.string "last_name"
     t.string "stage_name"
     t.string "act_type"
+    t.string "address"
   end
 
 end

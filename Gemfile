@@ -36,6 +36,8 @@ gem 'pry-rails'
 
 gem 'factory_bot_rails'
 
+gem 'geocoder'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

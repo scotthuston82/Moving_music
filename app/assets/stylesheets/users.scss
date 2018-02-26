@@ -6,6 +6,15 @@
   margin: 0 auto;
 }
 
+.musicians span {
+width:100%;
+height:100%;
+position:absolute;
+z-index:2;
+top:0px;
+left:0px;
+}
+
 .user-show h1 {
   text-align: center;
   font-size: 30px;

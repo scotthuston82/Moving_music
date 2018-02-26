@@ -1,6 +1,7 @@
 <section class='index-musicians'>
   <% @users.each do |user| %>
-      <div class='musicians clearfix'>
+      <div class='musicians'>
+        <%= link_to content_tag(:span), "/users/#{user.id}" %>
         <h2><%= user.stage_name %> </h2>
         <div class='musician-image'>
           <%= link_to(image_tag(user.profile_picture), "/users/#{user.id}") %>

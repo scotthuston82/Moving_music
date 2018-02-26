@@ -29,15 +29,9 @@
       <%= f.text_field :hourly_rate %>
     </p>
 
-    <p>
-      <%= f.label :lat %>
-      <%= f.text_field :lat %>
-    </p>
-
-    <p>
-      <%= f.label :long %>
-      <%= f.text_field :long %>
-    </p>
+      <%= f.hidden_field :lat %>
+      <%= f.hidden_field :long %>
+      <%= f.hidden_field :address %>
 
     <p>
       <%= field_set_tag 'Genres' do %>

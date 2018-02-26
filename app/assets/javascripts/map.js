@@ -7,13 +7,20 @@
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
 
-
 function initAutocomplete() {
   var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -33.8688, lng: 151.2195},
-    zoom: 13,
+    center: {lat: 43.6474475, lng: -79.38708780000002},
+    zoom: 15,
     mapTypeId: 'roadmap'
   });
+
+  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(browserHasGeolocation ?
+                          'Error: The Geolocation service failed.' :
+                          'Error: Your browser doesn\'t support geolocation.');
+    infoWindow.open(map);
+  }
 
   // Create the search box and link it to the UI element.
   var input = document.getElementById('pac-input');
@@ -72,8 +79,11 @@ function initAutocomplete() {
       }
       var userLat = document.querySelector('#user_lat');
       var userLong= document.querySelector('#user_long');
+      var userAddress= document.querySelector('#user_address');
+
       userLat.value = place.geometry.location.lat();
       userLong.value = place.geometry.location.lng();
+      userAddress.value = place.formatted_address;
 
     });
     map.fitBounds(bounds);

@@ -53,7 +53,10 @@
         <li>Age Range: <%= booking.age_range %></li>
         <li>Party Size: <%= booking.party_size %></li>
         <li class="button_container"><button class="confirm_booking" type="button" name="confirm_booking" data-booking_id="<%= booking.id %>">Confirm!</button></li>
+        <li class="button_container"><button class="reject_booking" type="button" name="reject_booking" data-booking_id="<%= booking.id %>">Reject</button></li>
       </ul>
+
+
       <% end %>
 </div>
 <div class='musician-confirmed-bookings'>

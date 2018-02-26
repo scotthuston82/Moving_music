@@ -6,13 +6,21 @@
   margin: 0 auto;
 }
 
-.musicians span {
+.musicians {
+  position: relative;
+}
+
+.musicians a {
 width:100%;
 height:100%;
 position:absolute;
 z-index:2;
-top:0px;
-left:0px;
+top:0;
+left:0;
+}
+
+.musicians:hover {
+  background-color: rgba(200, 200, 200, 0.7);
 }
 
 .user-show h1 {

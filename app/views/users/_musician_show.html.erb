@@ -52,6 +52,7 @@
         <li>End Time: <%= booking.end_time %></li>
         <li>Age Range: <%= booking.age_range %></li>
         <li>Party Size: <%= booking.party_size %></li>
+        <li>Total Price: $<%= ((booking.end_time - booking.start_time) * @user.hourly_rate) / 3600%></li>
         <li class="button_container"><button class="confirm_booking" type="button" name="confirm_booking" data-booking_id="<%= booking.id %>">Confirm!</button></li>
         <li class="button_container"><button class="reject_booking" type="button" name="reject_booking" data-booking_id="<%= booking.id %>">Reject</button></li>
       </ul>

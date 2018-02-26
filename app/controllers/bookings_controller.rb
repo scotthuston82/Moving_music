@@ -16,6 +16,9 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.client = current_user
     @musicians = User.filtre_musicians(params[:act_type], params[:hourly_rate], params[:musician][:genre_ids])
+    respond_to do |format|
+      format.html {render 'find_musicians', layout: false}
+    end
   end
 
   def create

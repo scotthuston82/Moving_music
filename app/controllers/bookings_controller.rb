@@ -24,6 +24,8 @@ class BookingsController < ApplicationController
   end
 
   def destroy
+    Booking.find(params[:id]).delete
+    render json: {status: 'okay'}
   end
 
   def booking_params

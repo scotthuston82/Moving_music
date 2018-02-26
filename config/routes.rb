@@ -9,6 +9,10 @@ root 'users#home'
     end
   end
 
+  get '/bookings/new' => 'bookings#new_no_musician'
+
+  get '/bookings/new/find_musicians' => 'bookings#find_musicians'
+
   resources :sessions, only: [:new, :create]
   delete 'logout' => 'sessions#destroy'
 

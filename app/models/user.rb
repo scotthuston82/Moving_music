@@ -12,4 +12,20 @@ class User < ApplicationRecord
 
   has_and_belongs_to_many :genres
 
+  def self.filtre_musicians(act_type, hourly_rate, genres_array)
+    genre_musicians = []
+    genres_array.delete("") #collection checkboxes always gives empty string as first value. Don't ask why
+    musicians = User.where("kind = ? AND act_type = ? AND hourly_rate <= ?", "musician", act_type, hourly_rate)
+    if genres_array.size > 0
+      genres_array.each do |genre_id|
+        genre_musicians << musicians.joins(:genres).where(genres: {id: genre_id})
+      end
+      musicians = genre_musicians.reduce do |common_musicians, genre_list|
+        common_musicians & genre_list
+      end
+    end
+
+    return musicians.uniq
+  end
+
 end

@@ -7,7 +7,7 @@
   <% end %>
 <% end %>
 
-<%= form_for [@musician, @booking] do |f| %>
+<%= form_for @booking, url: bookings_new_find_musicians_path, method: 'get' do |f| %>
 
   <p>
     <%= f.label :start_time %>
@@ -33,10 +33,27 @@
     <%= f.label :age_range %>
     <%= f.text_field :age_range %>
   </p>
+  <h3>Provide details about the type of act you're seeking:</h3>
 
-  <%= f.submit 'Book!' %>
+  <p class='radio-buttons'>
+      <%= radio_button_tag(:act_type, "dj") %>
+      <%= label_tag(:act_type_dj, "DJ") %>
+      <%= radio_button_tag(:act_type, "band") %>
+      <%= label_tag(:act_type_band, "Band") %>
+  </p>
+
+  <p>
+    <%= label_tag :hourly_rate %>
+    <%= text_field_tag :hourly_rate %>
+  </p>
+
+  <p>
+    <%= field_set_tag 'Genres' do %>
+    <%= collection_check_boxes(:musician, :genre_ids, Genre.all, :id, :name) %>
+    <% end %>
+  </p>
+
+  <%= f.submit 'Find Musicians!' %>
 
 <% end %>
-
 </div>
-

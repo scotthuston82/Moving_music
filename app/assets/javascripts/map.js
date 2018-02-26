@@ -63,7 +63,7 @@ function initAutocomplete() {
         title: place.name,
         position: place.geometry.location
       }));
-debugger
+
       if (place.geometry.viewport) {
         // Only geocodes have viewport.
         bounds.union(place.geometry.viewport);

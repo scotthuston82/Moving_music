@@ -10,6 +10,7 @@ root 'users#home'
   end
 
   get '/bookings/new' => 'bookings#new_no_musician'
+  get '/bookings/map' => 'bookings#map'
 
   get '/bookings/new/find_musicians' => 'bookings#find_musicians'
 

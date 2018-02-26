@@ -27,8 +27,10 @@
   <div id="pending_bookings">
     <% @pendingbookings.each do |booking| %>
       <ul id="booking_<%= booking.id %>">
-        <li>Client name: <%= booking.client.first_name %></li>
-        <li>Address: <%= booking.address %></li>
+        <li>Artist: <%= booking.musician.stage_name %></li>
+        <li>Artist Contact Name: <%= booking.musician.first_name %> <%= booking.musician.last_name %></li>
+        <li>Artist Contact email: <%= booking.musician.email %></li>
+        <li>Event Address: <%= booking.address %></li>
         <li>Start Time: <%= booking.start_time %></li>
         <li>End Time: <%= booking.end_time %></li>
         <li>Age Range: <%= booking.age_range %></li>
@@ -41,26 +43,29 @@
   <div id="confirmed_bookings">
     <% @confirmedbookings.each do |booking| %>
       <ul id="booking_<%= booking.id %>">
-        <li>Client name: <%= booking.client.first_name %></li>
-        <li>Address: <%= booking.address %></li>
+        <li>Artist: <%= booking.musician.stage_name %></li>
+        <li>Artist Contact Name: <%= booking.musician.first_name %> <%= booking.musician.last_name %></li>
+        <li>Artist Contact email: <%= booking.musician.email %></li>
+        <li>Event Address: <%= booking.address %></li>
         <li>Start Time: <%= booking.start_time %></li>
         <li>End Time: <%= booking.end_time %></li>
         <li>Age Range: <%= booking.age_range %></li>
         <li>Party Size: <%= booking.party_size %></li>
       </ul>
-      <% end %>
+    <% end %>
   </div>
   <h2>My Past Bookings:</h2>
   <div id="past_bookings">
     <% @pastbookings.each do |booking| %>
       <ul id="booking_<%= booking.id %>">
-        <li>Client name: <%= booking.client.first_name %></li>
-        <li>Address: <%= booking.address %></li>
+        <li>Artist: <%= booking.musician.stage_name %></li>
+        <li>Artist Contact Name: <%= booking.musician.first_name %> <%= booking.musician.last_name %></li>
+        <li>Artist Contact email: <%= booking.musician.email %></li>
+        <li>Event Address: <%= booking.address %></li>
         <li>Start Time: <%= booking.start_time %></li>
         <li>End Time: <%= booking.end_time %></li>
         <li>Age Range: <%= booking.age_range %></li>
         <li>Party Size: <%= booking.party_size %></li>
-        <li><%= link_to 'Write review', new_user_booking_review_path(@user, booking) %></li>
       </ul>
   <% end %>
 

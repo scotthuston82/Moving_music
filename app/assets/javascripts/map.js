@@ -124,25 +124,27 @@ document.addEventListener('DOMContentLoaded', function(){
       method: 'get',
       dataType: 'json'
     }).done(function(responseData) {
-      var client = responseData[responseData.length-1];
+      var client = responseData[responseData.length-2];
       var clientLatLngObject = new google.maps.LatLng(client.lat, client.long);
       responseData.forEach(function(musician) {
         var musicianLatLngObject = new google.maps.LatLng(musician.lat, musician.long);
-        console.log(google.maps.geometry.spherical.computeDistanceBetween(clientLatLngObject, musicianLatLngObject));
-        var marker = new google.maps.Marker({
-          position: {lat: musician.lat, lng: musician.long},
-          map: map
-        });
-        var circle = new google.maps.Circle({
-          strokeColor: 'rgb(255, 0, 0)',
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-          fillColor: 'rgb(59, 242, 160)',
-          fillOpacity: 0.35,
-          map: map,
-          center: {lat: musician.lat, lng: musician.long},
-          radius: 3000
-        });
+        if (google.maps.geometry.spherical.computeDistanceBetween(clientLatLngObject, musicianLatLngObject) <= 3000) {
+          var marker = new google.maps.Marker({
+            position: {lat: musician.lat, lng: musician.long},
+            map: map
+          });
+          var circle = new google.maps.Circle({
+            strokeColor: 'rgb(255, 0, 0)',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: 'rgb(59, 242, 160)',
+            fillOpacity: 0.35,
+            map: map,
+            center: {lat: musician.lat, lng: musician.long},
+            radius: 3000
+
+          });
+        }
       })
     })
   })

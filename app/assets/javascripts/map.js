@@ -6,6 +6,7 @@
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
+
 function initAutocomplete() {
   window.map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 43.6474475, lng: -79.38708780000002},
@@ -63,6 +64,8 @@ function initAutocomplete() {
         scaledSize: new google.maps.Size(25, 25)
       };
 
+
+
       // Create a marker for each place.
       markers.push(new google.maps.Marker({
         map: map,
@@ -77,14 +80,19 @@ function initAutocomplete() {
       } else {
         bounds.extend(place.geometry.location);
       }
-      var userLat = document.querySelector('#user_lat');
-      var userLong= document.querySelector('#user_long');
-      var userAddress= document.querySelector('#user_address');
 
-      userLat.value = place.geometry.location.lat();
-      userLong.value = place.geometry.location.lng();
-      userAddress.value = place.formatted_address;
+// Only run this if we are on the musician update page
 
+      if (document.querySelector('#user_lat')) {
+        var userLat = document.querySelector('#user_lat');
+        var userLong= document.querySelector('#user_long');
+        var userAddress= document.querySelector('#user_address');
+
+        userLat.value = place.geometry.location.lat();
+        userLong.value = place.geometry.location.lng();
+        userAddress.value = place.formatted_address;
+      }
+// ===================================================
     });
     map.fitBounds(bounds);
   });
@@ -98,25 +106,7 @@ document.addEventListener('DOMContentLoaded', function(){
   var getMarker = document.querySelector('#make_marker');
   var getCircle = document.querySelector('#make_circle');
 
-  getMarker.addEventListener('click', function() {
-    var marker = new google.maps.Marker({
-      position: {lat: 43.764458447256104, lng: -79.40146929254522},
-      map: map
-    });
-  });
 
-  getCircle.addEventListener('click', function() {
-    var marker = new google.maps.Circle({
-      strokeColor: 'rgb(255, 0, 0)',
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      fillColor: 'rgb(59, 242, 160)',
-      fillOpacity: 0.35,
-      map: map,
-      center: {lat: 43.764458447256104, lng: -79.40146929254522},
-      radius: 3000
-    });
-  });
 
   getMusicians.addEventListener('click', function(e) {
     $.ajax({
@@ -129,24 +119,32 @@ document.addEventListener('DOMContentLoaded', function(){
       responseData.forEach(function(musician) {
         var musicianLatLngObject = new google.maps.LatLng(musician.lat, musician.long);
         if (google.maps.geometry.spherical.computeDistanceBetween(clientLatLngObject, musicianLatLngObject) <= 3000) {
-          var marker = new google.maps.Marker({
-            position: {lat: musician.lat, lng: musician.long},
-            map: map
-          });
-          var circle = new google.maps.Circle({
-            strokeColor: 'rgb(255, 0, 0)',
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: 'rgb(59, 242, 160)',
-            fillOpacity: 0.35,
-            map: map,
-            center: {lat: musician.lat, lng: musician.long},
-            radius: 3000
-
-          });
+          makeMarker(musician.lat, musician.long)
         }
       })
     })
   })
+
+  // FUNCTIONS ARE HERE FOR YOU
+
+  function makeMarker(latitude, longitude) {
+    var marker = new google.maps.Marker({
+      position: {lat: latitude, lng: longitude},
+      map: map
+    });
+  }
+
+  function makeCircle(latitude, longitude, radius) {
+    var circle = new google.maps.Circle({
+      strokeColor: 'rgb(20, 126, 14)',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: 'rgb(26, 148, 1)',
+      fillOpacity: 0.35,
+      map: map,
+      center: {lat: latitude, lng: longitude},
+      radius: radius
+    });
+  }
 
 });

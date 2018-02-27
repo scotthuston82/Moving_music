@@ -34,7 +34,7 @@
     <%= f.text_field :age_range %>
   </p>
 
-  <%= f.submit 'Book!' %>
+  <%= f.submit 'Book!', data: { confirm: "Click OK to complete your booking. It will now appear in your \"Pending bookings\".\n\nOnce confirmed by #{@musician.stage_name}, it will move to your \"Confirmed Bookings\"" } %>
 
 <% end %>
 

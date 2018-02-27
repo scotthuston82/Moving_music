@@ -17,13 +17,24 @@ class UsersController < ApplicationController
   def show
 
     @user = User.find(params[:id])
-    @review = @user.musician_reviews.new
-    @reviews = @user.musician_reviews
-    @genres = @user.genres
-    if current_user
-      @review.client_id = current_user.id
-      @pendingbookings = current_user.gigs.where('confirmed = ?', false)
-      @confirmedbookings = current_user.gigs.where('confirmed = ?', true)
+    if @user.kind == 'musician'
+      @review = @user.musician_reviews.new
+      @reviews = @user.musician_reviews
+      @genres = @user.genres
+      if current_user  # what if logged in as musician?, do we add && current_user.kind == 'client'?
+        @review.client_id = current_user.id # not sure this line makes sense
+        @pendingbookings = current_user.gigs.where('confirmed = ?', false)
+        @confirmedbookings = current_user.gigs.where('confirmed = ?', true)
+        @pastbookings = current_user.gigs.where('confirmed = ? AND end_time < ?', true, Time.now)
+      end
+    elsif @user.kind == 'client'
+      @review = @user.client_reviews.new
+      @reviews = @user.client_reviews
+      if current_user && current_user == @user
+        @pendingbookings = current_user.events.where('confirmed = ?', false)
+        @confirmedbookings = current_user.events.where('confirmed = ?', true)
+        @pastbookings = current_user.events.where('confirmed = ? AND end_time < ?', true, Time.now)
+      end
     end
   end
 
@@ -51,7 +62,9 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update!(user_params)
-    @user.act_type = params[:act_type]
+    if @user.act_type == nil
+      @user.act_type = params[:act_type]
+    end
     empty_profile_picture?
     if @user.save
       redirect_to user_url
@@ -78,7 +91,7 @@ class UsersController < ApplicationController
 
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :bio, :profile_picture, :stage_name, :hourly_rate, genre_ids: [])
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :bio, :profile_picture, :stage_name, :hourly_rate, :lat, :long, :address, genre_ids: [])
   end
 
   def empty_profile_picture?

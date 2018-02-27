@@ -29,11 +29,26 @@
       <%= f.text_field :hourly_rate %>
     </p>
 
+      <%= f.hidden_field :lat %>
+      <%= f.hidden_field :long %>
+      <%= f.hidden_field :address %>
+
+<!--GOOGLE MAPS  -->
+    <p>Enter Your Location (This will be used to show event planners if you are nearby!)</p>
+    <div>
+      <input id="pac-input" class="controls" type="text" placeholder="Search Address">
+      <div id="map"></div>
+      <!-- Replace the value of the key parameter with your own API key. -->
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcNr3L8XYiOH0E81G4w_6OJjgrmNCqQrU&libraries=places&callback=initAutocomplete"
+               async defer></script>
+    </div>
+
     <p>
       <%= field_set_tag 'Genres' do %>
       <%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :name) %>
       <% end %>
     </p>
+
 
     <%= f.submit 'Update' %>
 

@@ -6,6 +6,21 @@ class BookingsController < ApplicationController
     @musician = User.find(params[:user_id])
   end
 
+  def new_no_musician
+    @booking = Booking.new
+    @booking.client = current_user
+    @genres = Genre.all
+  end
+
+  def find_musicians
+    @booking = Booking.new(booking_params)
+    @booking.client = current_user
+    @musicians = User.filtre_musicians(params[:act_type], params[:hourly_rate], params[:musician][:genre_ids])
+    respond_to do |format|
+      format.html {render 'find_musicians', layout: false}
+    end
+  end
+
   def create
     @booking = Booking.new(booking_params)
     @musician = User.find(params[:user_id])
@@ -14,7 +29,6 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to user_url(@musician)
     else
-
       render "new"
     end
   end
@@ -25,6 +39,11 @@ class BookingsController < ApplicationController
   end
 
   def destroy
+    Booking.find(params[:id]).delete
+    render json: {status: 'okay'}
+  end
+
+  def map
   end
 
   def booking_params

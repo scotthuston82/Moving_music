@@ -27,7 +27,7 @@ Genre.create!(name: "Nickelback-Trash-Rock")
     hourly_rate: nil,
     lat: (43.76 + rand * 0.01),
     long: (-79.41 + rand * 0.01),
-    profile_picture: nil
+    profile_picture: "empty_profile.png"
   )
 end
 
@@ -45,7 +45,8 @@ end
     long: (-79.41 + rand * 0.01),
     profile_picture: "https://picsum.photos/200/300/?random",
     stage_name: Faker::Kpop.boy_bands,
-    act_type: ["dj", "band"].sample
+    act_type: ["dj", "band"].sample,
+    genres: Genre.all.sample(rand(1..4))
   )
 end
 

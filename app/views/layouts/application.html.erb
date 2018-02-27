@@ -32,8 +32,8 @@
 
 
       <nav class='layout-links clearfix'>
-          <%= link_to 'Home', users_path %>
-          <% if current_user %>
+        <%= link_to 'Home', users_path %>
+        <% if current_user %>
           <div class="user-info clearfix">
             <%= link_to "Sign Out", logout_path, method: :delete %>
             <%= link_to "My Profile", current_user%>
@@ -45,17 +45,21 @@
           <div class="log-in">
             <%= link_to "Log In", new_session_path%>
           </div>
-        </nav>
-      <% end %>
+        <% end %>
+      </nav>
       <div class = "search">
-          <%= form_tag(users_path, :method => "get", id: "search-form") do %>
-            <%= text_field_tag :term, params[:term], placeholder: "Search" %>
-            <%= submit_tag "Search", name: nil %>
-          <% end %>
+        <%= form_tag(users_path, :method => "get", id: "search-form") do %>
+          <%= text_field_tag :term, params[:term], placeholder: "Search" %>
+          <%= submit_tag "Search", name: nil %>
+        <% end %>
+      </div>
+      <% if current_user && current_user.kind == "client" %>
+        <div class="new-booking-find-musicians">
+          <%= link_to "Create New Booking", bookings_new_path %>
         </div>
+      <% end %>
     </header>
     <%= yield %>
   </body>
 
-<%= console %>
 </html>

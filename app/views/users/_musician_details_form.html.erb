@@ -8,13 +8,6 @@
       <%= f.text_field :stage_name %>
     </p>
 
-    <p class='radio-buttons'>
-        <%= radio_button_tag(:act_type, "dj") %>
-        <%= label_tag(:act_type_dj, "DJ") %>
-        <%= radio_button_tag(:act_type, "band") %>
-        <%= label_tag(:act_type_band, "Band") %>
-    </p>
-
     <p>
       <%= f.label :bio %>
       <%= f.text_area :bio %>
@@ -51,17 +44,6 @@
       <%= f.text_field :email %>
     </p>
 
-    <h3>Update Password:</h3>
-
-    <p>
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-    </p>
-
-    <p>
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation %>
-    </p>
 
     <%= f.submit 'Update' %>
 

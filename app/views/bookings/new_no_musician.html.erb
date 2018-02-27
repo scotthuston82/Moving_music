@@ -10,10 +10,10 @@
 
 
 <div>
-  <input id="pac-input" class="controls" type="text" placeholder="Search Address">
+  <input id="pac-input" class="controls" type="text" placeholder="Venue Location">
   <div id="map"></div>
 </div>
-<button id="latlng_musicians"  type="button" name="button">This button does things</button>
+<input id="radius" type="number"><button id="set_radius"  type="button" name="button">Set radius</button>
 
 
 <%= form_for @booking, url: bookings_new_find_musicians_path, method: 'get' do |f| %>

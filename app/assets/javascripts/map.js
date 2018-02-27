@@ -8,7 +8,7 @@
 
 
 function initAutocomplete() {
-  window.map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 43.6474475, lng: -79.38708780000002},
     zoom: 15,
     mapTypeId: 'roadmap'
@@ -93,58 +93,96 @@ function initAutocomplete() {
         userAddress.value = place.formatted_address;
       }
 // ===================================================
+
+// Only run this if we are on the new_no_musician page
+
+
+
+      if (document.querySelector('#radius')) {
+
+        function makeCircle(latitude, longitude, radius) {
+          var circle = new google.maps.Circle({
+            strokeColor: 'rgb(20, 126, 14)',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: 'rgb(26, 148, 1)',
+            fillOpacity: 0.35,
+            map: map,
+            center: {lat: latitude, lng: longitude},
+            radius: radius * 1000
+          });
+          console.log("this happened" + radius);
+        }
+
+
+
+        var set_radius = document.querySelector('#set_radius');
+
+        set_radius.addEventListener('click', function() {
+          var radius = document.getElementById('radius').value;
+          console.log("setting radius" + radius);
+          var venueLat = place.geometry.location.lat();
+          var venueLong = place.geometry.location.lng();
+          console.log(venueLat);
+          console.log(venueLong);
+          makeCircle(venueLat, venueLong, radius);
+        })
+      }
+
     });
     map.fitBounds(bounds);
   });
 
 }
 
+
+
 document.addEventListener('DOMContentLoaded', function(){
-
-
-  var getMusicians = document.querySelector('#latlng_musicians');
-  var getMarker = document.querySelector('#make_marker');
-  var getCircle = document.querySelector('#make_circle');
-
-
-
-  getMusicians.addEventListener('click', function(e) {
-    $.ajax({
-      url: '/bookings/musicians_in_radius',
-      method: 'get',
-      dataType: 'json'
-    }).done(function(responseData) {
-      var client = responseData[responseData.length-2];
-      var clientLatLngObject = new google.maps.LatLng(client.lat, client.long);
-      responseData.forEach(function(musician) {
-        var musicianLatLngObject = new google.maps.LatLng(musician.lat, musician.long);
-        if (google.maps.geometry.spherical.computeDistanceBetween(clientLatLngObject, musicianLatLngObject) <= 3000) {
-          makeMarker(musician.lat, musician.long)
-        }
-      })
-    })
-  })
-
+//
+//
+//   var getMusicians = document.querySelector('#latlng_musicians');
+//   var getMarker = document.querySelector('#make_marker');
+//   var getCircle = document.querySelector('#make_circle');
+//
+//
+//
+//   getMusicians.addEventListener('click', function(e) {
+//     $.ajax({
+//       url: '/bookings/musicians_in_radius',
+//       method: 'get',
+//       dataType: 'json'
+//     }).done(function(responseData) {
+//       var client = responseData[responseData.length-2];
+//       var clientLatLngObject = new google.maps.LatLng(client.lat, client.long);
+//       responseData.forEach(function(musician) {
+//         var musicianLatLngObject = new google.maps.LatLng(musician.lat, musician.long);
+//         if (google.maps.geometry.spherical.computeDistanceBetween(clientLatLngObject, musicianLatLngObject) <= 3000) {
+//           makeMarker(musician.lat, musician.long)
+//         }
+//       })
+//     })
+//   })
+//
   // FUNCTIONS ARE HERE FOR YOU
 
-  function makeMarker(latitude, longitude) {
-    var marker = new google.maps.Marker({
-      position: {lat: latitude, lng: longitude},
-      map: map
-    });
-  }
-
-  function makeCircle(latitude, longitude, radius) {
-    var circle = new google.maps.Circle({
-      strokeColor: 'rgb(20, 126, 14)',
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      fillColor: 'rgb(26, 148, 1)',
-      fillOpacity: 0.35,
-      map: map,
-      center: {lat: latitude, lng: longitude},
-      radius: radius
-    });
-  }
+  // function makeMarker(latitude, longitude) {
+  //   var marker = new google.maps.Marker({
+  //     position: {lat: latitude, lng: longitude},
+  //     map: map
+  //   });
+  // }
+  //
+  // function makeCircle(latitude, longitude, radius) {
+  //   var circle = new google.maps.Circle({
+  //     strokeColor: 'rgb(20, 126, 14)',
+  //     strokeOpacity: 0.8,
+  //     strokeWeight: 2,
+  //     fillColor: 'rgb(26, 148, 1)',
+  //     fillOpacity: 0.35,
+  //     map: map,
+  //     center: {lat: latitude, lng: longitude},
+  //     radius: radius*1000
+  //   });
+  // }
 
 });

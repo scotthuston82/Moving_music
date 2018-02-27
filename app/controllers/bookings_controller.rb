@@ -18,8 +18,17 @@ class BookingsController < ApplicationController
     @musicians = User.filtre_musicians(params[:act_type], params[:hourly_rate], params[:musician][:genre_ids])
     respond_to do |format|
       format.html {render 'find_musicians', layout: false}
+      format.json {render 'find musicians'}
     end
   end
+
+  def musicians_in_radius
+    @musicians = User.where('kind = ?', 'musician')
+    respond_to do |format|
+      format.json {render :json => @musicians}
+    end
+  end
+
 
   def create
     @booking = Booking.new(booking_params)

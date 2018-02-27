@@ -6,13 +6,13 @@
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
-
 function initAutocomplete() {
-  var map = new google.maps.Map(document.getElementById('map'), {
+  window.map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 43.6474475, lng: -79.38708780000002},
     zoom: 15,
     mapTypeId: 'roadmap'
   });
+
 
   function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
@@ -90,3 +90,57 @@ function initAutocomplete() {
   });
 
 }
+
+document.addEventListener('DOMContentLoaded', function(){
+
+
+  var getMusicians = document.querySelector('#latlng_musicians');
+  var getMarker = document.querySelector('#make_marker');
+  var getCircle = document.querySelector('#make_circle');
+
+  getMarker.addEventListener('click', function() {
+    var marker = new google.maps.Marker({
+      position: {lat: 43.764458447256104, lng: -79.40146929254522},
+      map: map
+    });
+  });
+
+  getCircle.addEventListener('click', function() {
+    var marker = new google.maps.Circle({
+      strokeColor: 'rgb(255, 0, 0)',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: 'rgb(59, 242, 160)',
+      fillOpacity: 0.35,
+      map: map,
+      center: {lat: 43.764458447256104, lng: -79.40146929254522},
+      radius: 3000
+    });
+  });
+
+  getMusicians.addEventListener('click', function(e) {
+    $.ajax({
+      url: '/bookings/musicians_in_radius',
+      method: 'get',
+      dataType: 'json'
+    }).done(function(responseData) {
+      responseData.forEach(function(musician) {
+        var marker = new google.maps.Marker({
+          position: {lat: musician.lat, lng: musician.long},
+          map: map
+        });
+        var marker = new google.maps.Circle({
+          strokeColor: 'rgb(255, 0, 0)',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: 'rgb(59, 242, 160)',
+          fillOpacity: 0.35,
+          map: map,
+          center: {lat: musician.lat, lng: musician.long},
+          radius: 3000
+        });
+      })
+    })
+  })
+
+});

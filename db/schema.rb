@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20180226202927) do
 
-
   create_table "bookings", force: :cascade do |t|
     t.integer "musician_id"
     t.integer "client_id"

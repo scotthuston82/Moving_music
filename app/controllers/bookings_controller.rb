@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+  require 'JSON'
   skip_before_action :verify_authenticity_token
 
   def new
@@ -15,7 +16,8 @@ class BookingsController < ApplicationController
   def find_musicians
     @booking = Booking.new(booking_params)
     @booking.client = current_user
-    @musicians = User.filtre_musicians(params[:act_type], params[:hourly_rate], params[:musician][:genre_ids])
+    array_of_musicians = JSON[params[:array_of_musicians]]
+    @musicians = User.filtre_musicians(params[:act_type], params[:hourly_rate], params[:musician][:genre_ids], array_of_musicians)
     respond_to do |format|
       format.html {render 'find_musicians', layout: false}
       format.json {render :json => @musicians}

@@ -24,7 +24,7 @@ function initAutocomplete() {
   }
 
   // Create the search box and link it to the UI element.
-  var input = document.getElementById('pac-input');
+  var input = document.getElementById('booking_address');
   var searchBox = new google.maps.places.SearchBox(input);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
@@ -134,8 +134,10 @@ function initAutocomplete() {
         }
 
         var getMusicians = document.querySelector('#musicians_in_radius');
+        var findMusiciansForm = document.querySelector('#new_booking')
 
-        getMusicians.addEventListener('click', function(e) {
+        findMusiciansForm.addEventListener('submit', function(e) {
+          e.preventDefault();
           $.ajax({
             url: '/bookings/musicians_in_radius',
             method: 'get',
@@ -145,13 +147,49 @@ function initAutocomplete() {
             var venueLong = place.geometry.location.lng();
             var radius = document.getElementById('radius').value;
             var venueLatLngObject = new google.maps.LatLng(venueLat, venueLong);
+            var arrayOfMusicians = [];
             responseData.forEach(function(musician) {
               var musicianLatLngObject = new google.maps.LatLng(musician.lat, musician.long);
               if (google.maps.geometry.spherical.computeDistanceBetween(venueLatLngObject, musicianLatLngObject) <= (radius*1000)) {
                 makeMarker(musician.lat, musician.long);
-                console.log("it hit the if" + musician);
+                arrayOfMusicians.push(musician);
               }
             })
+            var musicianListHidden = document.querySelector('#array_of_musicians');
+            musicianListHidden.value = JSON.stringify(arrayOfMusicians);
+            var musicianResulstDiv = document.createElement('div');
+            musicianResulstDiv.classList.add('musician-results');
+            console.log($(findMusiciansForm).serialize());
+            $.ajax({
+             url: '/bookings/new/find_musicians',
+             method: 'get',
+             dataType: 'html',
+             data: $(findMusiciansForm).serialize(),
+           }).done(function(responseData){
+             if (responseData) {
+               musicianResulstDiv.innerHTML = responseData;
+               document.querySelector('body').append(musicianResulstDiv);
+               var foundMusiciansDiv = document.querySelector('.found-musicians-container')
+               foundMusiciansDiv.addEventListener('click', function(e){
+                 if (e.target.localName === 'a') {
+                   e.preventDefault();
+                   var profileDetailsDiv = e.target.parentNode.parentNode.querySelector('.partial-profile-details')
+                   var showDetailsLink = e.target.parentNode.parentNode.querySelector('.profile-details-show')
+                   var hideDetailsLink = e.target.parentNode.parentNode.querySelector('.profile-details-hide')
+                   profileDetailsDiv.classList.toggle('shown');
+                   profileDetailsDiv.classList.toggle('hidden');
+                   showDetailsLink.classList.toggle('shown');
+                   showDetailsLink.classList.toggle('hidden');
+                   hideDetailsLink.classList.toggle('shown');
+                   hideDetailsLink.classList.toggle('hidden');
+                 }
+               });
+             } else {
+               var noNomusicianMsg = document.createElement('p');
+               noNomusicianMsg.innerText = 'Sorry, no musicians found, please refine your search.';
+               document.querySelector('body').append(noNomusicianMsg);
+             }
+           });
           })
         })
       }

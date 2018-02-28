@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include ActiveModel::Serializers::JSON
   has_secure_password
 
   validates :email, :first_name, :last_name, presence: true
@@ -12,10 +13,11 @@ class User < ApplicationRecord
 
   has_and_belongs_to_many :genres
 
-  def self.filtre_musicians(act_type, hourly_rate, genres_array)
+  def self.filtre_musicians(act_type, hourly_rate, genres_array, array_of_musicians)
     genre_musicians = []
     genres_array.delete("") #collection checkboxes always gives empty string as first value. Don't ask why
     musicians = User.where("kind = ? AND act_type = ? AND hourly_rate <= ?", "musician", act_type, hourly_rate)
+    musicians = musicians.as_json
     if genres_array.size > 0
       genres_array.each do |genre_id|
         genre_musicians << musicians.joins(:genres).where(genres: {id: genre_id})
@@ -24,8 +26,17 @@ class User < ApplicationRecord
         common_musicians & genre_list
       end
     end
-
-    return musicians.uniq
+    final_musicians_list = []
+    musicians.each do |musician_a|
+      array_of_musicians.each do |musician_b|
+        if musician_a[:id] == musician_b[:id]
+          user = User.new
+          print user.from_json(musician_a.to_json)
+          final_musicians_list << user.from_json(musician_a.to_json)
+        end
+      end
+    end
+    return final_musicians_list.uniq
   end
 
 end

@@ -1,19 +1,22 @@
 .home h2 {
+  text-transform: uppercase;
+  font-size: 70px;
+  color: #4bb6dd;
   text-align: center;
-  margin: 40px 30px 30px 0;
-  clear: both;
-  overflow: hidden;
+  margin: 0;
+  text-shadow: 5px 5px black;
 }
 
 .client, .musician {
   text-decoration: none;
   text-transform: uppercase;
-  color: black;
+  color: white;
   padding: 10px 20px;
-  background-color: orange;
+  background-color: #4bb6dd;
   font-size: 20px;
   font-weight: bold;
   text-align: center;
+  border-radius: 20px;
 }
 
 .client {
@@ -25,7 +28,12 @@
 }
 
 .home-links {
+  font-size: 40px;
   width: 80%;
-  margin: 0 auto;
+  margin: 30px auto;
   text-align: center;
+}
+
+.home-section {
+  padding-top: 350px;
 }

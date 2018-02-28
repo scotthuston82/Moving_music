@@ -6,16 +6,10 @@ h1 {
 
 }
 
-.p2 {
-  padding-top: 50px;
-  padding-left: 100px;
-  padding-right: 100px;
-  padding-bottom: 50px;
-}
 
 .sellingline p {
   text-align: center;
-  padding-top: 50px;
+  padding-top: 4px;
   padding-left: 100px;
   padding-right: 100px;
   padding-bottom: 50px;
@@ -24,6 +18,12 @@ h1 {
 .container {
   position: relative;
   width: 50%;
+  width: 31%;
+  margin: 5px;
+  float: left;
+  padding-left: 100px;
+  padding-right: 100px;
+  height: 180px
 }
 .container:hover .overlay {
   width: 100%;
@@ -44,8 +44,8 @@ h1 {
 
 .image {
   display: block;
-  width: 50%;
-  height: auto;
+  width: 150%;
+  height: 120px;
 }
 
 .overlay {
@@ -53,14 +53,32 @@ h1 {
   bottom: 0;
   left: 100%;
   right: 0;
-  background-color: #008CBA;
+  background-color: #A9A9A9;
   overflow: hidden;
   width: 0;
   height: 45%;
   transition: .5s ease;
 }
 
-h2 {
+.p2 {
+  padding-top: 260px;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-bottom: 4px;
+
+}
+
+.titles {
+  padding-top: 4px;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-bottom: 100px;
+  border-spacing: 15px;
+  border-radius: 25px;
+  height: 50px;
+}
+
+ h2 {
   text-align: center;
 }
 

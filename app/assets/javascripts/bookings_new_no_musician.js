@@ -1,3 +1,5 @@
+if (document.querySelector('#new_booking')){
+
 document.addEventListener('DOMContentLoaded', function(){
   var findMusiciansForm = document.querySelector('#new_booking')
   var musicianResulstDiv = document.createElement('div');
@@ -22,3 +24,4 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   });
 });
+}

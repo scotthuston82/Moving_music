@@ -7,15 +7,14 @@
   <% end %>
 <% end %>
 
-
-
-<div>
+<div id="map_container_new_no_musician">
   <input id="pac-input" class="controls" type="text" placeholder="Venue Location">
   <div id="map"></div>
-</div>
+
 <label for="radius">Desired Radius(km)</label>
 <input id="radius" type="number"><button id="set_radius"  type="button" name="button">Set radius</button>
-
+<button id="musicians_in_radius"  type="button" name="button">Get Musicians</button>
+</div>
 
 <%= form_for @booking, url: bookings_new_find_musicians_path, method: 'get' do |f| %>
 

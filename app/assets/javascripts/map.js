@@ -123,51 +123,34 @@ function initAutocomplete() {
           var venueLong = place.geometry.location.lng();
           makeCircle(venueLat, venueLong, radius);
         })
-      }
 
+// get musicians using searched area as centrepoint
+
+        var getMusicians = document.querySelector('#musicians_in_radius');
+
+        getMusicians.addEventListener('click', function(e) {
+          $.ajax({
+            url: '/bookings/new/find_musicians',
+            method: 'get',
+            dataType: 'json'
+          }).done(function(responseData) {
+            console.log(responseData);
+            var venueLat = place.geometry.location.lat();
+            var venueLong = place.geometry.location.lng();
+            var radius = document.getElementById('radius').value;
+            var venueLatLngObject = new google.maps.LatLng(venueLat, venueLong);
+            responseData.forEach(function(musician) {
+              var musicianLatLngObject = new google.maps.LatLng(musician.lat, musician.long);
+              if (google.maps.geometry.spherical.computeDistanceBetween(clientLatLngObject, musicianLatLngObject) <= (radius*1000)) {
+                makeMarker(musician.lat, musician.long)
+                console.log(musician);
+              }
+            })
+          })
+        })
+      }
     });
     map.fitBounds(bounds);
   });
 
 }
-
-
-
-document.addEventListener('DOMContentLoaded', function(){
-//
-//
-//   var getMusicians = document.querySelector('#latlng_musicians');
-//   var getMarker = document.querySelector('#make_marker');
-//   var getCircle = document.querySelector('#make_circle');
-//
-//
-//
-//   getMusicians.addEventListener('click', function(e) {
-//     $.ajax({
-//       url: '/bookings/musicians_in_radius',
-//       method: 'get',
-//       dataType: 'json'
-//     }).done(function(responseData) {
-//       var client = responseData[responseData.length-2];
-//       var clientLatLngObject = new google.maps.LatLng(client.lat, client.long);
-//       responseData.forEach(function(musician) {
-//         var musicianLatLngObject = new google.maps.LatLng(musician.lat, musician.long);
-//         if (google.maps.geometry.spherical.computeDistanceBetween(clientLatLngObject, musicianLatLngObject) <= 3000) {
-//           makeMarker(musician.lat, musician.long)
-//         }
-//       })
-//     })
-//   })
-//
-  // FUNCTIONS ARE HERE FOR YOU
-
-  // function makeMarker(latitude, longitude) {
-  //   var marker = new google.maps.Marker({
-  //     position: {lat: latitude, lng: longitude},
-  //     map: map
-  //   });
-  // }
-  //
-
-
-});

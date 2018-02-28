@@ -85,8 +85,9 @@
         <li>End Time: <%= booking.end_time %></li>
         <li>Age Range: <%= booking.age_range %></li>
         <li>Party Size: <%= booking.party_size %></li>
-        <li><%= link_to 'Write review', new_user_booking_review_path(@user, booking) %></li>
       </ul>
+      <%= link_to 'Write review', new_user_booking_review_path(@user, booking) %>
+
   <% end %>
 
   <% end %>

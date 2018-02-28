@@ -24,7 +24,7 @@ function initAutocomplete() {
   }
 
   // Create the search box and link it to the UI element.
-  var input = document.getElementById('booking_address');
+  var input = document.getElementById('pac-input');
   var searchBox = new google.maps.places.SearchBox(input);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
@@ -124,6 +124,7 @@ function initAutocomplete() {
           makeCircle(venueLat, venueLong, radius);
         })
 
+
 // get musicians using searched area as centrepoint
 
         function makeMarker(latitude, longitude) {
@@ -137,6 +138,8 @@ function initAutocomplete() {
         var findMusiciansForm = document.querySelector('#new_booking')
 
         findMusiciansForm.addEventListener('submit', function(e) {
+          var bookingAddressField = document.querySelector('#booking_address');
+          bookingAddressField.value = place.formatted_address;
           e.preventDefault();
           $.ajax({
             url: '/bookings/musicians_in_radius',

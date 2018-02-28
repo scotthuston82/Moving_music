@@ -34,7 +34,7 @@ class User < ApplicationRecord
       errors.add(:hourly_rate, 'must be greater than zero')
     end
   end
-  
+
   def self.filtre_musicians(act_type, hourly_rate, genres_array, array_of_musicians)
   genre_musicians = []
   genres_array.delete("") #collection checkboxes always gives empty string as first value. Don't ask why

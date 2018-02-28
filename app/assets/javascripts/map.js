@@ -96,12 +96,14 @@ function initAutocomplete() {
 
 // Only run this if we are on the new_no_musician page
 
-
-
       if (document.querySelector('#radius')) {
 
+        var circle;
         function makeCircle(latitude, longitude, radius) {
-          var circle = new google.maps.Circle({
+          if (circle){
+            circle.setMap(null);
+          }
+          circle = new google.maps.Circle({
             strokeColor: 'rgb(20, 126, 14)',
             strokeOpacity: 0.8,
             strokeWeight: 2,
@@ -111,20 +113,14 @@ function initAutocomplete() {
             center: {lat: latitude, lng: longitude},
             radius: radius * 1000
           });
-          console.log("this happened" + radius);
         }
-
-
 
         var set_radius = document.querySelector('#set_radius');
 
         set_radius.addEventListener('click', function() {
           var radius = document.getElementById('radius').value;
-          console.log("setting radius" + radius);
           var venueLat = place.geometry.location.lat();
           var venueLong = place.geometry.location.lng();
-          console.log(venueLat);
-          console.log(venueLong);
           makeCircle(venueLat, venueLong, radius);
         })
       }
@@ -172,17 +168,6 @@ document.addEventListener('DOMContentLoaded', function(){
   //   });
   // }
   //
-  // function makeCircle(latitude, longitude, radius) {
-  //   var circle = new google.maps.Circle({
-  //     strokeColor: 'rgb(20, 126, 14)',
-  //     strokeOpacity: 0.8,
-  //     strokeWeight: 2,
-  //     fillColor: 'rgb(26, 148, 1)',
-  //     fillOpacity: 0.35,
-  //     map: map,
-  //     center: {lat: latitude, lng: longitude},
-  //     radius: radius*1000
-  //   });
-  // }
+
 
 });

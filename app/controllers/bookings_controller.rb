@@ -38,7 +38,7 @@ class BookingsController < ApplicationController
     @booking.musician = @musician
     @booking.client = current_user
     if @booking.save
-      redirect_to user_url(@musician)
+      redirect_to user_url(current_user)
     else
       render "new"
     end

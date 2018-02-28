@@ -8,11 +8,19 @@
 }
 
 .new-booking {
-  max-width: 800px;
+  max-width: 600px;
   margin: 0 auto;
   label {
     font-size: 20px;
   }
+}
+
+.new-booking input[type=radio] {
+  width: 30px;
+}
+
+.new-booking input[type=checkbox] {
+  width: 30px;
 }
 
 
@@ -98,4 +106,17 @@ html, body {
 }
 #target {
   width: 345px;
+}
+
+.musician-results {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hidden {
+  display: none;
+}
+
+.shown {
+  display: block;
 }

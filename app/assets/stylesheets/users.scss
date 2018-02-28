@@ -127,15 +127,11 @@ left:0;
 }
 
 .edit-profile {
-  width: 50%;
   float:left;
-  margin-top: 30px;
-
 }
 .updatepassword {
-  width: 50%;
   float:left;
-  margin-left: 20%;
+  margin-left: 20px;
 }
 
 .edit-profile a{
@@ -149,6 +145,13 @@ left:0;
   text-decoration: none;
   padding: 10px 20px;
   background-color: orange;
+}
+
+#past_bookings a {
+  color: black;
+  padding: 10px 20px;
+  background-color: orange;
+  text-decoration: none;
 }
 
 .edit_user {
@@ -235,6 +238,37 @@ left:0;
   .form-wrapper input[type=checkbox]{
     margin: 10px;
   }
+}
+// Client show page
+.client-picture {
+  width: 30%;
+  float: left
+}
+
+.client-info {
+  float: left;
+  margin-left: 10%;
+  width: 60%;
+}
+
+.bookings {
+  width: 60%;
+  float: left;
+  margin-left: 10%;
+}
+
+.client-buttons {
+  width: 60%;
+  float: left;
+  margin-left: 10%;
+}
+
+.client-buttons .edit-profile{
+  margin: 0;
+}
+
+.client-buttons .updatepassword {
+
 }
 
 

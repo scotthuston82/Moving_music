@@ -43,11 +43,11 @@
                async defer></script>
     </div>
 
-    <p>
+    <div class='genres'>
       <%= field_set_tag 'Genres' do %>
       <%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :name) %>
       <% end %>
-    </p>
+    </div>
 
 
     <%= f.submit 'Update' %>

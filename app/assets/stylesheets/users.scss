@@ -113,6 +113,20 @@ left:0;
   font-weight: bold;
 }
 
+.radio-buttons input[type=radio]{
+  width: 50px;
+}
+
+.genres {
+  width: 500px;
+  fieldset {
+    width: 100%;
+  }
+}
+
+.genres input[type=checkbox]{
+  width: 50px;
+}
 #user_bio {
   width: 100%;
   min-height: 100px;

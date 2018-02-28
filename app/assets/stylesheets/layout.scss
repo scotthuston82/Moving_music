@@ -1,22 +1,52 @@
+.header {
+  padding: 30px 0;
+  margin: 0;
+}
+
+.header h1{
+  width: 50%;
+  font-size: 50px;
+  margin: 0;
+  float: left;
+}
+
+.layout-background {
+  background-image: url(Music2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+.layout-links {
+  float: right;
+  width: 50%;
+}
+
 .layout-links a {
   text-decoration: none;
   color: black;
   float: left;
-  padding: 20px 30px;
+  padding: 15px 30px;
 }
-.login input{
-  width: 100%;
+.search {
+  float: left;
+  width: 500px;
+  margin: 0 auto;
+}
+
+.search input[type=text]{
+  font-size: 18px;
+  width: 80%;
   padding: 15px;
   margin: 5px 0 15px 0;
   display: inline-block;
   border: none;
   background: #f1f1f1;
 }
-.login .container {
-  width: 300px;
-}
-.login label {
-  font-size: 20px;
+
+.search input[type=submit] {
+  width: 20%;
+  font-size: 18px;
 }
 
 #term {

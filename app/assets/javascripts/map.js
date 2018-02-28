@@ -124,7 +124,6 @@ function initAutocomplete() {
           makeCircle(venueLat, venueLong, radius);
         })
 
-
 // get musicians using searched area as centrepoint
 
         function makeMarker(latitude, longitude) {

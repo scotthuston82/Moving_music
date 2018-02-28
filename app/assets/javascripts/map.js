@@ -126,24 +126,30 @@ function initAutocomplete() {
 
 // get musicians using searched area as centrepoint
 
+        function makeMarker(latitude, longitude) {
+          var marker = new google.maps.Marker({
+            position: {lat: latitude, lng: longitude},
+            map: map
+          });
+        }
+
         var getMusicians = document.querySelector('#musicians_in_radius');
 
         getMusicians.addEventListener('click', function(e) {
           $.ajax({
-            url: '/bookings/new/find_musicians',
+            url: '/bookings/musicians_in_radius',
             method: 'get',
             dataType: 'json'
           }).done(function(responseData) {
-            console.log(responseData);
             var venueLat = place.geometry.location.lat();
             var venueLong = place.geometry.location.lng();
             var radius = document.getElementById('radius').value;
             var venueLatLngObject = new google.maps.LatLng(venueLat, venueLong);
             responseData.forEach(function(musician) {
               var musicianLatLngObject = new google.maps.LatLng(musician.lat, musician.long);
-              if (google.maps.geometry.spherical.computeDistanceBetween(clientLatLngObject, musicianLatLngObject) <= (radius*1000)) {
-                makeMarker(musician.lat, musician.long)
-                console.log(musician);
+              if (google.maps.geometry.spherical.computeDistanceBetween(venueLatLngObject, musicianLatLngObject) <= (radius*1000)) {
+                makeMarker(musician.lat, musician.long);
+                console.log("it hit the if" + musician);
               }
             })
           })

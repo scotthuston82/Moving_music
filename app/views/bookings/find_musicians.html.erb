@@ -1,19 +1,27 @@
-<% @musicians.each do |musician| %>
-  <h3><%= musician.stage_name %></h3>
-  <%= link_to "View Profile", user_path(musician), target: '_blank' %>
-  <p>Plays:</p>
-  <ul>
-    <% musician.genres.each do |genre| %>
-      <li><%= genre.name %></li>
-    <% end %>
-  </ul>
-  <%= form_for [musician, @booking] do |f| %>
+<div class="found-musicians-container">
+  <% @musicians.each do |musician| %>
+  <div class="partial-profile-container">
+    <h2><%= musician.stage_name %></h2>
+    <p class="profile-details-show shown"><a href="#">Show Details</a></p>
+    <p class="profile-details-hide hidden"><a href="#">Hide Details</a></p>
+    <div class="partial-profile-details hidden">
+      <h4>Bio:</h4>
+      <p><%= musician.bio %></p>
+      <h4>Plays: </h4>
+      <ul>
+        <% musician.genres.each do |genre| %>
+        <li><%= genre.name %></li>
+        <% end %>
+      </ul>
+    </div>
+    <%= form_for [musician, @booking] do |f| %>
     <%= hidden_field_tag('booking[start_time]', @booking.start_time) %>
     <%= hidden_field_tag('booking[end_time]', @booking.end_time) %>
     <%= hidden_field_tag('booking[address]', @booking.address) %>
     <%= hidden_field_tag('booking[party_size]', @booking.party_size) %>
     <%= hidden_field_tag('booking[age_range]', @booking.age_range) %>
-    <%= f.submit 'Book!', data: { confirm: "Click OK to complete your booking. It will now appear in your \"Pending bookings\".\n\nOnce confirmed by #{musician.stage_name}, it will move to your \"Confirmed Bookings\"" } %>
+    <%= f.submit 'Book this act for my event', data: { confirm: "Click OK to complete your booking. It will now appear in your \"Pending bookings\".\n\nOnce confirmed by #{musician.stage_name}, it will move to your \"Confirmed Bookings\"" } %>
+    <% end %>
+  </div>
   <% end %>
 </div>
-<% end %>

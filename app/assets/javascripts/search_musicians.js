@@ -64,7 +64,6 @@ function updateMusicianOnboarding(lat, long, address) {
 }
 
 
-
 function initAutocomplete() {
 
   map = new google.maps.Map(document.getElementById('map'), {
@@ -121,17 +120,99 @@ function initAutocomplete() {
 
       setupSearchMusicians(place)
 
-// Only run this if we are on the musician update page
+// AJAX call for see musicians in my area, does not do anything to filter
 
-      if (document.querySelector('#user_latitude')) {
-        var userLat = document.querySelector('#user_latitude');
-        var userLong= document.querySelector('#user_longitude');
-        var userAddress= document.querySelector('#user_address');
+  if (document.querySelector('#musicians_in_radius')) {
+    var getMusicians = document.querySelector('#musicians_in_radius')
 
-        userLat.value = place.geometry.location.lat();
-        userLong.value = place.geometry.location.lng();
-        userAddress.value = place.formatted_address;
+    function makeMarker(latitude, longitude) {
+      var marker = new google.maps.Marker({
+        position: {lat: latitude, lng: longitude},
+        map: map
+      });
+      markers.push(marker)
+    }
+// Map markers, allows to remove and add markers
+    function setMapOnAll(map) {
+      for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(map);
       }
+    }
+
+    // Removes the markers from the map, but keeps them in the array.
+    function clearMarkers() {
+      setMapOnAll(null);
+    }
+
+    // Shows any markers currently in the array.
+    function showMarkers() {
+      setMapOnAll(map);
+    }
+
+    // Deletes all markers in the array by removing references to them.
+    function deleteMarkers() {
+      clearMarkers();
+      markers = [];
+    }
+//  -----------------------------------------------------
+
+    getMusicians.addEventListener('click', function() {
+      deleteMarkers()
+      $.ajax({
+        url: '/bookings/musicians_in_radius',
+        method: 'get',
+        dataType: 'json'
+      }).done(function(responseData) {
+        var venueLat = place.geometry.location.lat();
+        var venueLong = place.geometry.location.lng();
+        var radius = document.getElementById('radius').value;
+        var venueLatLngObject = new google.maps.LatLng(venueLat, venueLong);
+        responseData.forEach(function(musician) {
+          var musicianLatLngObject = new google.maps.LatLng(musician.latitude, musician.longitude);
+          if (google.maps.geometry.spherical.computeDistanceBetween(venueLatLngObject, musicianLatLngObject) <= (radius*1000)) {
+            makeMarker(musician.latitude, musician.longitude);
+          }
+        })
+      })
     })
+  }
+
+ // ----------------------------------------------------------------
+
+// Only run this if we are on the musician update page
+      if (document.querySelector('#radius')) {
+
+        var circle;
+        function makeCircle(latitude, longitude, radius) {
+          if (circle){
+            circle.setMap(null);
+          }
+          circle = new google.maps.Circle({
+            strokeColor: 'rgb(20, 126, 14)',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: 'rgb(26, 148, 1)',
+            fillOpacity: 0.35,
+            map: map,
+            center: {lat: latitude, lng: longitude},
+            radius: radius * 1000
+          });
+          map.fitBounds(circle.getBounds());
+        }
+
+        var set_radius = document.querySelector('#set_radius');
+
+        set_radius.addEventListener('click', function() {
+          var radius = document.getElementById('radius').value;
+          var venueLat = place.geometry.location.lat();
+          var venueLong = place.geometry.location.lng();
+          makeCircle(venueLat, venueLong, radius);
+        })
+      }
+//  ------------------------------------------------------
+
+
+    })
+    map.fitBounds(bounds);
   })
 }

@@ -15,6 +15,11 @@
     </p>
 
     <p>
+      <%= f.label :address %>
+      <%= f.text_field :address %>
+    </p>
+
+    <p>
       <%= f.label :bio %>
       <%= f.text_area :bio %>
     </p>
@@ -28,17 +33,6 @@
       <%= f.label :hourly_rate %>
       <%= f.text_field :hourly_rate %>
     </p>
-
-      <%= f.hidden_field :latitude %>
-      <%= f.hidden_field :longitude %>
-      <%= f.hidden_field :address %>
-
-<!--GOOGLE MAPS  -->
-    <p>Enter Your Location (This will be used to show event planners if you are nearby!)</p>
-    <div id="map_container_musician_onboarding">
-      <div id="map"></div>
-      <input id="pac-input" class="controls" type="text" placeholder="Your Address">
-    </div>
 
     <div class='genres'>
       <%= field_set_tag 'Genres' do %>

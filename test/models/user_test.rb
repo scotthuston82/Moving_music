@@ -34,15 +34,16 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "musician act_type can only be dj or band" do
-    user = build(:user, act_type: 'another type')
-    user.save
-    refute user.persisted?, "user should not save if act type is not 'dj' or 'band'"
+    user = create(:user)
+    user.update(act_type: 'another type')
+    # user.save
+    assert user.invalid?, "user should not save if act type is not 'dj' or 'band'"
   end
 
   test "hourly rate must be greater than zero" do
-    user = build(:user, hourly_rate: 0)
-    user.save
-    refute user.persisted?, "user hourly_rate must be greater than zero"
+    user = create(:user)
+    user.update(hourly_rate: 0)
+    assert user.invalid?, "user hourly_rate must be greater than zero"
   end
 
 end

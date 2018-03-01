@@ -29,9 +29,8 @@ class SearchMusicians
   end
 
   def filter_by_hourly_rate
-    # binding.pry
     @results.select! do |musician|
-      musician.act_type == @params[:hourly_rate]
+      musician.hourly_rate <= @params[:hourly_rate]
     end
   end
 

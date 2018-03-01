@@ -13,7 +13,7 @@ root 'users#home'
   get '/bookings/map' => 'bookings#map'
 
   # get '/bookings/new/find_musicians' => 'bookings#find_musicians'
-  # get '/bookings/musicians_in_radius' => 'bookings#musicians_in_radius'
+  get '/bookings/musicians_in_radius' => 'bookings#musicians_in_radius'
 
   post '/bookings/search_musicians' => 'bookings#search_musicians'
 

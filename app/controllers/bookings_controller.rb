@@ -13,16 +13,16 @@ class BookingsController < ApplicationController
     @genres = Genre.all
   end
 
-  def find_musicians
-    @booking = Booking.new(booking_params)
-    @booking.client = current_user
-    array_of_musicians = JSON[params[:array_of_musicians]]
-    @musicians = User.filtre_musicians(params[:act_type], params[:hourly_rate], params[:musician][:genre_ids], array_of_musicians)
-    respond_to do |format|
-      format.html {render 'find_musicians', layout: false}
-      format.json {render :json => @musicians}
-    end
-  end
+  # def find_musicians
+  #   @booking = Booking.new(booking_params)
+  #   @booking.client = current_user
+  #   array_of_musicians = JSON[params[:array_of_musicians]]
+  #   @musicians = User.filtre_musicians(params[:act_type], params[:hourly_rate], params[:musician][:genre_ids], array_of_musicians)
+  #   respond_to do |format|
+  #     format.html {render 'find_musicians', layout: false}
+  #     format.json {render :json => @musicians}
+  #   end
+  # end
 
   def search_musicians
     # binding.pry
@@ -31,12 +31,12 @@ class BookingsController < ApplicationController
     render 'find_musicians', layout: false
   end
 
-  def musicians_in_radius
-    @musicians = User.where('kind = ?', 'musician')
-    respond_to do |format|
-      format.json {render :json => @musicians}
-    end
-  end
+  # def musicians_in_radius
+  #   @musicians = User.where('kind = ?', 'musician')
+  #   respond_to do |format|
+  #     format.json {render :json => @musicians}
+  #   end
+  # end
 
 
   def create

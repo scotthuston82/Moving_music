@@ -59,11 +59,11 @@
     <%= text_field_tag :hourly_rate %>
   </p>
 
-  <p>
+  <div class='genre-checkbox'>
     <%= field_set_tag 'Genres' do %>
     <%= collection_check_boxes(:musician, :genre_ids, Genre.all, :id, :name, class: 'genre-checkbox') %>
     <% end %>
-  </p>
+  </div>
 
   <%= hidden_field_tag('array_of_musicians') %>
 

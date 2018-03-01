@@ -7,7 +7,14 @@
   <% end %>
 <% end %>
 
-<%= form_for @booking, url: bookings_new_find_musicians_path, method: 'get' do |f| %>
+<div id="map_container_new_no_musician">
+  <div id="map"></div>
+  <input id="pac-input" class="controls" type="text" placeholder="Venue Location">
+  <button id="set_radius"  type="button" name="button">Set radius</button>
+</div>
+
+
+<%= form_for @booking, url: bookings_search_musicians_path, method: 'post' do |f| %>
 
   <p>
     <%= f.label :start_time %>
@@ -19,11 +26,6 @@
     <%= f.datetime_select :end_time, :ampm => true, :minute_step => 15 %>
   </p>
 
-  <div id="map_container_new_no_musician">
-    <div id="map"></div>
-    <input id="pac-input" class="controls" type="text" placeholder="Venue Location">
-    <button id="set_radius"  type="button" name="button">Set radius</button>
-  </div>
 
   <p>
     <label for="radius">Desired Radius(km)</label>

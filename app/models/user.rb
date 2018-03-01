@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   include ActiveModel::Serializers::JSON
+  geocoded_by :address
+  after_validation :geocode
   has_secure_password
 
   validates :email, :first_name, :last_name, presence: true

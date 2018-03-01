@@ -3,9 +3,16 @@
   <head>
     <title>Musicians</title>
     <link rel="stylesheet" type="text/scss" href="musicianspitch.scss">
+
   </head>
 
   <body>
+    <script>
+
+    $(function(){
+    $('.carousel').carousel();
+});
+    </script>
 
     <div class='sellingline'>
       <h1>Why choose Play My Party?</h1>
@@ -14,13 +21,15 @@
       </p>
     </div>
 
+
+
     <div class='container_images'>
       <div class='image'>
         <%= image_tag "dj1.jpg"%>
       </div>
       <div class='overlay'>
         <div class='text'>
-          <p>DVBBS Veld, August 2016</p>
+          <p>DVBBS Veld, August 2016 </p>
         </div>
       </div>
     </div>
@@ -67,37 +76,36 @@
     Welcome to the Moving Music family.
     </h3>
     </div>
-
-    <div class='userreview'>
-      <div class='u1'>
-        <b>User: Xo</b>
-        <div class='thumbnail'>
-        <%=image_tag "img_avatarm.png"%>
-      </div>
-        <p>
-        I've been getting many notification bookings popping up "Come play at my Jazz event", It’s funny too because realistically I don’t actively promote my Jazz band. With Moving Music I get 4-5 invites per day, I can't imagine my life without Play My Party.
-        </P>
-      </div>
-      <div class='u2'>
-        <b>User: Monsta X</b>
-        <div class='thumbnail'>
-        <%=image_tag "img_avatarf.png"%>
+    <div id="carouselExampleIndicators" class="carousel slide slideposition" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="item active">
+          <img class="d-block w-100" src="/assets/band1.jpg" alt="First slide">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>hjfgskfgsdk</h5>
+            <p>Spicy jalapeno bacon ipsum dolor amet ribeye ham frankfurter capicola. Pancetta porchetta shankle cow leberkas, turkey short ribs jowl pork chop pig shoulder. Biltong jerky burgdoggen boudin drumstick strip steak, pig tail brisket beef short ribs shank. Bacon prosciutto pork turkey pork chop ham meatloaf shankle meatball pig corned beef boudin spare ribs kielbasa jerky.</p>
+          </div>
         </div>
-      <p>
-      I'm a new Dj getting into the scene. I didn't know how to get my name out there but with Moving Music I now get bookings from bars all over the GTA.
-      </p>
-    </div>
-    <div class='u3'>
-    <b>User: K'Pop</b>
-      <div class='thumbnail'>
-      <%=image_tag "img_avatarm.png"%>
+        <div class="item">
+          <img class="d-block w-100" src="/assets/dj1.jpg" alt="Second slide">
+        </div>
+        <div class="item">
+          <img class="d-block w-100" src="/assets/dj2.jpg" alt="Third slide">
+        </div>
       </div>
-      <p>
-      I'm a Korean pop singer trying to break out into the Toronto music scene. Before Moving Music I would get maybe 1-2 events per month, since I started using Moving Music I get 3-5 Korean Pop events per month. I also love that their is no membership. Play My Party was very as to navigate.
-      </p>
-      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
     </div>
-
   </body>
 
 </html>

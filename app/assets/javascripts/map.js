@@ -81,24 +81,13 @@ function initAutocompletex() {
         bounds.extend(place.geometry.location);
       }
 
-// Only run this if we are on the musician update page
 
-      if (document.querySelector('#user_lat')) {
-        var userLat = document.querySelector('#user_lat');
-        var userLong= document.querySelector('#user_long');
-        var userAddress= document.querySelector('#user_address');
-
-        userLat.value = place.geometry.location.lat();
-        userLong.value = place.geometry.location.lng();
-        userAddress.value = place.formatted_address;
-      }
 // ===================================================
 
 // Only run this if we are on the new_no_musician page
 
       if (document.querySelector('#radius')) {
-        var musicianResulstDiv = document.createElement('div');
-        musicianResulstDiv.classList.add('musician-results');
+
         var circle;
         function makeCircle(latitude, longitude, radius) {
           if (circle){
@@ -124,6 +113,9 @@ function initAutocompletex() {
           var venueLong = place.geometry.location.lng();
           makeCircle(venueLat, venueLong, radius);
         })
+
+        var musicianResulstDiv = document.createElement('div');
+        musicianResulstDiv.classList.add('musician-results');
 
 // get musicians using searched area as centrepoint
 

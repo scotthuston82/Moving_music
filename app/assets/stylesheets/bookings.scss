@@ -24,11 +24,60 @@
 }
 
 .new-booking input[type=radio] {
-  width: 30px;
+
 }
 
 .new-booking input[type=checkbox] {
-  width: 30px;
+  width: 40px;
+  padding: 0;
+  margin: 0;
+}
+
+.genre-checkbox label {
+
+}
+
+.partial-profile-container {
+  min-height: 300px;
+  background-color: #f1f1f1;
+  width: 31.33%;
+  float: left;
+  margin: 1%;
+  position: relative;
+  a {
+    color: black;
+    background-color: orange;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 18px;
+  }
+  input[type=submit] {
+    background-color: orange;
+    padding: 10px 20px;
+    font-size: 18px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+}
+.view-profile {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.profile-details-show, .profile-details-hide {
+  position: absolute;
+  top: -6px;
+  left: 0;
+}
+
+.profile-picture-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30%;
+  display: none;
 }
 
 
@@ -102,7 +151,7 @@
   margin-left: 12px;
   padding: 0 11px 0 13px;
   text-overflow: ellipsis;
-  width: 400px;
+  width: 65%;
 }
 
 #pac-input:focus {

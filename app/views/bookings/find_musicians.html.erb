@@ -1,15 +1,10 @@
-<section class='find-musicians'>
-
-<% @musicians.each do |musician| %>
-  <h3><%= musician.stage_name %></h3>
-  <p>Plays:</p>
-  <ul>
-    <% musician.genres.each do |genre| %>
-      <li><%= genre.name %></li>
 <div class="found-musicians-container">
   <% @musicians.each do |musician| %>
   <div class="partial-profile-container">
     <h2><%= musician.stage_name %></h2>
+    <div class='profile-picture-container shown'>
+      <%= image_tag(musician.profile_picture) %>
+    </div>
     <p class="profile-details-show shown"><a href="#">Show Details</a></p>
     <p class="profile-details-hide hidden"><a href="#">Hide Details</a></p>
     <div class="partial-profile-details hidden">
@@ -28,14 +23,12 @@
     <%= hidden_field_tag('booking[address]', @booking.address) %>
     <%= hidden_field_tag('booking[party_size]', @booking.party_size) %>
     <%= hidden_field_tag('booking[age_range]', @booking.age_range) %>
-    <%= f.submit 'Book this act for my event', data: { confirm: "Click OK to complete your booking. It will now appear in your \"Pending bookings\".\n\nOnce confirmed by #{musician.stage_name}, it will move to your \"Confirmed Bookings\"" } %
+    <%= f.submit 'Book it', data: { confirm: "Click OK to complete your booking. It will now appear in your \"Pending bookings\".\n\nOnce confirmed by #{musician.stage_name}, it will move to your \"Confirmed Bookings\"" } %>
     <% end %>
+    <%= link_to "View Profile", user_path(musician), target: '_blank', class: 'view-profile' %>
+
   </div>
+
   <% end %>
-  <%= link_to "View Profile", user_path(musician), target: '_blank', class: 'view-profile' %>
 
 </div>
-
-<% end %>
-</section>
-

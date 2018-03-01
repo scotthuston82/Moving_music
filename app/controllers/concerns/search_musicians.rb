@@ -6,6 +6,7 @@ class SearchMusicians
     @params = params
     @results = musicians_by_distance
     filter_by_act_type
+    filter_by_hourly_rate
     filter_by_genres
   end
 
@@ -30,7 +31,7 @@ class SearchMusicians
 
   def filter_by_hourly_rate
     @results.select! do |musician|
-      musician.hourly_rate <= @params[:hourly_rate]
+      musician.hourly_rate <= @params[:hourly_rate].to_i
     end
   end
 
@@ -41,30 +42,30 @@ class SearchMusicians
     end
   end
 
-  def self.filtre_musicians(act_type, hourly_rate, genres_array, array_of_musicians)
-  genre_musicians = []
-  genres_array.delete("") #collection checkboxes always gives empty string as first value. Don't ask why
-  musicians = User.where("kind = ? AND act_type = ? AND hourly_rate <= ?", "musician", act_type, hourly_rate)
-  musicians = musicians.as_json
-  if genres_array.size > 0
-    genres_array.each do |genre_id|
-      genre_musicians << musicians.joins(:genres).where(genres: {id: genre_id})
-    end
-    musicians = genre_musicians.reduce do |common_musicians, genre_list|
-      common_musicians & genre_list
-    end
-  end
-  final_musicians_list = []
-  musicians.each do |musician_a|
-    array_of_musicians.each do |musician_b|
-      if musician_a[:id] == musician_b[:id]
-        user = User.new
-        print user.from_json(musician_a.to_json)
-        final_musicians_list << user.from_json(musician_a.to_json)
-      end
-    end
-  end
-  return final_musicians_list.uniq
-end
+#   def self.filtre_musicians(act_type, hourly_rate, genres_array, array_of_musicians)
+#   genre_musicians = []
+#   genres_array.delete("") #collection checkboxes always gives empty string as first value. Don't ask why
+#   musicians = User.where("kind = ? AND act_type = ? AND hourly_rate <= ?", "musician", act_type, hourly_rate)
+#   musicians = musicians.as_json
+#   if genres_array.size > 0
+#     genres_array.each do |genre_id|
+#       genre_musicians << musicians.joins(:genres).where(genres: {id: genre_id})
+#     end
+#     musicians = genre_musicians.reduce do |common_musicians, genre_list|
+#       common_musicians & genre_list
+#     end
+#   end
+#   final_musicians_list = []
+#   musicians.each do |musician_a|
+#     array_of_musicians.each do |musician_b|
+#       if musician_a[:id] == musician_b[:id]
+#         user = User.new
+#         print user.from_json(musician_a.to_json)
+#         final_musicians_list << user.from_json(musician_a.to_json)
+#       end
+#     end
+#   end
+#   return final_musicians_list.uniq
+# end
 
 end

@@ -87,8 +87,7 @@ function initAutocompletex() {
 // Only run this if we are on the new_no_musician page
 
       if (document.querySelector('#radius')) {
-        var musicianResulstDiv = document.createElement('div');
-        musicianResulstDiv.classList.add('musician-results');
+
         var circle;
         function makeCircle(latitude, longitude, radius) {
           if (circle){
@@ -114,6 +113,9 @@ function initAutocompletex() {
           var venueLong = place.geometry.location.lng();
           makeCircle(venueLat, venueLong, radius);
         })
+
+        var musicianResulstDiv = document.createElement('div');
+        musicianResulstDiv.classList.add('musician-results');
 
 // get musicians using searched area as centrepoint
 

@@ -7,7 +7,7 @@
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
 
-function initAutocomplete() {
+function initAutocompletex() {
     map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 43.6474475, lng: -79.38708780000002},
     zoom: 15,
@@ -24,7 +24,7 @@ function initAutocomplete() {
   }
 
   // Create the search box and link it to the UI element.
-  var input = document.getElementById('booking_address');
+  var input = document.getElementById('pac-input');
   var searchBox = new google.maps.places.SearchBox(input);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
@@ -97,7 +97,8 @@ function initAutocomplete() {
 // Only run this if we are on the new_no_musician page
 
       if (document.querySelector('#radius')) {
-
+        var musicianResulstDiv = document.createElement('div');
+        musicianResulstDiv.classList.add('musician-results');
         var circle;
         function makeCircle(latitude, longitude, radius) {
           if (circle){
@@ -136,61 +137,72 @@ function initAutocomplete() {
         var getMusicians = document.querySelector('#musicians_in_radius');
         var findMusiciansForm = document.querySelector('#new_booking')
 
-        findMusiciansForm.addEventListener('submit', function(e) {
+        findMusiciansForm.addEventListener('submitx', function(e) {
           e.preventDefault();
-          $.ajax({
-            url: '/bookings/musicians_in_radius',
-            method: 'get',
-            dataType: 'json'
-          }).done(function(responseData) {
-            var venueLat = place.geometry.location.lat();
-            var venueLong = place.geometry.location.lng();
-            var radius = document.getElementById('radius').value;
-            var venueLatLngObject = new google.maps.LatLng(venueLat, venueLong);
-            var arrayOfMusicians = [];
-            responseData.forEach(function(musician) {
-              var musicianLatLngObject = new google.maps.LatLng(musician.lat, musician.long);
-              if (google.maps.geometry.spherical.computeDistanceBetween(venueLatLngObject, musicianLatLngObject) <= (radius*1000)) {
-                makeMarker(musician.lat, musician.long);
-                arrayOfMusicians.push(musician);
-              }
-            })
-            var musicianListHidden = document.querySelector('#array_of_musicians');
-            musicianListHidden.value = JSON.stringify(arrayOfMusicians);
-            var musicianResulstDiv = document.createElement('div');
-            musicianResulstDiv.classList.add('musician-results');
-            console.log($(findMusiciansForm).serialize());
+          console.log(place);
+          debugger
+          if (place) {
+            var noPlaceOnMapErrorDiv = document.createElement('div');
+            noPlaceOnMapErrorDiv.classList.add('no-place-error');
+            var noPlaceOnMapErrorMsg = document.createElement('p');
+            noPlaceOnMapErrorMsg.innerText = "Please Enter Event Address in Map Search Bar";
+            noPlaceOnMapErrorDiv.append(noPlaceOnMapErrorMsg);
+            new_booking.prepend(noPlaceOnMapErrorDiv);
+            console.log("no place block");
+          } else {
+            var bookingAddressField = document.querySelector('#booking_address');
+            bookingAddressField.value = place.formatted_address;
             $.ajax({
-             url: '/bookings/new/find_musicians',
-             method: 'get',
-             dataType: 'html',
-             data: $(findMusiciansForm).serialize(),
-           }).done(function(responseData){
-             if (responseData) {
-               musicianResulstDiv.innerHTML = responseData;
-               document.querySelector('body').append(musicianResulstDiv);
-               var foundMusiciansDiv = document.querySelector('.found-musicians-container')
-               foundMusiciansDiv.addEventListener('click', function(e){
-                 if (e.target.localName === 'a') {
-                   e.preventDefault();
-                   var profileDetailsDiv = e.target.parentNode.parentNode.querySelector('.partial-profile-details')
-                   var showDetailsLink = e.target.parentNode.parentNode.querySelector('.profile-details-show')
-                   var hideDetailsLink = e.target.parentNode.parentNode.querySelector('.profile-details-hide')
-                   profileDetailsDiv.classList.toggle('shown');
-                   profileDetailsDiv.classList.toggle('hidden');
-                   showDetailsLink.classList.toggle('shown');
-                   showDetailsLink.classList.toggle('hidden');
-                   hideDetailsLink.classList.toggle('shown');
-                   hideDetailsLink.classList.toggle('hidden');
-                 }
-               });
-             } else {
-               var noNomusicianMsg = document.createElement('p');
-               noNomusicianMsg.innerText = 'Sorry, no musicians found, please refine your search.';
-               document.querySelector('body').append(noNomusicianMsg);
-             }
-           });
-          })
+              url: '/bookings/musicians_in_radius',
+              method: 'get',
+              dataType: 'json'
+            }).done(function(responseData) {
+              var venueLat = place.geometry.location.lat();
+              var venueLong = place.geometry.location.lng();
+              var radius = document.getElementById('radius').value;
+              var venueLatLngObject = new google.maps.LatLng(venueLat, venueLong);
+              var arrayOfMusicians = [];
+              responseData.forEach(function(musician) {
+                var musicianLatLngObject = new google.maps.LatLng(musician.lat, musician.long);
+                if (google.maps.geometry.spherical.computeDistanceBetween(venueLatLngObject, musicianLatLngObject) <= (radius*1000)) {
+                  makeMarker(musician.lat, musician.long);
+                  arrayOfMusicians.push(musician);
+                }
+              })
+              var musicianListHidden = document.querySelector('#array_of_musicians');
+              musicianListHidden.value = JSON.stringify(arrayOfMusicians);
+              $.ajax({
+               url: '/bookings/new/find_musicians',
+               method: 'get',
+               dataType: 'html',
+               data: $(findMusiciansForm).serialize(),
+             }).done(function(responseData){
+               if (responseData) {
+                 musicianResulstDiv.innerHTML = responseData;
+                 document.querySelector('body').append(musicianResulstDiv);
+                 var foundMusiciansDiv = document.querySelector('.found-musicians-container')
+                 foundMusiciansDiv.addEventListener('click', function(e){
+                   if (e.target.localName === 'a') {
+                     e.preventDefault();
+                     var profileDetailsDiv = e.target.parentNode.parentNode.querySelector('.partial-profile-details')
+                     var showDetailsLink = e.target.parentNode.parentNode.querySelector('.profile-details-show')
+                     var hideDetailsLink = e.target.parentNode.parentNode.querySelector('.profile-details-hide')
+                     profileDetailsDiv.classList.toggle('shown');
+                     profileDetailsDiv.classList.toggle('hidden');
+                     showDetailsLink.classList.toggle('shown');
+                     showDetailsLink.classList.toggle('hidden');
+                     hideDetailsLink.classList.toggle('shown');
+                     hideDetailsLink.classList.toggle('hidden');
+                   }
+                 });
+               } else {
+                 var noNomusicianMsg = document.createElement('p');
+                 noNomusicianMsg.innerText = 'Sorry, no musicians found, please refine your search.';
+                 document.querySelector('body').append(noNomusicianMsg);
+               }
+             });
+            })
+          }
         })
       }
     });

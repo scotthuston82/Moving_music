@@ -36,15 +36,19 @@
 // GOOGLE MAPS api
 /* Always set the map height explicitly to define the size of the div
  * element that contains the map. */
+#map_container_new_no_musician {
+  width: 600px;
+  height: 400px;
+  margin-bottom: 35px;
+}
+
 #map {
-  height: 500px;
-}
-/* Optional: Makes the sample page fill the window. */
-html, body {
   height: 100%;
-  margin: 0;
-  padding: 0;
+  width: 100%;
 }
+
+/* Optional: Makes the sample page fill the window. */
+
 #description {
   font-family: Roboto;
   font-size: 15px;

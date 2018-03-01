@@ -24,6 +24,13 @@ class BookingsController < ApplicationController
     end
   end
 
+  def search_musicians
+    # binding.pry
+    @booking = Booking.new(booking_params)
+    @musicians = SearchMusicians.new(params).results
+    render 'find_musicians', layout: false
+  end
+
   def musicians_in_radius
     @musicians = User.where('kind = ?', 'musician')
     respond_to do |format|

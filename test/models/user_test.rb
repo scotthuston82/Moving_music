@@ -36,7 +36,6 @@ class UserTest < ActiveSupport::TestCase
   test "musician act_type can only be dj or band" do
     user = create(:user)
     user.update(act_type: 'another type')
-    # user.save
     assert user.invalid?, "user should not save if act type is not 'dj' or 'band'"
   end
 

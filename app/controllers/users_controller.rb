@@ -70,7 +70,6 @@ class UsersController < ApplicationController
     else
       flash.now[:alert] = @user.errors.full_messages
       render 'onboarding'
-      # redirect_back(fallback_location: "onboarding")
     end
   end
 

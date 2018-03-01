@@ -6,6 +6,7 @@ function setupSearchMusicians(place) {
 
   function searchMusicians(e) {
     e.preventDefault();
+    e.stopPropagation();
     console.log($(new_booking).serialize());
     var request = {
       url: '/bookings/search_musicians',
@@ -20,7 +21,29 @@ function setupSearchMusicians(place) {
 }
 
 function displayResults(responseData) {
-  found_musicians_container.innerHTML = responseData
+  if (responseData) {
+    found_musicians_container.innerHTML = responseData
+    var foundMusiciansInnerDiv = document.querySelector('.found-musicians-container')
+    foundMusiciansInnerDiv.addEventListener('click', function(e){
+      if (e.target.localName === 'a') {
+        e.preventDefault();
+        var profileDetailsDiv = e.target.parentNode.parentNode.querySelector('.partial-profile-details')
+        var showDetailsLink = e.target.parentNode.parentNode.querySelector('.profile-details-show')
+        var hideDetailsLink = e.target.parentNode.parentNode.querySelector('.profile-details-hide')
+        profileDetailsDiv.classList.toggle('shown');
+        profileDetailsDiv.classList.toggle('hidden');
+        showDetailsLink.classList.toggle('shown');
+        showDetailsLink.classList.toggle('hidden');
+        hideDetailsLink.classList.toggle('shown');
+        hideDetailsLink.classList.toggle('hidden');
+      }
+    })
+  } else {
+    var noNomusicianMsg = document.createElement('p');
+    noNomusicianMsg.innerText = 'Sorry, no musicians found, please refine your search.';
+    document.querySelector('body').append(noNomusicianMsg);
+  }
+
 }
 
 function ajaxFails() {
@@ -37,6 +60,7 @@ function initAutocomplete() {
 
   var input = document.getElementById('pac-input');
   var searchBox = new google.maps.places.SearchBox(input);
+  // var searchBox = new google.maps.places.Autocomplete(input)
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
   map.addListener('bounds_changed', function() {

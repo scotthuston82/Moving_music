@@ -50,6 +50,21 @@ function ajaxFails() {
   console.log('Error', err);
 }
 
+function updateMusicianOnboarding(lat, long, address) {
+  // Only run this if we are on the musician update page
+        if (document.querySelector('#user_lat')) {
+          var userLat = document.querySelector('#user_lat');
+          var userLong= document.querySelector('#user_long');
+          var userAddress= document.querySelector('#user_address');
+
+          userLat.value = place.geometry.location.lat();
+          userLong.value = place.geometry.location.lng();
+          userAddress.value = place.formatted_address;
+        }
+}
+
+
+
 function initAutocomplete() {
 
   map = new google.maps.Map(document.getElementById('map'), {
@@ -105,6 +120,18 @@ function initAutocomplete() {
         bounds.extend(place.geometry.location);
 
       setupSearchMusicians(place)
+
+// Only run this if we are on the musician update page
+
+      if (document.querySelector('#user_latitude')) {
+        var userLat = document.querySelector('#user_latitude');
+        var userLong= document.querySelector('#user_longitude');
+        var userAddress= document.querySelector('#user_address');
+
+        userLat.value = place.geometry.location.lat();
+        userLong.value = place.geometry.location.lng();
+        userAddress.value = place.formatted_address;
+      }
     })
   })
 }

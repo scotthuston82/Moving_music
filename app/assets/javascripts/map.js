@@ -81,17 +81,7 @@ function initAutocompletex() {
         bounds.extend(place.geometry.location);
       }
 
-// Only run this if we are on the musician update page
 
-      if (document.querySelector('#user_lat')) {
-        var userLat = document.querySelector('#user_lat');
-        var userLong= document.querySelector('#user_long');
-        var userAddress= document.querySelector('#user_address');
-
-        userLat.value = place.geometry.location.lat();
-        userLong.value = place.geometry.location.lng();
-        userAddress.value = place.formatted_address;
-      }
 // ===================================================
 
 // Only run this if we are on the new_no_musician page

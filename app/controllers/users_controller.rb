@@ -60,13 +60,17 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update!(user_params)
+    @user.update(user_params)
     if @user.act_type == nil
       @user.act_type = params[:act_type]
     end
     empty_profile_picture?
     if @user.save
       redirect_to user_url
+    else
+      flash.now[:alert] = @user.errors.full_messages
+      render 'onboarding'
+      # redirect_back(fallback_location: "onboarding")
     end
   end
 
@@ -90,7 +94,7 @@ class UsersController < ApplicationController
 
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :bio, :profile_picture, :stage_name, :hourly_rate, :lat, :long, :address, genre_ids: [])
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :bio, :profile_picture, :stage_name, :hourly_rate, :address, genre_ids: [])
   end
 
   def empty_profile_picture?

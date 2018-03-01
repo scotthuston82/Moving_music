@@ -1,58 +1,49 @@
 <section class='signup-form'>
-  <h2>Please provide details for your profile</h2>
+ <h2>Please provide details for your profile</h2>
 
-  <%= form_for user do |f| %>
-    <p>
-      <%= f.label "Your Band/DJ Name" %>
-      <%= f.text_field :stage_name %>
-    </p>
+ <%= form_for user do |f| %>
+   <p>
+     <%= f.label "Your Band/DJ Name" %>
+     <%= f.text_field :stage_name %>
+   </p>
 
-    <p class='radio-buttons'>
-        <%= radio_button_tag(:act_type, "dj") %>
-        <%= label_tag(:act_type_dj, "DJ") %>
-        <%= radio_button_tag(:act_type, "band") %>
-        <%= label_tag(:act_type_band, "Band") %>
-    </p>
+   <p class='radio-buttons'>
+       <%= radio_button_tag(:act_type, "dj") %>
+       <%= label_tag(:act_type_dj, "DJ") %>
+       <%= radio_button_tag(:act_type, "band") %>
+       <%= label_tag(:act_type_band, "Band") %>
+   </p>
 
-    <p>
-      <%= f.label :bio %>
-      <%= f.text_area :bio %>
-    </p>
+   <p>
+     <%= f.label :address %>
+     <%= f.text_field :address %>
+   </p>
 
-    <p>
-      <%= f.label :profile_picture %>
-      <%= f.text_field :profile_picture %>
-    </p>
+   <p>
+     <%= f.label :bio %>
+     <%= f.text_area :bio %>
+   </p>
 
-    <p>
-      <%= f.label :hourly_rate %>
-      <%= f.text_field :hourly_rate %>
-    </p>
+   <p>
+     <%= f.label :profile_picture %>
+     <%= f.text_field :profile_picture %>
+   </p>
 
-      <%= f.hidden_field :lat %>
-      <%= f.hidden_field :long %>
-      <%= f.hidden_field :address %>
+   <p>
+     <%= f.label :hourly_rate %>
+     <%= f.text_field :hourly_rate %>
+   </p>
 
-<!--GOOGLE MAPS  -->
-    <p>Enter Your Location (This will be used to show event planners if you are nearby!)</p>
-    <div>
-      <input id="pac-input" class="controls" type="text" placeholder="Search Address">
-      <div id="map"></div>
-      <!-- Replace the value of the key parameter with your own API key. -->
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcNr3L8XYiOH0E81G4w_6OJjgrmNCqQrU&libraries=places&callback=initAutocomplete"
-               async defer></script>
-    </div>
-
-    <div class='genres'>
-      <%= field_set_tag 'Genres' do %>
-      <%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :name) %>
-      <% end %>
-    </div>
+   <div class='genres'>
+     <%= field_set_tag "Genres" do %>
+     <%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :name) %>
+     <% end %>
+   </div>
 
 
-    <%= f.submit 'Update' %>
+   <%= f.submit 'Update' %>
 
-  <% end %>
+ <% end %>
 </section>
 
-  <script src="https://maps.googleapis.com/maps/api/js?libraries=geometry,places&key=AIzaSyCcNr3L8XYiOH0E81G4w_6OJjgrmNCqQrU&callback=initAutocomplete" async defer></script>
+ <script src="https://maps.googleapis.com/maps/api/js?libraries=geometry,places&key=AIzaSyCcNr3L8XYiOH0E81G4w_6OJjgrmNCqQrU&callback=initAutocomplete" async defer></script>

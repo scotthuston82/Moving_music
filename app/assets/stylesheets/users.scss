@@ -33,7 +33,7 @@ left:0;
   a {
     text-decoration: none;
     color: black;
-    background-color: royalblue;
+    background-color: orange;
     padding: 10px 20px;
     font-weight: bold;
   }
@@ -48,7 +48,7 @@ left:0;
   background: #f1f1f1;
 }
 
-.login {
+.login-container {
   width: 400px;
 }
 
@@ -267,13 +267,29 @@ left:0;
 
 .bookings {
   width: 60%;
-  float: left;
+  margin-left: 30%;
+  position: relative;
+  top: 30px;
+}
+
+.bookings h2 {
+  text-align: left;
   margin-left: 10%;
+}
+
+.client-info h3 {
+  text-align: left;
+  position: relative;
+  bottom: 20px;
 }
 
 .client-buttons {
   width: 60%;
   float: left;
+  margin-left: 10%;
+}
+
+#pending_bookings {
   margin-left: 10%;
 }
 

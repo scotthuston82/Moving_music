@@ -10,11 +10,21 @@
   </head>
 
   <body id=<%="#{params[:controller]}_#{params[:action]}"%>>
+
+
+
     <header class='header clearfix'>
-      <h1>
-       PlayMyParty
-     </h1>
+      <div class="logo clearfix">
+        <div class="pmplogo">
+          <%= image_tag "logo.jpg"%>
+        </div>
+         <h1>
+           PlayMyParty
+         </h1>
+      </div>
           <nav class='layout-links clearfix'>
+
+
           <%= link_to 'Home', root_path %>
           <% if current_user %>
               <%= link_to "Sign Out", logout_path, method: :delete %>
@@ -35,7 +45,7 @@
             <% end %>
             <%= submit_tag "Search", name: nil %>
           </div>
-      
+
         </nav>
         <div class="flash">
          <% if flash && flash.any?  %>
@@ -55,7 +65,14 @@
        </div>
     </header>
 
+    <main>
     <%= yield %>
+  </main>
+    <footer class="footer">
+      <p>PlayMyParty ©2018</p>
+    </footer>
   </body>
+
+
 
 </html>

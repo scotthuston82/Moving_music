@@ -62,7 +62,14 @@
 
   <div class='genre-checkbox'>
     <%= field_set_tag 'Genres' do %>
-    <%= collection_check_boxes(:musician, :genre_ids, Genre.all, :id, :name, class: 'genre-checkbox') %>
+
+    <% collection_check_boxes(:musician, :genre_ids, Genre.all, :id, :name) do |checkbox| %>
+      <div class="form-check2">
+      <%= checkbox.label(class: "form-check")%>
+      <%=checkbox.check_box(class: "checkmark")%>
+      <span class='checkmark'></span>
+    </div>
+    <%end%>
     <% end %>
   </div>
 

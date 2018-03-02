@@ -1,6 +1,8 @@
-<section class='index-musicians'>
+<section class='index-musicians clearfix'>
+
   <% @users.each do |user| %>
       <div class='musicians'>
+
         <a href="<%="/users/#{user.id}"%>"></a>
         <h2><%= user.stage_name %> </h2>
         <div class='musician-image'>

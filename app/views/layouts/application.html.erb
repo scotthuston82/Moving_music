@@ -11,15 +11,10 @@
 
   <body id=<%="#{params[:controller]}_#{params[:action]}"%>>
     <header class='header clearfix'>
-
-        <nav class='layout-links clearfix'>
-          <div style="">
-
-            <img src="/assets/logo.jpg" alt="Logo" style="height: 45px; min-height: 20px;width: 50px;">
-             <span style="display:inline-block;float:right;"> PlayMyParty
-          </span>
-        </div>
-        <div>
+      <h1>
+       PlayMyParty
+     </h1>
+          <nav class='layout-links clearfix'>
           <%= link_to 'Home', root_path %>
           <% if current_user %>
               <%= link_to "Sign Out", logout_path, method: :delete %>
@@ -40,7 +35,7 @@
             <% end %>
             <%= submit_tag "Search", name: nil %>
           </div>
-        </div>
+      
         </nav>
     </header>
 

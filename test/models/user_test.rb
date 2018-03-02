@@ -45,4 +45,10 @@ class UserTest < ActiveSupport::TestCase
     assert user.invalid?, "user hourly_rate must be greater than zero"
   end
 
+  test "musician address must be valid" do
+    user = create(:user)
+    user.update(address: 'adlfkjdfkei')
+    assert user.invalid?, "user should be invalid if address is invalid"
+  end
+
 end

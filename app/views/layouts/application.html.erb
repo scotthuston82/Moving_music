@@ -5,16 +5,16 @@
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
-    
+
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body id=<%="#{params[:controller]}_#{params[:action]}"%>>
     <header class='header clearfix'>
       <h1>
-        PlayMyParty
-      </h1>
-        <nav class='layout-links clearfix'>
+       PlayMyParty
+     </h1>
+          <nav class='layout-links clearfix'>
           <%= link_to 'Home', root_path %>
           <% if current_user %>
               <%= link_to "Sign Out", logout_path, method: :delete %>
@@ -35,7 +35,7 @@
             <% end %>
             <%= submit_tag "Search", name: nil %>
           </div>
-
+      
         </nav>
     </header>
 

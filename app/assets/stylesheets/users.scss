@@ -267,13 +267,29 @@ left:0;
 
 .bookings {
   width: 60%;
-  float: left;
+  margin-left: 30%;
+  position: relative;
+  top: 30px;
+}
+
+.bookings h2 {
+  text-align: left;
   margin-left: 10%;
+}
+
+.client-info h3 {
+  text-align: left;
+  position: relative;
+  bottom: 20px;
 }
 
 .client-buttons {
   width: 60%;
   float: left;
+  margin-left: 10%;
+}
+
+#pending_bookings {
   margin-left: 10%;
 }
 

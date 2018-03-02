@@ -5,15 +5,11 @@
   </div>
 
   <div class='client-info'>
-    <h2 class='client-name'> <%= @user.first_name %> <%= @user.last_name %></h2>
-    <% if current_user %>
-      <p><%= @user.email %></p>
-    <% end %>
+    <h3 class='client-name'> <%= @user.first_name %> <%= @user.last_name %></h2>
     <% if @user.bio %>
-      <h2>Biography</h2>
+      <h3>Biography</h2>
       <p><%= @user.bio %></p>
     <% end %>
-
   </div>
   <div class="client-buttons">
     <% if current_user && current_user.id == @user.id %>
@@ -23,9 +19,9 @@
       <div class='updatepassword'>
         <%= link_to 'Update Password', users_updatepassword_path%>
       </div>
-  </div>  
+  </div>
   <div class = 'bookings'>
-    <h2>My Pending Bookings:</h2>
+    <h2 class='bookingsh2'>My Pending Bookings:</h2>
     <div id="pending_bookings">
       <% @pendingbookings.each do |booking| %>
         <ul id="booking_<%= booking.id %>">
@@ -38,9 +34,8 @@
           <li>Age Range: <%= booking.age_range %></li>
           <li>Party Size: <%= booking.party_size %></li>
         </ul>
-
         <% end %>
-  </div>
+    </div>
     <h2>My Confirmed Bookings:</h2>
     <div id="confirmed_bookings">
       <% @confirmedbookings.each do |booking| %>

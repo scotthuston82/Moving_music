@@ -9,6 +9,10 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 
+gem 'rails_12factor', group: :production
+
+gem 'faker', group: :production
+
 gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
@@ -51,7 +55,6 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
-  gem 'faker'
 end
 
 group :development do

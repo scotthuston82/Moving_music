@@ -16,7 +16,7 @@ class Booking < ApplicationRecord
   end
 
   def end_time_must_be_after_start
-    if self[:end_time] < self[:start_time]
+    if self[:end_time] <= self[:start_time]
         errors.add(:end_time, "Please choose an end time after the start time.")
     end
   end

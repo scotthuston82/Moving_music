@@ -43,11 +43,11 @@ function displayResults(responseData) {
     noNomusicianMsg.innerText = 'Sorry, no musicians found, please refine your search.';
     document.querySelector('body').append(noNomusicianMsg);
   }
-
+    addEventListenersToPartialProfileContainers()
 }
 
 function ajaxFails() {
-  console.log('Error', err);
+  console.log('Error');
 }
 
 function updateMusicianOnboarding(lat, long, address) {
@@ -215,4 +215,23 @@ function initAutocomplete() {
     })
     map.fitBounds(bounds);
   })
+}
+
+function addEventListenersToPartialProfileContainers() {
+  var partialProfileContainers = document.querySelectorAll('.partial-profile-container')
+  partialProfileContainers.forEach(showAndHideImage);
+
+}
+
+function showAndHideImage(partialProfileContainer){
+  var showDetailsLink = partialProfileContainer.querySelector('.profile-details-show')
+  var hideDetailsLink = partialProfileContainer.querySelector('.profile-details-hide')
+  var profilePictureContainer = partialProfileContainer.querySelector('.profile-picture-container')
+  showDetailsLink.addEventListener('click',function(){
+    profilePictureContainer.classList.toggle('shown');
+  });
+
+  hideDetailsLink.addEventListener('click',function(){
+    profilePictureContainer.classList.toggle('shown');
+  });
 }

@@ -70,7 +70,7 @@ GEM
     faker (1.8.7)
       i18n (>= 0.7)
     ffi (1.9.23)
-    geocoder (1.4.5)
+    geocoder (1.4.6)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     i18n (0.9.5)
@@ -108,7 +108,7 @@ GEM
     public_suffix (3.0.2)
     puma (3.11.2)
     rack (2.0.4)
-    rack-test (0.8.2)
+    rack-test (0.8.3)
       rack (>= 1.0, < 3)
     rails (5.1.5)
       actioncable (= 5.1.5)
@@ -127,6 +127,11 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.5)
     railties (5.1.5)
       actionpack (= 5.1.5)
       activesupport (= 5.1.5)
@@ -206,6 +211,7 @@ DEPENDENCIES
   pry-rails
   puma (~> 3.7)
   rails (~> 5.1.4)
+  rails_12factor
   redis (~> 3.0)
   sass-rails (~> 5.0)
   selenium-webdriver

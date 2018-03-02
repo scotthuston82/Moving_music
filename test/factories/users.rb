@@ -11,9 +11,9 @@ FactoryBot.define do
     address               '220 King St West Toronto, ON'
 
     factory :client_user do
-      first_name            'Sally'
+      first_name            'Jonny'
       last_name             'Lowenthal'
-      sequence(:email)      {|num| "sally#{num}@example.com"}
+      sequence(:email)      {|num| "jonny#{num}@example.com"}
       password              'passpass'
       password_confirmation 'passpass'
       kind                  'client'

@@ -25,7 +25,8 @@ function displayResults(responseData) {
     found_musicians_container.innerHTML = responseData
     var foundMusiciansInnerDiv = document.querySelector('.found-musicians-container')
     foundMusiciansInnerDiv.addEventListener('click', function(e){
-      if (e.target.localName === 'a') {
+      console.log(e.target);
+      if (e.target.localName === 'a' && e.target.className != 'view-profile') {
         e.preventDefault();
         var profileDetailsDiv = e.target.parentNode.parentNode.querySelector('.partial-profile-details')
         var showDetailsLink = e.target.parentNode.parentNode.querySelector('.profile-details-show')

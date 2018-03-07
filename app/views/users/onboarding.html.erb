@@ -1,5 +1,0 @@
-<% if @user.kind == 'musician' %>
-  <%= render 'musician_onboarding_form', user: @user  %>
-<% elsif @user.kind == 'client' %>
-  <%= render 'client_onboarding_form', user: @user  %>
-<% end %>

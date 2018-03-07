@@ -44,10 +44,15 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.kind = params[:kind]
-
+    @user.act_type = params[:act_type]
     if @user.save
       session[:user_id] = @user.id
-      render "onboarding"
+      empty_profile_picture?
+      if @user.kind == 'client'
+        redirect_to bookings_new_path
+      elsif @user.kind == 'musician'
+        redirect_to user_path(@user)
+      end
     else
       flash.now[:alert] = @user.errors.full_messages
       render "new"
@@ -61,15 +66,11 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
-    if @user.act_type == nil
-      @user.act_type = params[:act_type]
-    end
-    empty_profile_picture?
     if @user.save
       redirect_to user_url
     else
       flash.now[:alert] = @user.errors.full_messages
-      render 'onboarding'
+      render 'edit'
     end
   end
 

@@ -19,7 +19,7 @@
 
   <p>
     <label for="radius">Desired Radius(km)</label>
-    <input id="radius" type="number" name="radius">
+    <input id="radius" type="number" name="radius" placeholder="We will only show you musicians within this distance from your event">
   </p>
 
 
@@ -39,7 +39,7 @@
 
   <p>
     <%= f.label :party_size %>
-    <%= f.number_field :party_size %>
+    <%= f.number_field :party_size, placeholder: "Approximate attendance at your event - enter only a number" %>
   </p>
 
   <p>
@@ -57,7 +57,7 @@
 
   <p>
     <%= label_tag :hourly_rate %>
-    <%= text_field_tag :hourly_rate %>
+    <%= text_field_tag :hourly_rate, nil, placeholder: "The maximum hourly rate you're willing to pay" %>
   </p>
 
   <div class='genre-checkbox'>

@@ -72,7 +72,7 @@
   <div id="confirmed_bookings">
     <% @confirmedbookings.each do |booking| %>
       <ul id="booking_<%= booking.id %>">
-        <li>Client name: <%= booking.client.first_name %></li>
+        <li>Client name: <%= link_to booking.client.first_name, user_path(booking.client) %></li>
         <li>Address: <%= booking.address %></li>
         <li>Start Time: <%= booking.start_time %></li>
         <li>End Time: <%= booking.end_time %></li>
@@ -85,15 +85,17 @@
   <div id="past_bookings">
     <% @pastbookings.each do |booking| %>
       <ul id="booking_<%= booking.id %>">
-        <li>Client name: <%= booking.client.first_name %></li>
+        <li>Client name: <%= link_to booking.client.first_name, user_path(booking.client) %></li>
         <li>Address: <%= booking.address %></li>
         <li>Start Time: <%= booking.start_time %></li>
         <li>End Time: <%= booking.end_time %></li>
         <li>Age Range: <%= booking.age_range %></li>
         <li>Party Size: <%= booking.party_size %></li>
       </ul>
-      <% if booking.review.client_reviewed == false %>
-        <%= link_to 'Write review', new_user_booking_review_path(@user, booking) %>
+      <% if !booking.review || booking.review.client_reviewed == false %>
+      <div class="write_review">
+          <%= link_to 'Write review', new_user_booking_review_path(@user, booking) %>
+      </div>
       <% end %>
   <% end %>
 

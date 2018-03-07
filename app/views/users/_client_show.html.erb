@@ -33,7 +33,7 @@
     <div id="pending_bookings">
       <% @pendingbookings.each do |booking| %>
         <ul id="booking_<%= booking.id %>">
-          <li>Artist: <%= booking.musician.stage_name %></li>
+          <li>Artist: <%= link_to booking.musician.stage_name, user_path(booking.musician) %></li>
           <li>Artist Contact Name: <%= booking.musician.first_name %> <%= booking.musician.last_name %></li>
           <li>Artist Contact email: <%= booking.musician.email %></li>
           <li>Event Address: <%= booking.address %></li>
@@ -48,7 +48,7 @@
     <div id="confirmed_bookings">
       <% @confirmedbookings.each do |booking| %>
         <ul id="booking_<%= booking.id %>">
-          <li>Artist: <%= booking.musician.stage_name %></li>
+          <li>Artist: <%= link_to booking.musician.stage_name, user_path(booking.musician) %></li>
           <li>Artist Contact Name: <%= booking.musician.first_name %> <%= booking.musician.last_name %></li>
           <li>Artist Contact email: <%= booking.musician.email %></li>
           <li>Event Address: <%= booking.address %></li>
@@ -63,7 +63,7 @@
     <div id="past_bookings">
       <% @pastbookings.each do |booking| %>
         <ul id="booking_<%= booking.id %>">
-          <li>Artist: <%= booking.musician.stage_name %></li>
+          <li>Artist: <%= link_to booking.musician.stage_name, user_path(booking.musician) %></li>
           <li>Artist Contact Name: <%= booking.musician.first_name %> <%= booking.musician.last_name %></li>
           <li>Artist Contact email: <%= booking.musician.email %></li>
           <li>Event Address: <%= booking.address %></li>
@@ -72,9 +72,11 @@
           <li>Age Range: <%= booking.age_range %></li>
           <li>Party Size: <%= booking.party_size %></li>
         </ul>
-        <% if booking.review.musician_reviewed == false %>
-          <%= link_to 'Write review', new_user_booking_review_path(@user, booking) %>
-        <% end %>
+        <div class="write_review">
+          <% if !booking.review || booking.review.musician_reviewed == false %>
+            <%= link_to 'Write review', new_user_booking_review_path(@user, booking) %>
+          <% end %>
+        </div>
     <% end %>
 
     <% end %>

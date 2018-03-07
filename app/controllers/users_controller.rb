@@ -66,15 +66,11 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
-    if @user.act_type == nil
-      @user.act_type = params[:act_type]
-    end
-    empty_profile_picture?
     if @user.save
       redirect_to user_url
     else
       flash.now[:alert] = @user.errors.full_messages
-      render 'onboarding'
+      render 'edit'
     end
   end
 

@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function(){
     var musicianRadioButton = document.querySelector('#kind_musician')
     var clientRadioButton = document.querySelector('#kind_client')
     var musicianFieldsDiv = document.querySelector('.musician-only-fields')
-    console.log(radioButtons);
     radioButtons.addEventListener('click', function(e){
       if (musicianRadioButton.checked === true) {
         if (musicianFieldsDiv.classList.contains('hidden')) {
@@ -14,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function(){
       } else if (musicianRadioButton.checked === false) {
         if (musicianFieldsDiv.classList.contains('shown')) {
           musicianFieldsDiv.classList.remove('shown')
-          musicianFieldsDiv.classList.add('hidden')          
+          musicianFieldsDiv.classList.add('hidden')
         }
       }
     })

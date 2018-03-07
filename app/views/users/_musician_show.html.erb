@@ -82,33 +82,35 @@
         <li>Party Size: <%= booking.party_size %></li>
       </ul>
       <% end %>
-  </div>
-  <h2>My Past Bookings:</h2>
-  <div id="past_bookings">
-    <% @pastbookings.each do |booking| %>
-      <ul id="booking_<%= booking.id %>">
-        <li>Client name: <%= link_to booking.client.first_name, user_path(booking.client) %></li>
-        <li>Address: <%= booking.address %></li>
-        <li>Start Time: <%= booking.start_time %></li>
-        <li>End Time: <%= booking.end_time %></li>
-        <li>Age Range: <%= booking.age_range %></li>
-        <li>Party Size: <%= booking.party_size %></li>
-      </ul>
-      <% if !booking.review || booking.review.client_reviewed == false %>
-        <div class="write_review">
-          <%= link_to 'Write review', new_user_booking_review_path(@user, booking) %>
-        </div>
-        <div id="review_form" class="hidden">
+</div>
+<h2>My Past Bookings:</h2>
+<div id="past_bookings">
+  <% @pastbookings.each do |booking| %>
+    <ul id="booking_<%= booking.id %>">
+      <li>Client name: <%= link_to booking.client.first_name, user_path(booking.client) %></li>
+      <li>Address: <%= booking.address %></li>
+      <li>Start Time: <%= booking.start_time %></li>
+      <li>End Time: <%= booking.end_time %></li>
+      <li>Age Range: <%= booking.age_range %></li>
+      <li>Party Size: <%= booking.party_size %></li>
+    </ul>
+    <% if !booking.review || booking.review.client_reviewed == false %>
+      <div class="write_review">
+        <%= link_to 'Write review', new_user_booking_review_path(@user, booking) %>
+        <div class="review_form hidden">
           <%= form_for(@review, :url => user_booking_reviews_path(@user, booking)) do |f|%>
+            <button type="button" class="close">x</button>
+
             <p>
-              <%= f.label :review_for_client %>
-              <%= f.text_area :clients_review  %>
+              <%= f.label :clients_review, "Review for: #{booking.client.first_name}" %>
+              <%= f.text_area :clients_review, rows: "5", class: "review_text_box" %>
             </p>
             <p>
               <%= f.submit %>
             </p>
           <% end %>
         </div>
+      </div>
       <% end %>
     <% end %>
   <% end %>

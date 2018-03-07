@@ -26,7 +26,9 @@
     <div class="reviews">
       <h2>Reviews for: <%= @user.stage_name %></h2>
       <% @user.gigs.each do |gig| %>
+      <% if gig.review %>
         <%= gig.review.client.first_name %> Says: '<%= gig.review.musicians_review %>'
+        <% end %>
       <% end %>
     </div>
   <% end %>
@@ -53,7 +55,7 @@
   <div id="pending_bookings">
     <% @pendingbookings.each do |booking| %>
       <ul id="booking_<%= booking.id %>">
-        <li>Client name: <%= link_to booking.client.first_name, user_show_path(@user) %></li>
+        <li>Client name: <%= link_to booking.client.first_name, user_path(booking.client) %></li>
         <li>Address: <%= booking.address %></li>
         <li>Start Time: <%= booking.start_time %></li>
         <li>End Time: <%= booking.end_time %></li>

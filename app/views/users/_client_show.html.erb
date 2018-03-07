@@ -72,11 +72,11 @@
           <li>Age Range: <%= booking.age_range %></li>
           <li>Party Size: <%= booking.party_size %></li>
         </ul>
-        <div class="write_review">
-          <% if !booking.review || booking.review.musician_reviewed == false %>
+        <% if !booking.review || booking.review.musician_reviewed == false %>
+          <div class="write_review">
             <%= link_to 'Write review', new_user_booking_review_path(@user, booking) %>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
     <% end %>
 
     <% end %>

@@ -16,6 +16,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @review = Review.new
     if @user.kind == 'musician'
       @review = @user.musician_reviews.new
       @reviews = @user.musician_reviews

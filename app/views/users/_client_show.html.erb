@@ -11,12 +11,14 @@
       <p><%= @user.bio %></p>
     <% end %>
     <div class="reviews">
-      <h2>Reviews for: <%= @user.first_name %></h2>
-      <% @user.events.each do |event| %>
-      <% if event.review %>
-        <%= event.review.musician.stage_name %> Says: '<%= event.review.clients_review %>'
+      <h2>Reviews for <%= @user.first_name %>:</h2>
+      <ul>
+        <% @user.events.each do |event| %>
+          <% if event.review %>
+            <li><%= event.review.musician.stage_name %> Says: '<%= event.review.clients_review %>'</li>
+          <% end %>
         <% end %>
-      <% end %>
+      </ul>
     </div>
   </div>
   <div class="client-buttons">
@@ -75,6 +77,17 @@
         <% if !booking.review || booking.review.musician_reviewed == false %>
           <div class="write_review">
             <%= link_to 'Write review', new_user_booking_review_path(@user, booking) %>
+          </div>
+          <div id="review_form" class="hidden">
+            <%= form_for(@review, :url => user_booking_reviews_path(@user, booking)) do |f|%>
+              <p>
+                <%= f.label :review_for_musician %>
+                <%= f.text_area :musicians_review  %>
+              </p>
+              <p>
+                <%= f.submit %>
+              </p>
+            <% end %>
           </div>
         <% end %>
     <% end %>

@@ -24,12 +24,14 @@
       </ul>
     </div>
     <div class="reviews">
-      <h2>Reviews for: <%= @user.stage_name %></h2>
-      <% @user.gigs.each do |gig| %>
-      <% if gig.review %>
-        <%= gig.review.client.first_name %> Says: '<%= gig.review.musicians_review %>'
+      <h2>Reviews for <%= @user.stage_name %>:</h2>
+      <ul>
+        <% @user.gigs.each do |gig| %>
+          <% if gig.review %>
+            <li><%= gig.review.client.first_name %> Says: '<%= gig.review.musicians_review %>'</li>
+          <% end %>
         <% end %>
-      <% end %>
+      </ul>
     </div>
   <% end %>
 
@@ -93,21 +95,20 @@
         <li>Party Size: <%= booking.party_size %></li>
       </ul>
       <% if !booking.review || booking.review.client_reviewed == false %>
-      <div class="write_review">
-        <%= link_to 'Write review', new_user_booking_review_path(@user, booking) %>
-        <div id="review_form">
-        <%= form_for(@review, :url => user_booking_reviews_path(@user, booking)) do |f|%>
-          <p>
-            <%= f.label :review_for_client %>
-            <%= f.text_area :clients_review  %>
-          </p>
-
-          <p>
-            <%= f.submit %>
-          </p>
-        <% end %>
+        <div class="write_review">
+          <%= link_to 'Write review', new_user_booking_review_path(@user, booking) %>
         </div>
-      </div>
+        <div id="review_form" class="hidden">
+          <%= form_for(@review, :url => user_booking_reviews_path(@user, booking)) do |f|%>
+            <p>
+              <%= f.label :review_for_client %>
+              <%= f.text_area :clients_review  %>
+            </p>
+            <p>
+              <%= f.submit %>
+            </p>
+          <% end %>
+        </div>
       <% end %>
     <% end %>
   <% end %>

@@ -1,5 +1,5 @@
-document.addEventListener('DOMContentLoaded', function(){
-  if (document.querySelector('#new_user')) {
+$(document).on('turbolinks:load', function() {
+    if (document.querySelector('#new_user')) {
     var radioButtons = document.querySelector('#user-kind-radio-buttons')
     var musicianRadioButton = document.querySelector('#kind_musician')
     var clientRadioButton = document.querySelector('#kind_client')

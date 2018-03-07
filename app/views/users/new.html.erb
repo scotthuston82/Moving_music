@@ -21,14 +21,14 @@
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation %>
   </p>
-  <p class='radio-buttons'>
+  <p class='radio-buttons' id="user-kind-radio-buttons">
       <%= radio_button_tag(:kind, "musician") %>
       <%= label_tag(:kind_musician, "Musician") %>
       <%= radio_button_tag(:kind, "client") %>
       <%= label_tag(:kind_client, "Event Planner") %>
   </p>
 
-  <div class="musician-only-fields">
+  <div class="musician-only-fields hidden">
     <p>
       <%= f.label "Your Band/DJ Name" %>
       <%= f.text_field :stage_name %>

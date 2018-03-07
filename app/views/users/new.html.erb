@@ -53,12 +53,12 @@
 
     <p>
       <%= f.label :profile_picture %>
-      <%= f.text_field :profile_picture %>
+      <%= f.text_field :profile_picture, placeholder: "Please enter a valid image url" %>
     </p>
 
     <p>
       <%= f.label :hourly_rate %>
-      <%= f.text_field :hourly_rate %>
+      <%= f.text_field :hourly_rate, placeholder: "Your rate in $/hr. Please enter only a number" %>
     </p>
 
     <div class='genres'>

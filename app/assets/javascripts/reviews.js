@@ -12,8 +12,14 @@ document.addEventListener('DOMContentLoaded', function(){
       }
     }
 
-    past_bookings.addEventListener('click', showReviewModal)
+    function hideReviewModal(e) {
+      e.preventDefault();
+      e.target.parentElement.parentElement.classList.toggle('hidden');
+    }
 
+    var closeButton = document.querySelector('.close')
+    past_bookings.addEventListener('click', showReviewModal)
+    closeButton.addEventListener('click', hideReviewModal)
 
   }
 

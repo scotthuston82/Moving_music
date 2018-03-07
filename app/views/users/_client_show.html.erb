@@ -10,6 +10,14 @@
       <h3>Biography</h2>
       <p><%= @user.bio %></p>
     <% end %>
+    <div class="reviews">
+      <h2>Reviews for: <%= @user.first_name %></h2>
+      <% @user.events.each do |event| %>
+      <% if event.review %>
+        <%= event.review.musician.stage_name %> Says: '<%= event.review.clients_review %>'
+        <% end %>
+      <% end %>
+    </div>
   </div>
   <div class="client-buttons">
     <% if current_user && current_user.id == @user.id %>
@@ -64,6 +72,9 @@
           <li>Age Range: <%= booking.age_range %></li>
           <li>Party Size: <%= booking.party_size %></li>
         </ul>
+        <% if booking.review.musician_reviewed == false %>
+          <%= link_to 'Write review', new_user_booking_review_path(@user, booking) %>
+        <% end %>
     <% end %>
 
     <% end %>

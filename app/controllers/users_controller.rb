@@ -31,7 +31,7 @@ class UsersController < ApplicationController
       @reviews = @user.client_reviews
       if current_user && current_user == @user
         @pendingbookings = current_user.events.where('confirmed = ?', false)
-        @confirmedbookings = current_user.events.where('confirmed = ?', true)
+        @confirmedbookings = current_user.events.where('confirmed = ? AND end_time > ?', true, Time.now)
         @pastbookings = current_user.events.where('confirmed = ? AND end_time < ?', true, Time.now)
       end
     end

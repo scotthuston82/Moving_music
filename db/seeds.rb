@@ -54,7 +54,8 @@ end
     start_time: Time.now + rand(3..30).days,
     address: "220 King St W, Suite 200, Toronto, ON M5H 1K4",
     party_size: [nil, rand(50..200)].sample,
-    age_range: [nil, "18 - 24", "25 - 35", "35 - 45", "45+"].sample
+    age_range: [nil, "18 - 24", "25 - 35", "35 - 45", "45+"].sample,
+    event_name: Faker::UmphreysMcgee.song
   )
 end
 

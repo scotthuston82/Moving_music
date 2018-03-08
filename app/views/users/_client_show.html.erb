@@ -6,7 +6,7 @@
 
   <div class='client-info'>
     <h3 class='client-name'> <%= @user.first_name %> <%= @user.last_name %></h2>
-    <% if @user.bio %>
+    <% if @user.bio && @user.bio.length > 0 %>
       <h3>Biography</h2>
       <p><%= @user.bio %></p>
     <% end %>

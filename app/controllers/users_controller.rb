@@ -16,6 +16,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @review = Review.new
     if @user.kind == 'musician'
       @review = @user.musician_reviews.new
       @reviews = @user.musician_reviews
@@ -23,7 +24,7 @@ class UsersController < ApplicationController
       if current_user  # what if logged in as musician?, do we add && current_user.kind == 'client'?
         @review.client_id = current_user.id # not sure this line makes sense
         @pendingbookings = current_user.gigs.where('confirmed = ?', false)
-        @confirmedbookings = current_user.gigs.where('confirmed = ?', true)
+        @confirmedbookings = current_user.gigs.where('confirmed = ? AND end_time > ?', true, Time.now)
         @pastbookings = current_user.gigs.where('confirmed = ? AND end_time < ?', true, Time.now)
       end
     elsif @user.kind == 'client'
@@ -31,7 +32,7 @@ class UsersController < ApplicationController
       @reviews = @user.client_reviews
       if current_user && current_user == @user
         @pendingbookings = current_user.events.where('confirmed = ?', false)
-        @confirmedbookings = current_user.events.where('confirmed = ?', true)
+        @confirmedbookings = current_user.events.where('confirmed = ? AND end_time > ?', true, Time.now)
         @pastbookings = current_user.events.where('confirmed = ? AND end_time < ?', true, Time.now)
       end
     end

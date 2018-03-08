@@ -26,6 +26,7 @@
 
 
           <%= link_to 'Home', root_path %>
+          <%= link_to "Show all musicians", users_path %>
           <% if current_user %>
               <%= link_to "Sign Out", logout_path, method: :delete %>
               <%= link_to "My Profile", current_user%>
@@ -35,9 +36,6 @@
           <% end %>
           <% if current_user && current_user.kind == "client" %>
               <%= link_to "Create New Booking", bookings_new_path %>
-          <% end %>
-          <% if current_user && current_user.kind == "client" %>
-              <%= link_to "Show all musicians", users_path %>
           <% end %>
           <div class='search'>
             <%= form_tag(users_path, :method => "get", id: "search-form") do %>

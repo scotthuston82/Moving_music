@@ -16,20 +16,24 @@ class ReviewsController < ApplicationController
       @review.booking = @booking
         if current_user.kind == "client"
           @review.musicians_review = params[:review][:musicians_review]
+          @review.musician_reviewed = true
         elsif current_user.kind == "musician"
           @review.clients_review = params[:review][:clients_review]
+          @review.client_reviewed = true
         end
     else
       @review = @booking.review
       if current_user.kind == "client"
         @review.musicians_review = params[:review][:musicians_review]
+        @review.musician_reviewed = true
       elsif current_user.kind == "musician"
         @review.clients_review = params[:review][:clients_review]
+        @review.client_reviewed = true
       end
     end
 
     if @review.save
-      flash[:notice] = "Successfully submitted Review!"
+      flash.now![:notice] = "Successfully submitted Review!"
       redirect_to user_path(@user)
     else
       render 'users/show'

@@ -1,3 +1,29 @@
-// Place all the styles related to the reviews controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// Review Modal ====================================
+
+// The backgroun part
+.review_form {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(30,30,30,0.8);
+}
+
+// The actual form in the middle
+.new_review {
+  background: white;
+  width: 42%;
+  height: 27%;
+  position: fixed;
+  top: 35%;
+  left: 29%;
+}
+
+.review_text_box {
+  width: 95%;
+}
+
+
+
+//  Review Modal =====================================

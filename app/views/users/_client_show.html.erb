@@ -10,6 +10,16 @@
       <h3>Biography</h2>
       <p><%= @user.bio %></p>
     <% end %>
+    <div class="reviews">
+      <h2>Reviews for <%= @user.first_name %>:</h2>
+      <ul>
+        <% @user.events.each do |event| %>
+          <% if event.review %>
+            <li><%= event.review.musician.stage_name %> Says: '<%= event.review.clients_review %>'</li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
   </div>
   <div class="client-buttons">
     <% if current_user && current_user.id == @user.id %>
@@ -25,7 +35,7 @@
     <div id="pending_bookings">
       <% @pendingbookings.each do |booking| %>
         <ul id="booking_<%= booking.id %>">
-          <li>Artist: <%= booking.musician.stage_name %></li>
+          <li>Artist: <%= link_to booking.musician.stage_name, user_path(booking.musician) %></li>
           <li>Artist Contact Name: <%= booking.musician.first_name %> <%= booking.musician.last_name %></li>
           <li>Artist Contact email: <%= booking.musician.email %></li>
           <li>Event Address: <%= booking.address %></li>
@@ -40,7 +50,7 @@
     <div id="confirmed_bookings">
       <% @confirmedbookings.each do |booking| %>
         <ul id="booking_<%= booking.id %>">
-          <li>Artist: <%= booking.musician.stage_name %></li>
+          <li>Artist: <%= link_to booking.musician.stage_name, user_path(booking.musician) %></li>
           <li>Artist Contact Name: <%= booking.musician.first_name %> <%= booking.musician.last_name %></li>
           <li>Artist Contact email: <%= booking.musician.email %></li>
           <li>Event Address: <%= booking.address %></li>
@@ -55,7 +65,7 @@
     <div id="past_bookings">
       <% @pastbookings.each do |booking| %>
         <ul id="booking_<%= booking.id %>">
-          <li>Artist: <%= booking.musician.stage_name %></li>
+          <li>Artist: <%= link_to booking.musician.stage_name, user_path(booking.musician) %></li>
           <li>Artist Contact Name: <%= booking.musician.first_name %> <%= booking.musician.last_name %></li>
           <li>Artist Contact email: <%= booking.musician.email %></li>
           <li>Event Address: <%= booking.address %></li>
@@ -64,6 +74,22 @@
           <li>Age Range: <%= booking.age_range %></li>
           <li>Party Size: <%= booking.party_size %></li>
         </ul>
+        <% if !booking.review || booking.review.musician_reviewed == false %>
+          <div class="write_review">
+            <%= link_to 'Write review', new_user_booking_review_path(@user, booking) %>
+            <div id="review_form" class="hidden">
+              <%= form_for(@review, :url => user_booking_reviews_path(@user, booking)) do |f|%>
+                <p>
+                  <%= f.label :review_for_musician %>
+                  <%= f.text_area :musicians_review  %>
+                </p>
+                <p>
+                  <%= f.submit %>
+                </p>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
     <% end %>
 
     <% end %>

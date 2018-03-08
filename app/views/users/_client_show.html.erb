@@ -34,6 +34,7 @@
     <h2 class='bookingsh2'>My Pending Bookings:</h2>
     <div id="pending_bookings">
       <% @pendingbookings.each do |booking| %>
+        <h4><%= booking.event_name %></h4>
         <ul id="booking_<%= booking.id %>">
           <li>Artist: <%= link_to booking.musician.stage_name, user_path(booking.musician) %></li>
           <li>Artist Contact Name: <%= booking.musician.first_name %> <%= booking.musician.last_name %></li>
@@ -49,6 +50,7 @@
     <h2>My Confirmed Bookings:</h2>
     <div id="confirmed_bookings">
       <% @confirmedbookings.each do |booking| %>
+        <h4><%= booking.event_name %></h4>
         <ul id="booking_<%= booking.id %>">
           <li>Artist: <%= link_to booking.musician.stage_name, user_path(booking.musician) %></li>
           <li>Artist Contact Name: <%= booking.musician.first_name %> <%= booking.musician.last_name %></li>
@@ -64,6 +66,7 @@
     <h2>My Past Bookings:</h2>
     <div id="past_bookings">
       <% @pastbookings.each do |booking| %>
+        <h4><%= booking.event_name %></h4>
         <ul id="booking_<%= booking.id %>">
           <li>Artist: <%= link_to booking.musician.stage_name, user_path(booking.musician) %></li>
           <li>Artist Contact Name: <%= booking.musician.first_name %> <%= booking.musician.last_name %></li>

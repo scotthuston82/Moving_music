@@ -18,6 +18,7 @@
       </ul>
     </div>
     <%= form_for [musician, @booking] do |f| %>
+    <%= hidden_field_tag('booking[event_name]', @booking.event_name) %>
     <%= hidden_field_tag('booking[start_time]', @booking.start_time) %>
     <%= hidden_field_tag('booking[end_time]', @booking.end_time) %>
     <%= hidden_field_tag('booking[address]', @booking.address) %>

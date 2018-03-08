@@ -22,6 +22,10 @@
     <input id="radius" type="number" name="radius" placeholder="We will only show you musicians within this distance from your event">
   </p>
 
+  <p>
+    <%= f.label :event_name %>
+    <%= f.text_field :event_name, placeholder: "eg: 'McArthur Wedding', 'Company B Summer Jam'" %>
+  </p>
 
   <p>
     <%= f.label :start_time %>

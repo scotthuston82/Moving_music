@@ -48,13 +48,15 @@ end
 end
 
 20.times do
-  Booking.new(
+  Booking.create!(
     musician_id: rand(6..15),
     client_id: rand(1..5),
     start_time: Time.now + rand(3..30).days,
+    end_time: Time.now + 31.days,
     address: "220 King St W, Suite 200, Toronto, ON M5H 1K4",
     party_size: [nil, rand(50..200)].sample,
-    age_range: [nil, "18 - 24", "25 - 35", "35 - 45", "45+"].sample
+    age_range: [nil, "18 - 24", "25 - 35", "35 - 45", "45+"].sample,
+    event_name: Faker::UmphreysMcgee.song
   )
 end
 

@@ -18,7 +18,7 @@ class User < ApplicationRecord
   has_many :events, class_name: 'Booking', foreign_key: :client_id
   has_many :musician_reviews, class_name:'Review', foreign_key: :musician_id
   has_many :client_reviews, class_name:'Review', foreign_key: :client_id
-  has_many :equipments, foreign_key: :musician_id
+  has_many :equipment, foreign_key: :musician_id
 
   has_and_belongs_to_many :genres
 

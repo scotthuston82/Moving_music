@@ -22,13 +22,12 @@ function setupSearchMusicians(place) {
 function displayResults(responseData) {
   if (responseData) {
     found_musicians_container.innerHTML = responseData
-      }
   } else {
     var noNomusicianMsg = document.createElement('p');
     noNomusicianMsg.innerText = 'Sorry, no musicians found, please refine your search.';
     document.querySelector('body').append(noNomusicianMsg);
   }
-    addEventListenersToFoundMusicianContainer()
+    addEventListenerToFoundMusicianContainer()
 }
 
 function ajaxFails() {
@@ -202,26 +201,28 @@ function initAutocomplete() {
   })
 }
 
-function addEventListenersToFoundMusicianContainer() {
-  // var partialProfileContainers = document.querySelectorAll('.partial-profile-container')
-  // partialProfileContainers.forEach(showAndHideImage);
+function addEventListenerToFoundMusicianContainer() {
   var foundMusiciansInnerDiv = document.querySelector('.found-musicians-container')
-  foundMusiciansInnerDiv.addEventListener('click', function(e){
-    if (e.target.localName === 'a' && e.target.className != 'view-profile') {
-      e.preventDefault();
-      var partialProfileContainer = e.target.parentNode
-      console.log(partialProfileContainer);
-      // var profileDetailsDiv = e.target.parentNode.parentNode.querySelector('.partial-profile-details')
-      // var showDetailsLink = e.target.parentNode.parentNode.querySelector('.profile-details-show')
-      // var hideDetailsLink = e.target.parentNode.parentNode.querySelector('.profile-details-hide')
-      // var profilePictureContainer = e.target.parentNode.parentNode.querySelector('.profile-picture-container')
-      // profileDetailsDiv.classList.toggle('shown');
-      // profileDetailsDiv.classList.toggle('hidden');
-      // showDetailsLink.classList.toggle('shown');
-      // showDetailsLink.classList.toggle('hidden');
-      // hideDetailsLink.classList.toggle('shown');
-      // hideDetailsLink.classList.toggle('hidden');
-    }
+  foundMusiciansInnerDiv.addEventListener('click', showAndHideDetails)
+}
+
+function showAndHideDetails(e){
+  if (e.target.localName === 'a' && e.target.className != 'view-profile') {
+    e.preventDefault();
+    var partialProfileContainer = e.target.parentNode.parentNode
+    var profileDetailsDiv = partialProfileContainer.querySelector('.partial-profile-details')
+    var showDetailsLink = partialProfileContainer.querySelector('.profile-details-show')
+    var hideDetailsLink = partialProfileContainer.querySelector('.profile-details-hide')
+    var profilePictureContainer = partialProfileContainer.querySelector('.profile-picture-container')
+    profileDetailsDiv.classList.toggle('shown');
+    profileDetailsDiv.classList.toggle('hidden');
+    showDetailsLink.classList.toggle('shown');
+    showDetailsLink.classList.toggle('hidden');
+    hideDetailsLink.classList.toggle('shown');
+    hideDetailsLink.classList.toggle('hidden');
+    profilePictureContainer.classList.toggle('shown');
+    profilePictureContainer.classList.toggle('hidden');
+  }
 }
 
 // function showAndHideImage(partialProfileContainer){

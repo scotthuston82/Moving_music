@@ -20,14 +20,15 @@ function setupSearchMusicians(place) {
 }
 
 function displayResults(responseData) {
-  if (responseData) {
-    found_musicians_container.innerHTML = responseData
-  } else {
+  found_musicians_container.innerHTML = responseData
+  var musiciansFoundCount = document.querySelector('.found-musicians-container').childElementCount
+  if (musiciansFoundCount === 0) {
     var noNomusicianMsg = document.createElement('p');
     noNomusicianMsg.innerText = 'Sorry, no musicians found, please refine your search.';
-    document.querySelector('body').append(noNomusicianMsg);
-  }
+    found_musicians_container.append(noNomusicianMsg);
+  } else {
     addEventListenerToFoundMusicianContainer()
+  }
 }
 
 function ajaxFails() {
@@ -224,16 +225,3 @@ function showAndHideDetails(e){
     profilePictureContainer.classList.toggle('hidden');
   }
 }
-
-// function showAndHideImage(partialProfileContainer){
-//   var showDetailsLink = partialProfileContainer.querySelector('.profile-details-show')
-//   var hideDetailsLink = partialProfileContainer.querySelector('.profile-details-hide')
-//   var profilePictureContainer = partialProfileContainer.querySelector('.profile-picture-container')
-//   showDetailsLink.addEventListener('click',function(){
-//     profilePictureContainer.classList.toggle('shown');
-//   });
-//
-//   hideDetailsLink.addEventListener('click',function(){
-//     profilePictureContainer.classList.toggle('shown');
-//   });
-// }

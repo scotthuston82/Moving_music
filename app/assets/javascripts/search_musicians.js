@@ -20,29 +20,15 @@ function setupSearchMusicians(place) {
 }
 
 function displayResults(responseData) {
-  if (responseData) {
-    found_musicians_container.innerHTML = responseData
-    var foundMusiciansInnerDiv = document.querySelector('.found-musicians-container')
-    foundMusiciansInnerDiv.addEventListener('click', function(e){
-      if (e.target.localName === 'a' && e.target.className != 'view-profile') {
-        e.preventDefault();
-        var profileDetailsDiv = e.target.parentNode.parentNode.querySelector('.partial-profile-details')
-        var showDetailsLink = e.target.parentNode.parentNode.querySelector('.profile-details-show')
-        var hideDetailsLink = e.target.parentNode.parentNode.querySelector('.profile-details-hide')
-        profileDetailsDiv.classList.toggle('shown');
-        profileDetailsDiv.classList.toggle('hidden');
-        showDetailsLink.classList.toggle('shown');
-        showDetailsLink.classList.toggle('hidden');
-        hideDetailsLink.classList.toggle('shown');
-        hideDetailsLink.classList.toggle('hidden');
-      }
-    })
-  } else {
+  found_musicians_container.innerHTML = responseData
+  var musiciansFoundCount = document.querySelector('.found-musicians-container').childElementCount
+  if (musiciansFoundCount === 0) {
     var noNomusicianMsg = document.createElement('p');
     noNomusicianMsg.innerText = 'Sorry, no musicians found, please refine your search.';
-    document.querySelector('body').append(noNomusicianMsg);
+    found_musicians_container.append(noNomusicianMsg);
+  } else {
+    addEventListenerToFoundMusicianContainer()
   }
-    addEventListenersToPartialProfileContainers()
 }
 
 function ajaxFails() {
@@ -216,21 +202,26 @@ function initAutocomplete() {
   })
 }
 
-function addEventListenersToPartialProfileContainers() {
-  var partialProfileContainers = document.querySelectorAll('.partial-profile-container')
-  partialProfileContainers.forEach(showAndHideImage);
-
+function addEventListenerToFoundMusicianContainer() {
+  var foundMusiciansInnerDiv = document.querySelector('.found-musicians-container')
+  foundMusiciansInnerDiv.addEventListener('click', showAndHideDetails)
 }
 
-function showAndHideImage(partialProfileContainer){
-  var showDetailsLink = partialProfileContainer.querySelector('.profile-details-show')
-  var hideDetailsLink = partialProfileContainer.querySelector('.profile-details-hide')
-  var profilePictureContainer = partialProfileContainer.querySelector('.profile-picture-container')
-  showDetailsLink.addEventListener('click',function(){
+function showAndHideDetails(e){
+  if (e.target.localName === 'a' && e.target.className != 'view-profile') {
+    e.preventDefault();
+    var partialProfileContainer = e.target.parentNode.parentNode
+    var profileDetailsDiv = partialProfileContainer.querySelector('.partial-profile-details')
+    var showDetailsLink = partialProfileContainer.querySelector('.profile-details-show')
+    var hideDetailsLink = partialProfileContainer.querySelector('.profile-details-hide')
+    var profilePictureContainer = partialProfileContainer.querySelector('.profile-picture-container')
+    profileDetailsDiv.classList.toggle('shown');
+    profileDetailsDiv.classList.toggle('hidden');
+    showDetailsLink.classList.toggle('shown');
+    showDetailsLink.classList.toggle('hidden');
+    hideDetailsLink.classList.toggle('shown');
+    hideDetailsLink.classList.toggle('hidden');
     profilePictureContainer.classList.toggle('shown');
-  });
-
-  hideDetailsLink.addEventListener('click',function(){
-    profilePictureContainer.classList.toggle('shown');
-  });
+    profilePictureContainer.classList.toggle('hidden');
+  }
 }

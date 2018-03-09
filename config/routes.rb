@@ -4,6 +4,7 @@ root 'users#home'
   resources :musicians  , only: [:index]
   get 'users/updatepassword', :to => 'users#updatepassword'
   resources :users do
+    resources :equipment, only: [:new, :create, :edit, :update, :destroy]
     resources :bookings, only: [:new, :create, :update, :destroy] do
       resources :reviews, only:[:new, :create, :index]
     end

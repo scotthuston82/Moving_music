@@ -12,7 +12,6 @@ class Booking < ApplicationRecord
   validate :end_time_must_be_after_start
   validate :booking_address_must_be_valid
 
-
   def start_time_cannot_be_in_time_past
     if self[:start_time] < Time.now
       errors.add(:start_time, "The start date cannot be in the past. Please try again.")

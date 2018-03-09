@@ -5,6 +5,7 @@ class Booking < ApplicationRecord
   belongs_to :musician, class_name: 'User'
   belongs_to :client, class_name: 'User'
   has_one :review
+  has_and_belongs_to_many :equipments
 
   validates :address, :event_name, presence: true
   validate :start_time_cannot_be_in_time_past

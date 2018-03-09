@@ -6,13 +6,13 @@ class User < ApplicationRecord
 
   validates :email, :first_name, :last_name, presence: true
   validates :email, uniqueness: { case_sensitive: false }
-  validates :kind, :presence => { message: 'specify if you are a musician or a client!' }
-  validates :act_type, presence: true, on: :update, if: :user_type_is_musician?
-  validates :hourly_rate, presence: true, on: :update, if: :user_type_is_musician?
-  validates :hourly_rate, numericality: { greater_than: 0 }, on: :update, if: :user_type_is_musician?
+  validates :kind, :presence => { message: 'specify if you are a musician or an event planner!' }
+  validates :act_type, presence: true, if: :user_type_is_musician?
+  validates :hourly_rate, presence: true, if: :user_type_is_musician?
+  validates :hourly_rate, numericality: { greater_than: 0 }, if: :user_type_is_musician?
   validate :kind_must_only_be_musician_or_client
-  validate :musician_act_type_can_only_be_dj_or_band, on: :update, if: :user_type_is_musician?
-  validate :musician_address_must_be_valid, on: :update, if: :user_type_is_musician?
+  validate :musician_act_type_can_only_be_dj_or_band, if: :user_type_is_musician?
+  validate :musician_address_must_be_valid, if: :user_type_is_musician?
 
   has_many :gigs, class_name: 'Booking', foreign_key: :musician_id
   has_many :events, class_name: 'Booking', foreign_key: :client_id
@@ -28,7 +28,7 @@ class User < ApplicationRecord
   end
 
   def musician_act_type_can_only_be_dj_or_band
-    if self[:kind] == 'musician' && self[:act_type] != 'dj' && self[:act_type] != 'band'
+    if self[:act_type] != 'dj' && self[:act_type] != 'band'
       errors.add(:act_type, "can only be 'dj' or 'band'")
     end
   end

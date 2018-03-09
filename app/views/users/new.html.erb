@@ -21,12 +21,59 @@
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation %>
   </p>
-  <p class='radio-buttons'>
+  <p class='radio-buttons' id="user-kind-radio-buttons">
       <%= radio_button_tag(:kind, "musician") %>
       <%= label_tag(:kind_musician, "Musician") %>
       <%= radio_button_tag(:kind, "client") %>
-      <%= label_tag(:kind_client, "Client") %>
+      <%= label_tag(:kind_client, "Event Planner") %>
   </p>
+
+  <div class="musician-only-fields hidden">
+    <p>
+      <%= f.label "Your Band/DJ Name" %>
+      <%= f.text_field :stage_name %>
+    </p>
+
+    <p class='radio-buttons'>
+        <%= radio_button_tag(:act_type, "dj") %>
+        <%= label_tag(:act_type_dj, "DJ") %>
+        <%= radio_button_tag(:act_type, "band") %>
+        <%= label_tag(:act_type_band, "Band") %>
+    </p>
+
+    <p>
+      <%= f.label :address %>
+      <%= f.text_field :address %>
+    </p>
+
+    <p>
+      <%= f.label :bio %>
+      <%= f.text_area :bio %>
+    </p>
+
+    <p>
+      <%= f.label :profile_picture %>
+      <%= f.text_field :profile_picture, placeholder: "Please enter a valid image url" %>
+    </p>
+
+    <p>
+      <%= f.label :hourly_rate %>
+      <%= f.text_field :hourly_rate, placeholder: "Your rate in $/hr. Please enter only a number" %>
+    </p>
+
+    <div class='genres'>
+      <%= field_set_tag "Genres" do %>
+      <%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :name) do |checkbox| %>
+      <div class="form-check2">
+        <%= checkbox.label(class: "form-check")%>
+        <%=checkbox.check_box(class: "checkmark")%>
+        <span class='checkmark'></span>
+      </div>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+
   <div class='signup-button'>
     <%= f.submit 'Sign Up' %>
   </div>

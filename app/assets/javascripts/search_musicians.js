@@ -7,7 +7,6 @@ function setupSearchMusicians(place) {
   function searchMusicians(e) {
     e.preventDefault();
     e.stopPropagation();
-    console.log($(new_booking).serialize());
     var request = {
       url: '/bookings/search_musicians',
       method: 'post',

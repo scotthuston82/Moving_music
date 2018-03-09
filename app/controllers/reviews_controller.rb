@@ -33,8 +33,8 @@ class ReviewsController < ApplicationController
     end
 
     if @review.save
-      flash.now![:notice] = "Successfully submitted Review!"
       redirect_to user_path(@user)
+      flash[:notice] = ["Successfully submitted Review!"]
     else
       render 'users/show'
     end

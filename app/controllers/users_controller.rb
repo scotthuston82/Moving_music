@@ -48,7 +48,6 @@ class UsersController < ApplicationController
     @user.act_type = params[:act_type]
     if @user.save
       session[:user_id] = @user.id
-      empty_profile_picture?
       if @user.kind == 'client'
         redirect_to bookings_new_path
       elsif @user.kind == 'musician'
@@ -96,14 +95,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :bio, :profile_picture, :stage_name, :hourly_rate, :address, genre_ids: [])
-  end
-
-  def empty_profile_picture?
-    if @user.profile_picture == nil || @user.profile_picture == ""
-      @user.update(profile_picture: "empty_profile.png")
-    else
-      @user.profile_picture
-    end
   end
 
   def self.search(term)

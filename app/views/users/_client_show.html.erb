@@ -83,7 +83,6 @@
             <div class="review_form hidden">
               <%= form_for(@review, :url => user_booking_reviews_path(@user, booking)) do |f|%>
                 <button type="button" class="close">x</button>
-
                 <p>
                   <%= f.label :review_for_musician, "Review for: #{booking.musician.first_name}" %>
                   <%= f.text_area :musicians_review, rows: "7", class: "review_text_box" %>

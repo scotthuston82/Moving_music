@@ -18,7 +18,7 @@
 !/tmp/.keep
 
 #Ignore uploaded profile pictures
-public/uploads/profile_picture
+public/uploads
 
 /node_modules
 /yarn-error.log

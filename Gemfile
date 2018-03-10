@@ -46,6 +46,8 @@ gem 'jquery-rails'
 
 gem 'geocoder'
 
+gem 'carrierwave', '~> 1.0'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

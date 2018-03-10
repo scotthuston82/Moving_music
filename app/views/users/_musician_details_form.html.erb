@@ -15,7 +15,8 @@
 
     <p>
       <%= f.label :profile_picture %>
-      <%= f.text_field :profile_picture %>
+      <%= image_tag(@user.profile_picture) %>
+      <%= f.file_field :profile_picture %>
     </p>
 
     <p>

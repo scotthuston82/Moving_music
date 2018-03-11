@@ -38,11 +38,6 @@ ActiveRecord::Schema.define(version: 20180310140130) do
     t.integer "equipment_id"
   end
 
-  create_table "chatrooms", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "equipment", force: :cascade do |t|
     t.integer "musician_id"
     t.string "category"
@@ -61,11 +56,6 @@ ActiveRecord::Schema.define(version: 20180310140130) do
   create_table "genres_users", force: :cascade do |t|
     t.integer "user_id"
     t.integer "genre_id"
-  end
-
-  create_table "messages", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "reviews", force: :cascade do |t|

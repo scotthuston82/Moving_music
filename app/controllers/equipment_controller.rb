@@ -7,12 +7,14 @@ class EquipmentController < ApplicationController
   end
 
   def create
-    binding.pry
     @equipment = Equipment.new(equipment_params)
     @equipment.musician = current_user
     if @equipment.save
+      respond_to do |format|
+        format.html { redirect_to user_path(current_user) }
+        format.js {}
+      end
       flash[:notice] = "Successfully added equipment to your profile"
-      redirect_to user_path(current_user)
     else
       flash.now[:alert] = @equipment.errors.full_messages
       render "new"

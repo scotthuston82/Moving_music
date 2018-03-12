@@ -42,13 +42,14 @@
           <p><strong>Cost to include: </strong>$<%= equipment.price %></p>
         <% end %>
       <% end %>
+    </div>
       <% if @user == current_user %>
         <tr>
           <th>Type of Equipment | </th>
           <th>Details | </th>
           <th>Cost to Include</th>
         </tr>
-        <%= form_for [@user, @equipment], :remote => true do |f| %>
+        <%= form_for [@user, @equipment] do |f| %>
 
             <%= f.select :category, options_for_select(Equipment::CATEGORY_OPTIONS) %>
 
@@ -60,7 +61,7 @@
         <button type="button" name="button">-</button>
         <% end %>
       <% end %>
-    </div>
+
   <% end %>
 
 

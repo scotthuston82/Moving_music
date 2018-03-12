@@ -18,14 +18,14 @@ $(document).on('turbolinks:load', function() {
         const eCategory = $(this).find('#equipment_category').val();
         const eDetails = $(this).find('#equipment_details').val();
         const ePrice = $(this).find('#equipment_price').val();
-        console.log(eCategory);
-        console.log(eDetails);
-        console.log(ePrice);
+
+        var data = $(this).serializeArray();
 
         $.ajax({
           method: method,
           url: action,
-          data: { category: eCategory, details: eDetails, price: ePrice }
+          data: data,
+          dataType: 'script'
         })
       })
     })

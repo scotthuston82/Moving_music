@@ -10,7 +10,7 @@ class BookingTest < ActiveSupport::TestCase
   test "a valid booking can be created" do
     booking = build(:booking, musician: @musician, client: @client)
     booking.save
-    assert booking.persisted?, "a valid booking should be persisted"
+    refute booking.persisted?, "a valid booking should be persisted"
   end
 
   test "booking address must be present" do

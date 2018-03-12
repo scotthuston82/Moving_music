@@ -43,7 +43,22 @@
         <% end %>
       <% end %>
       <% if @user == current_user %>
-      <%= link_to "Add Equipment", new_user_equipment_path(@user) %>
+        <tr>
+          <th>Type of Equipment | </th>
+          <th>Details | </th>
+          <th>Cost to Include</th>
+        </tr>
+        <%= form_for [@user, @equipment], :remote => true do |f| %>
+
+            <%= f.select :category, options_for_select(Equipment::CATEGORY_OPTIONS) %>
+
+            <%= f.text_area :details, rows: "5", placeholder: "eg: Mackie 24-channel 1500W with sub" %>
+
+            <%= f.number_field :price, placeholder: "Your price to bring this to a gig - enter only a number" %>
+
+          <%= f.submit '+', class: 'add_equipment' %>
+        <button type="button" name="button">-</button>
+        <% end %>
       <% end %>
     </div>
   <% end %>

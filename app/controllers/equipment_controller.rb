@@ -11,7 +11,7 @@ class EquipmentController < ApplicationController
     @equipment.musician = current_user
     if @equipment.save
       flash[:notice] = "Successfully added equipment to your profile"
-      redirect_to user_path(current_user)
+
     else
       flash.now[:alert] = @equipment.errors.full_messages
       render "new"

@@ -7,25 +7,21 @@
   <% end %>
 <% end %>
 
+<tr>
+  <th>Type of Equipment | </th>
+  <th>Details | </th>
+  <th>Cost to Include</th>
+</tr>
 <%= form_for [@musician, @equipment] do |f| %>
 
-  <p>
-    <%= f.label :category, "Type of Equipment" %>
     <%= f.select :category, options_for_select(Equipment::CATEGORY_OPTIONS) %>
-  </p>
 
-  <p>
-    <%= f.label :details %>
     <%= f.text_area :details, rows: "5", placeholder: "eg: Mackie 24-channel 1500W with sub" %>
-  </p>
 
-  <p>
-    <%= f.label :price, "Cost to include" %>
     <%= f.number_field :price, placeholder: "Your price to bring this to a gig - enter only a number" %>
-  </p>
 
-  <%= f.submit 'Save to My Equipment' %>
-
+  <%= f.submit 'Save' %>
+<button type="button" name="button">+</button>
 <% end %>
 
 </div>

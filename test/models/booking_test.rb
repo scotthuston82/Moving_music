@@ -47,4 +47,12 @@ class BookingTest < ActiveSupport::TestCase
     refute booking.persisted?, "booking should not persist with end_time before start_time"
   end
 
+  test "booking without an event_name will error" do
+    booking = build(:booking, musician: @musician, client: @client, event_name: nil)
+    booking.save
+    actual = booking.errors.full_messages
+    expected = ["Event name can't be blank"]
+    assert_equal(expected, actual)
+  end
+  
 end

@@ -22,7 +22,7 @@
            PlayMyParty
          </h1>
       </div>
-          <nav class='layout-links clearfix'>
+          <nav class='layout-links'>
 
 
           <%= link_to 'Home', root_path %>
@@ -41,7 +41,7 @@
             <%= form_tag(users_path, :method => "get", id: "search-form") do %>
               <%= text_field_tag :term, params[:term], placeholder: "Search" %>
             <% end %>
-            <%= submit_tag "Search", name: nil %>
+            <%= submit_tag "Search", name: nil, class: "btn" %>
           </div>
 
         </nav>

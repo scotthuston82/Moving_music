@@ -1,11 +1,15 @@
 // ALL STYLE RULES FOR THE HEADER
 header {
+  position: fixed;
+  top:0;
+  height: 50px;
   width: 100%;
   padding: 7px;
   border-bottom: 2px solid $black;
   margin-bottom: 10px;
   box-shadow: 0 0 4px $dark_grey;
   transition: all 0.25s;
+  background-color: $white;
 
   .logo {
     width: 20%;

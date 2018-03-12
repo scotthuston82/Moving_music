@@ -10,7 +10,7 @@ class BookingTest < ActiveSupport::TestCase
   test "a valid booking can be created" do
     booking = build(:booking, musician: @musician, client: @client)
     booking.save
-    refute booking.persisted?, "a valid booking should be persisted"
+    assert booking.persisted?, "a valid booking should be persisted"
   end
 
   test "booking address must be present" do
@@ -19,10 +19,17 @@ class BookingTest < ActiveSupport::TestCase
     refute booking.persisted?, "booking should not persist without address"
   end
 
-  test "booking_address_must_be_valid" do
+  test "booking.valid? returns false if booking is not a valid address" do
     booking = build(:booking, musician: @musician, client: @client, address: 'adsjhflakdjafjhadsg')
     actual = booking.valid?
     expected = false
+    assert_equal(actual, expected)
+  end
+
+  test "booking.valid? returns true if booking address is valid" do
+    booking = build(:booking, musician: @musician, client: @client, address: '220 King Street West, Toronto')
+    actual = booking.valid?
+    expected = true
     assert_equal(actual, expected)
   end
 

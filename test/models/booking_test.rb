@@ -19,18 +19,19 @@ class BookingTest < ActiveSupport::TestCase
     refute booking.persisted?, "booking should not persist without address"
   end
 
-  test "booking.valid? returns false if booking is not a valid address" do
+  test "booking with a invalid address displays error" do
     booking = build(:booking, musician: @musician, client: @client, address: 'adsjhflakdjafjhadsg')
-    actual = booking.valid?
-    expected = false
-    assert_equal(actual, expected)
+    booking.save
+    actual = booking.errors.full_messages
+    expected = ["Address must be valid"]
+    assert_equal(expected, actual)
   end
 
   test "booking.valid? returns true if booking address is valid" do
     booking = build(:booking, musician: @musician, client: @client, address: '220 King Street West, Toronto')
     actual = booking.valid?
     expected = true
-    assert_equal(actual, expected)
+    assert_equal(expected, actual)
   end
 
   test "booking start_time must be in the future" do

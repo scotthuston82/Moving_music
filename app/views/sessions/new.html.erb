@@ -1,17 +1,12 @@
 <section class='login'>
   <div class='login-container'>
-    <h1>Log In</h1>
 
     <%= form_tag sessions_path do %>
-      <p>
-        <%= label_tag :email %>
-        <%= text_field_tag :email, params[:email] %>
-      </p>
+      <h2>Log In</h2>
 
-      <p>
-        <%= label_tag :password %>
-        <%= password_field_tag :password %>
-      </p>
+        <%= text_field_tag :email, params[:email], placeholder: "Email" %>
+
+        <%= password_field_tag :password, "", placeholder: "Password" %>
 
       <%= submit_tag "Log In", class: 'btn' %>
     <% end %>

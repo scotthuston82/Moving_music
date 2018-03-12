@@ -64,20 +64,18 @@
     <%= text_field_tag :hourly_rate, nil, placeholder: "The maximum hourly rate you're willing to pay" %>
   </p>
 
-  <div class='genre-checkbox'>
+  <div class='genres'>
     <%= field_set_tag 'Genres' do %>
 
     <% collection_check_boxes(:musician, :genre_ids, Genre.all, :id, :name) do |checkbox| %>
       <div class="form-check2">
+      <%= checkbox.check_box(class: "checkmark")%>
       <%= checkbox.label(class: "form-check")%>
-      <%=checkbox.check_box(class: "checkmark")%>
       <span class='checkmark'></span>
     </div>
     <%end%>
     <% end %>
   </div>
-
-  <%= hidden_field_tag('array_of_musicians') %>
 
   <%= f.submit 'Find Musicians!', :id=> "find_musicians_button", data: { disable_with: false }, class: 'btn' %>
 

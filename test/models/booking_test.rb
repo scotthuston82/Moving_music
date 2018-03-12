@@ -19,6 +19,13 @@ class BookingTest < ActiveSupport::TestCase
     refute booking.persisted?, "booking should not persist without address"
   end
 
+  test "booking_address_must_be_valid" do
+    booking = build(:booking, musician: @musician, client: @client, address: 'adsjhflakdjafjhadsg')
+    actual = booking.valid?
+    expected = false
+    assert_equal(actual, expected)
+  end
+
   test "booking start_time must be in the future" do
     booking = build(:booking, musician: @musician, client: @client, start_time: Time.now)
     booking.save

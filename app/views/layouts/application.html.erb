@@ -19,14 +19,13 @@
           <%= image_tag "logo.jpg"%>
         </div>
          <h1>
-           PlayMyParty
+           <%= link_to 'PlayMyParty', root_path %>
          </h1>
       </div>
           <nav class='layout-links'>
 
 
-          <%= link_to 'Home', root_path %>
-          <%= link_to "Show all musicians", users_path %>
+          <%= link_to "Browse Musicians", users_path %>
           <% if current_user %>
               <%= link_to "Sign Out", logout_path, method: :delete %>
               <%= link_to "My Profile", current_user%>
@@ -39,7 +38,7 @@
           <% end %>
           <div class='search'>
             <%= form_tag(users_path, :method => "get", id: "search-form") do %>
-              <%= text_field_tag :term, params[:term], placeholder: "Search" %>
+              <%= text_field_tag :term, params[:term], placeholder: "Find an artist" %>
             <% end %>
             <%= submit_tag "Search", name: nil, class: "btn" %>
           </div>

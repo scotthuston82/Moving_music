@@ -1,4 +1,13 @@
 // ALL STYLE RULES RELATED TO BUTTONS AND ANCHORS
 .btn {
-  
+  color: $white;
+  background-color: $accent;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover{
+    background-color: $accent_light;
+  }
 }

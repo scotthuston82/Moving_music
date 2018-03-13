@@ -1,47 +1,40 @@
 <div class= 'new-booking'>
-<% if @booking.errors %>
-  <% @booking.errors.messages.each do |key, value|  %>
-    <% value.each do |error| %>
-      <%= error %>
-    <% end %>
+
+  <%= form_for [@musician, @booking] do |f| %>
+
+    <p>
+      <%= f.label :event_name %>
+      <%= f.text_field :event_name, placeholder: "eg: 'McArthur Wedding', 'Company B Summer Jam'" %>
+    </p>
+
+
+    <p>
+      <%= f.label :start_time %>
+      <%= f.datetime_select :start_time, :ampm => true, :minute_step => 15 %>
+    </p>
+
+    <p>
+      <%= f.label :end_time %>
+      <%= f.datetime_select :end_time, :ampm => true, :minute_step => 15 %>
+    </p>
+
+    <p>
+      <%= f.label :address %>
+      <%= f.text_field :address %>
+    </p>
+
+    <p>
+      <%= f.label :party_size %>
+      <%= f.number_field :party_size, placeholder: "Approximate attendance at your event - enter only a number" %>
+    </p>
+
+    <p>
+      <%= f.label :age_range %>
+      <%= f.text_field :age_range, placeholder: "eg: '19+', 'all ages', '25 - 55'" %>
+    </p>
+
+    <%= f.submit 'Book!', data: { confirm: "Click OK to complete your booking. It will now appear in your \"Pending bookings\".\n\nOnce confirmed by #{@musician.stage_name}, it will move to your \"Confirmed Bookings\"" } %>
+
   <% end %>
-<% end %>
-
-<%= form_for [@musician, @booking] do |f| %>
-
-  <p>
-    <%= f.label :event_name %>
-    <%= f.text_field :event_name, placeholder: "eg: 'McArthur Wedding', 'Company B Summer Jam'" %>
-  </p>
-
-
-  <p>
-    <%= f.label :start_time %>
-    <%= f.datetime_select :start_time, :ampm => true, :minute_step => 15 %>
-  </p>
-
-  <p>
-    <%= f.label :end_time %>
-    <%= f.datetime_select :end_time, :ampm => true, :minute_step => 15 %>
-  </p>
-
-  <p>
-    <%= f.label :address %>
-    <%= f.text_field :address %>
-  </p>
-
-  <p>
-    <%= f.label :party_size %>
-    <%= f.number_field :party_size, placeholder: "Approximate attendance at your event - enter only a number" %>
-  </p>
-
-  <p>
-    <%= f.label :age_range %>
-    <%= f.text_field :age_range, placeholder: "eg: '19+', 'all ages', '25 - 55'" %>
-  </p>
-
-  <%= f.submit 'Book!', data: { confirm: "Click OK to complete your booking. It will now appear in your \"Pending bookings\".\n\nOnce confirmed by #{@musician.stage_name}, it will move to your \"Confirmed Bookings\"" } %>
-
-<% end %>
 
 </div>

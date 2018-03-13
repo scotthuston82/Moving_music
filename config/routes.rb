@@ -10,10 +10,9 @@ root 'users#home'
     end
   end
 
+  get '/bookings/:user_id/new/confirmation' => 'bookings#confirmation'
   get '/bookings/new' => 'bookings#new_no_musician'
   get '/bookings/map' => 'bookings#map'
-
-  # get '/bookings/new/find_musicians' => 'bookings#find_musicians'
   get '/bookings/musicians_in_radius' => 'bookings#musicians_in_radius'
 
   post '/bookings/search_musicians' => 'bookings#search_musicians'
@@ -21,7 +20,6 @@ root 'users#home'
   resources :sessions, only: [:new, :create]
   delete 'logout' => 'sessions#destroy'
 
-#  get 'update' => 'user_controller#update'
-# end
+
 
 end

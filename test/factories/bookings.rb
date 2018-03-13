@@ -5,6 +5,7 @@ FactoryBot.define do
     end_time        Time.now + 2.days + 3.hours
     party_size      100
     age_range       "19+"
+    event_name      "This event"
     # user
     # client_user
   end

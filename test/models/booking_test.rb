@@ -22,16 +22,13 @@ class BookingTest < ActiveSupport::TestCase
   test "booking with a invalid address displays error" do
     booking = build(:booking, musician: @musician, client: @client, address: 'adsjhflakdjafjhadsg')
     booking.save
-    actual = booking.errors.full_messages
-    expected = ["Address must be valid"]
-    assert_equal(expected, actual)
+    refute booking.persisted?, "booking should not persist with an invalid address"
   end
 
-  test "booking.valid? returns true if booking address is valid" do
+  test "booking can be created when address is valid" do
     booking = build(:booking, musician: @musician, client: @client, address: '220 King Street West, Toronto')
-    actual = booking.valid?
-    expected = true
-    assert_equal(expected, actual)
+    booking.save
+    assert booking.persisted?, "booking should save with a valid address"
   end
 
   test "booking start_time must be in the future" do
@@ -50,9 +47,7 @@ class BookingTest < ActiveSupport::TestCase
   test "booking without an event_name will error" do
     booking = build(:booking, musician: @musician, client: @client, event_name: nil)
     booking.save
-    actual = booking.errors.full_messages
-    expected = ["Event name can't be blank"]
-    assert_equal(expected, actual)
+    refute booking.persisted?, "booking should not persist without an event"
   end
-  
+
 end

@@ -1,17 +1,25 @@
-<section class='user-show'>
-  <h1><%= @user.stage_name %></h1>
-  <h3>Act Type: <%= @user.act_type.capitalize %></h3>
+<section class='user-show musician'>
 
-  <div class="musician-picture">
+  <div class="profile-picture">
     <%= image_tag(@user.profile_picture) %>
+    <% if current_user && current_user.id == @user.id %>
+      <div class='edit-profile'>
+        <%= link_to 'Edit Profile', edit_user_path(@user), class: "btn btn-light"%>
+        <%= link_to 'Update Password', users_updatepassword_path, class: "btn btn-light"%>
+      </div>
+    <% end %>
   </div>
 
-  <div class='artist-info'>
-    <p class='musician-name'>Artist <%= @user.first_name %> <%= @user.last_name %></p>
+  <div class='profile-info'>
+    <h1><%= @user.stage_name %></h1>
+
+    <h3>Act Type: <%= @user.act_type.capitalize %></h3>
+
+    <p class='profile-name'>Artist <%= @user.first_name %> <%= @user.last_name %></p>
     <% if current_user %>
       <p><%= @user.email %></p>
     <% end %>
-      <h2>Biography</h2>
+      <h3>Biography</h3>
       <p><%= @user.bio %></p>
       <p> Rate: $<%= @user.hourly_rate %>0 /hour</p>
       <% if @genres.any? %>
@@ -23,19 +31,9 @@
         <% end %>
       </ul>
     </div>
-    <div class="reviews">
-      <h2>Reviews for <%= @user.stage_name %>:</h2>
-      <ul>
-        <% @user.gigs.each do |gig| %>
-          <% if gig.review %>
-            <li><%= gig.review.client.first_name %> Says: '<%= gig.review.musicians_review %>'</li>
-          <% end %>
-        <% end %>
-      </ul>
-    </div>
     <div class="equipment">
       <% if @user.equipment.any? %>
-        <h2>My available equipment:</h2>
+        <h3>My available equipment:</h3>
         <% @user.equipment.each do |equipment| %>
           <p><strong>Item: </strong><%= equipment.category %></p>
           <p><strong>Details: </strong><%= equipment.details %></p>
@@ -48,7 +46,6 @@
     </div>
   <% end %>
 
-
     <div class='book-button'>
     <% if current_user && current_user.kind == 'client' %>
       <%= link_to 'Book Me Now!', new_user_booking_path(@user) %>
@@ -56,86 +53,88 @@
     </div>
   </div>
 
-<% if current_user && current_user.id == @user.id %>
-  <div class='bookings'>
-    <div class='edit-profile'>
-      <%= link_to 'Edit Profile', edit_user_path(@user)%>
+  <% if current_user && current_user.id == @user.id %>
+    <div class='bookings'>
+      <div class='booking-list'>
+        <h3>My Pending Bookings:</h3>
+        <div class="details">
+          <% @pendingbookings.each do |booking| %>
+            <h4><%= booking.event_name %></h4>
+            <ul id="booking_<%= booking.id %>">
+              <li>Client name: <%= link_to booking.client.first_name, user_path(booking.client) %></li>
+              <li>Address: <%= booking.address %></li>
+              <li>Start Time: <%= booking.start_time %></li>
+              <li>End Time: <%= booking.end_time %></li>
+              <li>Age Range: <%= booking.age_range %></li>
+              <li>Party Size: <%= booking.party_size %></li>
+              <li>Total Price: $<%= ((booking.end_time - booking.start_time) * @user.hourly_rate) / 3600%></li>
+            </ul>
+            <button class="confirm_booking btn" type="button" name="confirm_booking" data-booking_id="<%= booking.id %>">Confirm!</button>
+            <button class="reject_booking btn btn-light" type="button" name="reject_booking" data-booking_id="<%= booking.id %>">Reject</button>
+
+          <% end %>
+        </div>
+      </div>
+      <div class='booking-list'>
+        <h3>My Confirmed Bookings:</h3>
+        <div class="details">
+          <% @confirmedbookings.each do |booking| %>
+            <h4><%= booking.event_name %></h4>
+            <ul id="booking_<%= booking.id %>">
+              <li>Client name: <%= link_to booking.client.first_name, user_path(booking.client) %></li>
+              <li>Address: <%= booking.address %></li>
+              <li>Start Time: <%= booking.start_time %></li>
+              <li>End Time: <%= booking.end_time %></li>
+              <li>Age Range: <%= booking.age_range %></li>
+              <li>Party Size: <%= booking.party_size %></li>
+            </ul>
+            <% end %>
+        </div>
+      </div>
+      <div class="booking-list">
+        <h3>My Past Bookings:</h3>
+        <div class="details">
+          <% @pastbookings.each do |booking| %>
+            <h4><%= booking.event_name %></h4>
+            <ul id="booking_<%= booking.id %>"
+              <li>Client name: <%= link_to booking.client.first_name, user_path(booking.client) %></li>
+              <li>Address: <%= booking.address %></li>
+              <li>Start Time: <%= booking.start_time %></li>
+              <li>End Time: <%= booking.end_time %></li>
+              <li>Age Range: <%= booking.age_range %></li>
+              <li>Party Size: <%= booking.party_size %></li>
+            </ul>
+            <% if !booking.review || booking.review.client_reviewed == false %>
+              <div class="write_review">
+                <%= link_to 'Write review', new_user_booking_review_path(@user, booking) %>
+                <div class="review_form hidden">
+                  <%= form_for(@review, :url => user_booking_reviews_path(@user, booking)) do |f|%>
+                    <button type="button" class="close">x</button>
+                    <p>
+                      <%= f.label :clients_review, "Review for: #{booking.client.first_name}" %>
+                      <%= f.text_area :clients_review, rows: "7", class: "review_text_box" %>
+                    </p>
+                    <p>
+                      <%= f.submit %>
+                    </p>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+          <%= render 'bookings.js' %>
+        </div>
+      </div>
     </div>
-    <div class='updatepassword'>
-      <%= link_to 'Update Password', users_updatepassword_path%>
-    </div>
-  </div>
-  <div class='musician-pending-bookings'>
-    <h2>My Pending Bookings:</h2>
-    <div id="pending_bookings">
-      <% @pendingbookings.each do |booking| %>
-        <h4><%= booking.event_name %></h4>
-        <ul id="booking_<%= booking.id %>">
-          <li>Client name: <%= link_to booking.client.first_name, user_path(booking.client) %></li>
-          <li>Address: <%= booking.address %></li>
-          <li>Start Time: <%= booking.start_time %></li>
-          <li>End Time: <%= booking.end_time %></li>
-          <li>Age Range: <%= booking.age_range %></li>
-          <li>Party Size: <%= booking.party_size %></li>
-          <li>Total Price: $<%= ((booking.end_time - booking.start_time) * @user.hourly_rate) / 3600%></li>
-          <li class="button_container"><button class="confirm_booking" type="button" name="confirm_booking" data-booking_id="<%= booking.id %>">Confirm!</button></li>
-          <li class="button_container"><button class="reject_booking" type="button" name="reject_booking" data-booking_id="<%= booking.id %>">Reject</button></li>
-        </ul>
-      <% end %>
-    </div>
-  </div>
-  <div class='musician-confirmed-bookings'>
-    <h2>My Confirmed Bookings:</h2>
-    <div id="confirmed_bookings">
-      <% @confirmedbookings.each do |booking| %>
-        <h4><%= booking.event_name %></h4>
-        <ul id="booking_<%= booking.id %>">
-          <li>Client name: <%= link_to booking.client.first_name, user_path(booking.client) %></li>
-          <li>Address: <%= booking.address %></li>
-          <li>Start Time: <%= booking.start_time %></li>
-          <li>End Time: <%= booking.end_time %></li>
-          <li>Age Range: <%= booking.age_range %></li>
-          <li>Party Size: <%= booking.party_size %></li>
-        </ul>
-        <% end %>
-    </div>
-  </div>
-  <div class="musician-past-bookings">
-    <h2>My Past Bookings:</h2>
-    <div id="past_bookings">
-      <% @pastbookings.each do |booking| %>
-        <h4><%= booking.event_name %></h4>
-        <ul id="booking_<%= booking.id %>"
-          <li>Client name: <%= link_to booking.client.first_name, user_path(booking.client) %></li>
-          <li>Address: <%= booking.address %></li>
-          <li>Start Time: <%= booking.start_time %></li>
-          <li>End Time: <%= booking.end_time %></li>
-          <li>Age Range: <%= booking.age_range %></li>
-          <li>Party Size: <%= booking.party_size %></li>
-        </ul>
-        <% if !booking.review || booking.review.client_reviewed == false %>
-          <div class="write_review">
-            <%= link_to 'Write review', new_user_booking_review_path(@user, booking) %>
-            <div class="review_form hidden">
-              <%= form_for(@review, :url => user_booking_reviews_path(@user, booking)) do |f|%>
-                <button type="button" class="close">x</button>
-                <p>
-                  <%= f.label :clients_review, "Review for: #{booking.client.first_name}" %>
-                  <%= f.text_area :clients_review, rows: "7", class: "review_text_box" %>
-                </p>
-                <p>
-                  <%= f.submit %>
-                </p>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-      <%= render 'bookings.js' %>
-    </div>
-  </div>
-<% end %>
-  <% if !current_user %>
-    <p> Please log in to view contact information. </p>
   <% end %>
+  <div class="reviews">
+    <h2>Reviews for <%= @user.stage_name %>:</h2>
+    <ul>
+      <% @user.gigs.each do |gig| %>
+        <% if gig.review %>
+          <li><%= gig.review.client.first_name %> Says: '<%= gig.review.musicians_review %>'</li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
 </section>

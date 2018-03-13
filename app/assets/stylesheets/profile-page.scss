@@ -1,0 +1,59 @@
+.user-show {
+  width:100%;
+  margin-top:30px;
+
+  h1, h2, h3, h4, p, ul, li {
+    padding-bottom:10px;
+  }
+
+  .profile-picture {
+    width:50%;
+    float:left;
+    padding-right:50px;
+
+    img {
+      height:200px;
+      width:200px;
+      border-radius:50%;
+      float:right;
+      margin-bottom:20px;
+    }
+
+    .edit-profile {
+      width:100%;
+      display:block;
+      clear:both;
+      text-align:right;
+    }
+  }
+
+  .profile-info {
+    width:50%;
+    float:right;
+  }
+
+  .bookings {
+    width:100%;
+    clear:both;
+    margin-top:30px;
+  }
+
+  .booking-list{
+    float:left;
+    width:30%;
+    margin:30px 1.5%;
+
+    h3 {
+      background-color:$light_grey;
+      padding:10px 5px;
+    }
+
+    .details {
+      padding:10px 5px;
+    }
+  }
+
+  .reviews {
+    clear:both;
+  }
+}

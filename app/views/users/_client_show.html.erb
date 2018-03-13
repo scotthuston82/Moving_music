@@ -71,7 +71,7 @@
             <% if booking.equipment.any?  %>
               <h4>Equipment Requested:</h4>
               <ul>
-                <%= booking.equipment.each do |equip| %>
+                <% booking.equipment.each do |equip| %>
                 <li><%= equip.category %> for $<%= equip.price %></li>
                 <% end %>
               </ul>

@@ -4,10 +4,20 @@ class SearchMusicians
 
   def initialize(params)
     @params = params
-    @results = musicians_by_distance
-    filter_by_act_type
-    filter_by_hourly_rate
-    filter_by_genres
+    if @params[:booking][:address] == ""
+      @results = User.where('kind = ?', 'musician').to_a
+    else
+      @results = musicians_by_distance
+    end
+    if @params[:act_type] != ""
+      filter_by_act_type
+    end
+    if @params[:hourly_rate] != ""
+      filter_by_hourly_rate
+    end
+    if @params[:musician][:genre_ids] != [""]
+      filter_by_genres
+    end
   end
 
   def musicians_by_distance
@@ -23,17 +33,14 @@ class SearchMusicians
   end
 
   def filter_by_act_type
-    # binding.pry
     @results.select! do |musician|
       musician.act_type == @params[:act_type]
     end
   end
 
   def filter_by_hourly_rate
-    if @params[:hourly_rate] != ""
-      @results.select! do |musician|
-        musician.hourly_rate <= @params[:hourly_rate].to_i
-      end
+    @results.select! do |musician|
+      musician.hourly_rate <= @params[:hourly_rate].to_i
     end
   end
 

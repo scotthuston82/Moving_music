@@ -18,10 +18,11 @@
     font-size:36px;
     text-transform:uppercase;
     font-weight:800;
+    transition: 0.25s all;
 
     &:hover {
       transform:scale(1.15);
-      transition:0.25s;
+      // transition: 0.25s all;
       font-weight:800;
     }
   }

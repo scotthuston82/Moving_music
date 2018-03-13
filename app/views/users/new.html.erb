@@ -15,21 +15,40 @@
     <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
 
   <p class='radio-buttons' id="user-kind-radio-buttons">
-    <%= radio_button_tag(:kind, "client", true) %>
-    <%= label_tag(:kind_client, "Event Planner") %>
-    <%= radio_button_tag(:kind, "musician") %>
-    <%= label_tag(:kind_musician, "Musician") %>
+    <% if (@user.kind && @user.kind == 'client') || !@user.kind %>
+      <%= radio_button_tag(:kind, "client", true) %>
+      <%= label_tag(:kind_client, "Event Planner") %>
+      <%= radio_button_tag(:kind, "musician") %>
+      <%= label_tag(:kind_musician, "Musician") %>
+    <% elsif (@user.kind && @user.kind == 'musician') %>
+      <%= radio_button_tag(:kind, "client") %>
+      <%= label_tag(:kind_client, "Event Planner") %>
+      <%= radio_button_tag(:kind, "musician", true) %>
+      <%= label_tag(:kind_musician, "Musician") %>
+    <% end %>
   </p>
 
-  <div class="musician-only-fields hidden">
+  <div class="musician-only-fields <%= "hidden" if (!@user.kind || @user.kind == 'client') %>" >
 
       <%= f.text_field :stage_name, placeholder: "Your Band / DJ Name" %>
 
     <p class='radio-buttons'>Act Type:
-      <%= radio_button_tag(:act_type, "dj") %>
-      <%= label_tag(:act_type_dj, "DJ") %>
-      <%= radio_button_tag(:act_type, "band") %>
-      <%= label_tag(:act_type_band, "Band") %>
+      <% if @user.act_type && @user.act_type == 'dj' %>
+        <%= radio_button_tag(:act_type, "dj", true) %>
+        <%= label_tag(:act_type_dj, "DJ") %>
+        <%= radio_button_tag(:act_type, "band") %>
+        <%= label_tag(:act_type_band, "Band") %>
+      <% elsif @user.act_type && @user.act_type == 'band' %>
+        <%= radio_button_tag(:act_type, "dj") %>
+        <%= label_tag(:act_type_dj, "DJ") %>
+        <%= radio_button_tag(:act_type, "band", true) %>
+        <%= label_tag(:act_type_band, "Band") %>
+      <% else %>
+        <%= radio_button_tag(:act_type, "dj") %>
+        <%= label_tag(:act_type_dj, "DJ") %>
+        <%= radio_button_tag(:act_type, "band") %>
+        <%= label_tag(:act_type_band, "Band") %>
+      <% end %>
     </p>
 
 

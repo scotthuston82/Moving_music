@@ -17,12 +17,13 @@
 }
 
 // STYLES FOR THE LIST OF MUSICIANS FOUND
+// ADDING CLASSES FROM MUSICIAN INDEX TO STYLE THE SAME WAY
 
 #found_musicians_container {
   clear: both;
 }
 
-.found-musicians-container {
+.found-musicians-container, .index-musicians {
   .partial-profile-container{
     width: 50%;
     float: left;
@@ -37,7 +38,7 @@
     }
 
     .partial-profile-details {
-      height:213px;
+      height:211px;
       padding:20px;
       margin-bottom:20px;
       overflow:scroll;

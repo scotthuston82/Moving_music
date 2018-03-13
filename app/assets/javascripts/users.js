@@ -1,10 +1,15 @@
 $(document).on('turbolinks:load', function() {
   if (document.querySelector('#new_user')) {
+    // toggleMusicanFields();
     var radioButtons = document.querySelector('#user-kind-radio-buttons')
     var musicianRadioButton = document.querySelector('#kind_musician')
     var clientRadioButton = document.querySelector('#kind_client')
     var musicianFieldsDiv = document.querySelector('.musician-only-fields')
-    radioButtons.addEventListener('click', function(e){
+
+    // listen for clicks on the user_kind radio buttons
+    radioButtons.addEventListener('click', toggleMusicanFields)
+
+    function toggleMusicanFields(){
       if (musicianRadioButton.checked === true) {
         if (musicianFieldsDiv.classList.contains('hidden')) {
           musicianFieldsDiv.classList.remove('hidden')
@@ -16,6 +21,6 @@ $(document).on('turbolinks:load', function() {
           musicianFieldsDiv.classList.add('hidden')
         }
       }
-    })
+    }
   }
 })

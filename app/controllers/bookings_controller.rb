@@ -46,6 +46,7 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to user_url(current_user)
     else
+      flash.now[:alert] = @booking.errors.full_messages
       render "new"
     end
   end

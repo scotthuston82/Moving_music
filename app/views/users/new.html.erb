@@ -28,7 +28,7 @@
     <% end %>
   </p>
 
-  <div class="musician-only-fields hidden">
+  <div class="musician-only-fields <%= "hidden" if (!@user.kind || @user.kind == 'client') %>" >
 
       <%= f.text_field :stage_name, placeholder: "Your Band / DJ Name" %>
 

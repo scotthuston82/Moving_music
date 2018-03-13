@@ -13,17 +13,6 @@ class BookingsController < ApplicationController
     @genres = Genre.all
   end
 
-  # def find_musicians
-  #   @booking = Booking.new(booking_params)
-  #   @booking.client = current_user
-  #   array_of_musicians = JSON[params[:array_of_musicians]]
-  #   @musicians = User.filtre_musicians(params[:act_type], params[:hourly_rate], params[:musician][:genre_ids], array_of_musicians)
-  #   respond_to do |format|
-  #     format.html {render 'find_musicians', layout: false}
-  #     format.json {render :json => @musicians}
-  #   end
-  # end
-
   def search_musicians
     @booking = Booking.new(booking_params)
     @musicians = SearchMusicians.new(params).results
@@ -37,6 +26,10 @@ class BookingsController < ApplicationController
     end
   end
 
+  def confirmation
+    @booking = Booking.new(booking_params)
+    @musician = User.find(params[:user_id])
+  end
 
   def create
     @booking = Booking.new(booking_params)

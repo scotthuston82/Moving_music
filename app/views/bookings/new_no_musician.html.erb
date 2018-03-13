@@ -1,85 +1,73 @@
 <div class= 'new-booking'>
-<% if @booking.errors %>
-  <% @booking.errors.messages.each do |key, value|  %>
-    <% value.each do |error| %>
-      <%= error %>
+  <% if @booking.errors %>
+    <% @booking.errors.messages.each do |key, value|  %>
+      <% value.each do |error| %>
+        <%= error %>
+      <% end %>
     <% end %>
   <% end %>
-<% end %>
 
-<div id="map_container_new_no_musician">
-  <div id="map"></div>
-  <input id="pac-input" class="controls" type="text" placeholder="Venue Location">
-  <button id="set_radius"  type="button" name="button">Set radius</button>
-  <button id="musicians_in_radius"  type="button" name="see_markers">See Musicians In My Area!</button>
-</div>
+  <h2>Find An Act For Your Event</h2>
 
+  <h3>Provide some details about your event</h3>
 
-<%= form_for @booking, url: bookings_search_musicians_path, method: 'post' do |f| %>
-
-  <p>
-    <label for="radius">Desired Radius(km)</label>
-    <input id="radius" type="number" name="radius" placeholder="We will only show you musicians within this distance from your event">
-  </p>
-
-  <p>
-    <%= f.label :event_name %>
-    <%= f.text_field :event_name, placeholder: "eg: 'McArthur Wedding', 'Company B Summer Jam'" %>
-  </p>
-
-  <p>
-    <%= f.label :start_time %>
-    <%= f.datetime_select :start_time, :ampm => true, :minute_step => 15 %>
-  </p>
-
-  <p>
-    <%= f.label :end_time %>
-    <%= f.datetime_select :end_time, :ampm => true, :minute_step => 15 %>
-  </p>
-
-  <p>
-    <%= f.hidden_field :address %>
-  </p>
-
-  <p>
-    <%= f.label :party_size %>
-    <%= f.number_field :party_size, placeholder: "Approximate attendance at your event - enter only a number" %>
-  </p>
-
-  <p>
-    <%= f.label :age_range %>
-    <%= f.text_field :age_range, placeholder: "eg: '19+', 'all ages', '25 - 55'" %>
-  </p>
-  <h3>Provide details about the type of act you're seeking:</h3>
-
-  <p class='radio-buttons'>
-      <%= radio_button_tag(:act_type, "dj") %>
-      <%= label_tag(:act_type_dj, "DJ") %>
-      <%= radio_button_tag(:act_type, "band") %>
-      <%= label_tag(:act_type_band, "Band") %>
-  </p>
-
-  <p>
-    <%= label_tag :hourly_rate %>
-    <%= text_field_tag :hourly_rate, nil, placeholder: "The maximum hourly rate you're willing to pay" %>
-  </p>
-
-  <div class='genres'>
-    <%= field_set_tag 'Genres' do %>
-
-    <% collection_check_boxes(:musician, :genre_ids, Genre.all, :id, :name) do |checkbox| %>
-      <div class="form-check2">
-      <%= checkbox.check_box(class: "checkmark")%>
-      <%= checkbox.label(class: "form-check")%>
-      <span class='checkmark'></span>
-    </div>
-    <%end%>
-    <% end %>
+  <div id="map_container_new_no_musician">
+    <div id="map"></div>
+    <input id="pac-input" class="controls" type="text" placeholder="Venue Address">
+    <button id="set_radius" class="btn" type="button" name="button">Set radius</button>
+    <button id="musicians_in_radius" class="btn" type="button" name="see_markers">See Musicians In My Area!</button>
   </div>
 
-  <%= f.submit 'Find Musicians!', :id=> "find_musicians_button", data: { disable_with: false }, class: 'btn' %>
 
-<% end %>
+  <%= form_for @booking, url: bookings_search_musicians_path, method: 'post' do |f| %>
+
+    <label for="radius">Desired Radius(km)</label>
+    <input id="radius" type="number" name="radius" placeholder="We will only show you musicians within this distance from your event">
+
+    <%= f.label :event_name %>
+    <%= f.text_field :event_name, placeholder: "eg: 'McArthur Wedding', 'Company B Summer Jam'" %>
+
+    <%= f.label :start_time %>
+    <%= f.datetime_select :start_time, :ampm => true, :minute_step => 15 %>
+
+    <%= f.label :end_time %>
+    <%= f.datetime_select :end_time, :ampm => true, :minute_step => 15 %>
+
+    <%= f.hidden_field :address %>
+
+    <%= f.label :party_size %>
+    <%= f.number_field :party_size, placeholder: "Approximate attendance at your event - enter only a number" %>
+
+    <%= f.label :age_range %>
+    <%= f.text_field :age_range, placeholder: "eg: '19+', 'all ages', '25 - 55'" %>
+
+    <h3>Provide details about DJ or Band you're seeking:</h3>
+
+    <p class='radio-buttons'>
+        <%= radio_button_tag(:act_type, "dj") %>
+        <%= label_tag(:act_type_dj, "DJ") %>
+        <%= radio_button_tag(:act_type, "band") %>
+        <%= label_tag(:act_type_band, "Band") %>
+    </p>
+
+    <%= label_tag :hourly_rate %>
+    <%= text_field_tag :hourly_rate, nil, placeholder: "The maximum hourly rate you're willing to pay" %>
+
+    <div class='genres'>
+      <%= field_set_tag 'Genres' do %>
+        <% collection_check_boxes(:musician, :genre_ids, Genre.all, :id, :name) do |checkbox| %>
+          <div class="form-check2">
+            <%= checkbox.check_box(class: "checkmark")%>
+            <%= checkbox.label(class: "form-check")%>
+            <span class='checkmark'></span>
+          </div>
+        <%end%>
+      <% end %>
+    </div>
+
+    <%= f.submit 'Find Musicians!', :id=> "find_musicians_button", data: { disable_with: false }, class: 'btn' %>
+
+  <% end %>
 
 </div>
 

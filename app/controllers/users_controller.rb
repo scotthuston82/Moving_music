@@ -14,6 +14,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def home
+    render 'home', layout: false
+  end
+
   def show
     @user = User.find(params[:id])
     @review = Review.new

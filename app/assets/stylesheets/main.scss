@@ -1,0 +1,22 @@
+// CENTRE THE MAIN AND GIVE A WIDTH
+main {
+  width: 80%;
+  max-width: 950px;
+  margin: 50px auto 0;
+
+  .flash {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background-color: $error;
+    color: $white;
+    border-radius: 5px;
+    padding: 10px;
+  }
+}
+
+
+// USED BY JS TO TOGGLE DISPLAY ON AND OFF
+.hidden {
+  display: none;
+}

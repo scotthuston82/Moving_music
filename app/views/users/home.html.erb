@@ -1,13 +1,55 @@
-<section class='home'>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PlayMyParty</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
 
-  <div class='layout-background'>
-    <div class='home-section'>
-      <h2>Are you a?</h2>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
 
-      <div class='home-links'>
-        <a class='client' href="users/">Client</a>
-        <a class='musician' href="musicians/">Musician</a>
-      </div>
-    </div>  
-  </div>
-</section>
+  <body id=<%="#{params[:controller]}_#{params[:action]}"%>>
+    <div id="body-container">
+      <header class='header'>
+        <div class="logo">
+          <div class="pmplogo">
+            <%= image_tag "logo.jpg"%>
+          </div>
+          <h1>
+            <%= link_to 'PlayMyParty', root_path %>
+          </h1>
+        </div>
+        <nav class='layout-links'>
+          <div class="nav-wrap">
+            <%= link_to "Browse Musicians", users_path %>
+            <% if current_user %>
+            <%= link_to "Sign Out", logout_path, method: :delete %>
+            <%= link_to "My Profile", current_user%>
+            <% else %>
+            <%= link_to "Register / Sign Up", new_user_path %>
+            <%= link_to "Log In", new_session_path%>
+            <% end %>
+            <% if current_user && current_user.kind == "client" %>
+            <%= link_to "Create New Booking", bookings_new_path %>
+            <% end %>
+            <div class='search'>
+              <%= form_tag(users_path, :method => "get", id: "search-form") do %>
+              <%= text_field_tag :term, params[:term], placeholder: "Find an artist" %>
+              <% end %>
+              <%= submit_tag "Search", name: nil, class: "btn" %>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <main id="home-main">
+        <a class='hp-link-left home-link client' href="users/">Event Organizer</a>
+        <a class='hp-link-right home-link musician' href="musicians/">Musician</a>
+      </main>
+      <footer class="footer">
+        <p>PlayMyParty ©2018</p>
+      </footer>
+    </div>
+  </body>
+</html>

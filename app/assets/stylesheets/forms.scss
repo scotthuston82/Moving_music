@@ -1,0 +1,44 @@
+form {
+  width: 60%;
+  margin: 0 auto;
+
+  label {
+    display: block;
+    padding-bottom: 5px;
+  }
+
+  input {
+    width: 100%;
+    border: 1px solid $light_grey;
+    padding: 5px;
+    margin: 10px 0;
+
+    &:focus {
+      border-color: $accent_light;
+    }
+  }
+
+  .radio-buttons, .genres {
+    label {
+      display: inline;
+    }
+
+    input {
+      width: 20px;
+    }
+  }
+
+  textarea {
+    width: 100%;
+    border: 1px solid $light_grey;
+    padding: 5px;
+    margin: 10px 0;
+  }
+
+
+  .field_with_errors {
+    input {
+      border-color: $error;
+    }
+  }
+}

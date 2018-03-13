@@ -1,0 +1,31 @@
+
+footer {
+  height: 30px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  p {
+    text-align: center;
+    padding: 9px;
+    font-size: 10px;
+  }
+}
+
+// THE FOLLOWING IS TO MAKE THE FOOTER STAY AT THE BOTTOM
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#body-container {
+  min-height: 100%;
+  position: relative;
+}
+
+main {
+  padding: 10px;
+  padding-bottom: 35px;
+}

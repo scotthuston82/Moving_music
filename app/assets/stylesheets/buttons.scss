@@ -1,0 +1,29 @@
+// ALL STYLE RULES RELATED TO BUTTONS AND ANCHORS
+.btn {
+  color: $white;
+  background-color: $accent;
+  border: 2px solid $accent;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "Lato", sans-serif;
+  font-size:14px;
+
+  &:hover{
+    background-color: $accent_light;
+    color:$white;
+    transition:0.25s;
+  }
+}
+
+.btn-light {
+  color:$accent;
+  border:2px solid $accent;
+  background-color:$white;
+
+  &:hover {
+    color: $white;
+    background-color: $accent;
+    transition: .25s;
+  }
+}

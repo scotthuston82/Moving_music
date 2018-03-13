@@ -1,0 +1,50 @@
+.new-booking {
+  #map_container_new_no_musician, h2, h3 {
+    width: 60%;
+    margin: 20px auto;
+  }
+
+  #map {
+    height: 450px;
+
+    #pac-input {
+      left: 20px;
+      top: 20px;
+      width: 50%;
+      padding: 10px;
+    }
+  }
+}
+
+// STYLES FOR THE LIST OF MUSICIANS FOUND
+
+#found_musicians_container {
+  clear: both;
+}
+
+.found-musicians-container {
+  .partial-profile-container{
+    width: 50%;
+    float: left;
+    text-align: center;
+    margin:30px 0;
+
+    img {
+      border-radius:50%;
+      margin:15px 0;
+      width:200px;
+      height:200px;
+    }
+
+    .partial-profile-details {
+      height:213px;
+      padding:20px;
+      margin-bottom:20px;
+      overflow:scroll;
+    }
+
+    .book-me {
+      margin-top:15px;
+    }
+  }
+}

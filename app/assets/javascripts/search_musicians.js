@@ -54,13 +54,18 @@ function initAutocomplete() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 43.6474475, lng: -79.38708780000002},
     zoom: 15,
-    mapTypeId: 'roadmap'
+    mapTypeId: 'roadmap',
+    mapTypeControl: false,
+    fullscreenControl: false,
+    streetViewControl: false,
   });
 
   var input = document.getElementById('pac-input');
   var searchBox = new google.maps.places.SearchBox(input);
   // var searchBox = new google.maps.places.Autocomplete(input)
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+  input.style.left = "20px";
+  input.style.top = "20px";
 
   map.addListener('bounds_changed', function() {
     searchBox.setBounds(map.getBounds());
@@ -208,9 +213,10 @@ function addEventListenerToFoundMusicianContainer() {
 }
 
 function showAndHideDetails(e){
-  if (e.target.localName === 'a' && e.target.className != 'view-profile') {
+  console.log(e.target);
+  if (e.target.localName === 'a' && !e.target.classList.contains('view-profile')) {
     e.preventDefault();
-    var partialProfileContainer = e.target.parentNode.parentNode
+    var partialProfileContainer = e.target.parentNode
     var profileDetailsDiv = partialProfileContainer.querySelector('.partial-profile-details')
     var showDetailsLink = partialProfileContainer.querySelector('.profile-details-show')
     var hideDetailsLink = partialProfileContainer.querySelector('.profile-details-hide')

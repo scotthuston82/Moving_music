@@ -35,7 +35,7 @@
           <% @pendingbookings.each do |booking| %>
             <h4><%= booking.event_name %></h4>
             <ul id="booking_<%= booking.id %>">
-              <li>Client name: <%= link_to booking.client.first_name, user_path(booking.client) %></li>
+              <li>Musician name: <%= link_to booking.musician.stage_name, user_path(booking.musician) %></li>
               <li>Address: <%= booking.address %></li>
               <li>Start Time: <%= booking.start_time %></li>
               <li>End Time: <%= booking.end_time %></li>
@@ -60,7 +60,7 @@
           <% @confirmedbookings.each do |booking| %>
             <h4><%= booking.event_name %></h4>
             <ul id="booking_<%= booking.id %>">
-              <li>Client name: <%= link_to booking.client.first_name, user_path(booking.client) %></li>
+              <li>Musician name: <%= link_to booking.musician.stage_name, user_path(booking.musician) %></li>
               <li>Address: <%= booking.address %></li>
               <li>Start Time: <%= booking.start_time %></li>
               <li>End Time: <%= booking.end_time %></li>
@@ -85,7 +85,7 @@
           <% @pastbookings.each do |booking| %>
             <h4><%= booking.event_name %></h4>
             <ul id="booking_<%= booking.id %>"
-              <li>Client name: <%= link_to booking.client.first_name, user_path(booking.client) %></li>
+              <li>Musician name: <%= link_to booking.musician.stage_name, user_path(booking.musician) %></li>
               <li>Address: <%= booking.address %></li>
               <li>Start Time: <%= booking.start_time %></li>
               <li>End Time: <%= booking.end_time %></li>

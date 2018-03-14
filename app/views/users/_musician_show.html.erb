@@ -41,7 +41,7 @@
         <% end %>
       <% end %>
       <% if @user == current_user %>
-      <%= link_to "Add Equipment", new_user_equipment_path(@user) %>
+      <%= link_to "Add Equipment", new_user_equipment_path(@user), class: "btn btn-light" %>
       <% end %>
     </div>
   <% end %>

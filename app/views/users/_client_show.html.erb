@@ -41,8 +41,16 @@
               <li>End Time: <%= booking.end_time %></li>
               <li>Age Range: <%= booking.age_range %></li>
               <li>Party Size: <%= booking.party_size %></li>
-              <li>Total Price: $<%= ((booking.end_time - booking.start_time) * booking.musician.hourly_rate) / 3600%></li>
+              <li>Total Price: $<%= (((booking.end_time - booking.start_time) * booking.musician.hourly_rate) / 3600) + (booking.equipment.inject(0) { |sum, equip| sum + equip.price }) %></li>
             </ul>
+            <% if booking.equipment.any?  %>
+              <h4>Equipment Requested:</h4>
+              <ul>
+                <% booking.equipment.each do |equip| %>
+                <li><%= equip.category %> for $<%= equip.price %></li>
+                <% end %>
+              </ul>
+            <% end %>
           <% end %>
         </div>
       </div>
@@ -58,8 +66,17 @@
               <li>End Time: <%= booking.end_time %></li>
               <li>Age Range: <%= booking.age_range %></li>
               <li>Party Size: <%= booking.party_size %></li>
+              <li>Total Price: $<%= (((booking.end_time - booking.start_time) * booking.musician.hourly_rate) / 3600) + (booking.equipment.inject(0) { |sum, equip| sum + equip.price }) %></li>
             </ul>
+            <% if booking.equipment.any?  %>
+              <h4>Equipment Requested:</h4>
+              <ul>
+                <% booking.equipment.each do |equip| %>
+                <li><%= equip.category %> for $<%= equip.price %></li>
+                <% end %>
+              </ul>
             <% end %>
+          <% end %>
         </div>
       </div>
       <div class="booking-list">
@@ -74,6 +91,7 @@
               <li>End Time: <%= booking.end_time %></li>
               <li>Age Range: <%= booking.age_range %></li>
               <li>Party Size: <%= booking.party_size %></li>
+              <li>Total Price: $<%= (((booking.end_time - booking.start_time) * booking.musician.hourly_rate) / 3600) + (booking.equipment.inject(0) { |sum, equip| sum + equip.price }) %></li>
             </ul>
             <% if !booking.review || booking.review.client_reviewed == false %>
               <div class="write_review">

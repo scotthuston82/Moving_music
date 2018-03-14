@@ -1,22 +1,26 @@
-function setupSearchMusicians(place) {
-  booking_address.value = place.formatted_address;
-  new_booking.addEventListener('submit', searchMusicians)
+function searchMusicians(e) {
+  console.log("searching");
+  e.preventDefault();
+  e.stopPropagation();
+  var request = {
+    url: '/bookings/search_musicians',
+    method: 'post',
+    dataType: 'html',
+    data: $(new_booking).serialize()
+  }
+  $.ajax(request)
+   .done(displayResults)
+   .fail(ajaxFails)
+}
+
+$(document).on('turbolinks:load', function(){
   var musicianResulstDiv = document.createElement('div');
   musicianResulstDiv.classList.add('musician-results');
+  new_booking.addEventListener('submit', searchMusicians)
+})
 
-  function searchMusicians(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    var request = {
-      url: '/bookings/search_musicians',
-      method: 'post',
-      dataType: 'html',
-      data: $(new_booking).serialize()
-    }
-    $.ajax(request)
-     .done(displayResults)
-     .fail(ajaxFails)
-  }
+function setupSearchMusicians(place) {
+  booking_address.value = place.formatted_address;
 }
 
 function displayResults(responseData) {
@@ -64,8 +68,6 @@ function initAutocomplete() {
   var searchBox = new google.maps.places.SearchBox(input);
   // var searchBox = new google.maps.places.Autocomplete(input)
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-  input.style.left = "20px";
-  input.style.top = "20px";
 
   map.addListener('bounds_changed', function() {
     searchBox.setBounds(map.getBounds());

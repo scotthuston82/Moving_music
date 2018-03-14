@@ -1,4 +1,10 @@
-<div class= 'new-booking'>
+<div class= 'confirm-booking'>
+
+  <h2>Confirm Your Booking Details</h2>
+  <% if @booking.equipment.any? %>
+    <h3>This artist has equipment available (see below!)</h3>
+  <% end %>
+
 
   <%= form_for [@musician, @booking] do |f| %>
 
@@ -20,22 +26,24 @@
     <%= f.label :age_range %>
     <%= f.text_field :age_range, placeholder: "eg: '19+', 'all ages', '25 - 55'" %>
 
-    <div class="equipment_booking">
-      <%= field_set_tag 'Equipment' do %>
-        <% collection_check_boxes(:booking, :equipment_ids, @musician.equipment, :id, :category) do |checkbox| %>
-          <div class="form-check2">
-            <%= checkbox.check_box(class: "checkmark")%>
-            <%= checkbox.label(class: "form-check")%>
-            <span>
-              <%= checkbox.object.details %>
-            </span>
-            <span>
-              <%= checkbox.object.price %>
-            </span>
-          </div>
+    <% if @musician.equipment.any? %>
+      <div class="equipment_booking">
+        <%= field_set_tag 'Equipment' do %>
+          <% collection_check_boxes(:booking, :equipment_ids, @musician.equipment, :id, :category) do |checkbox| %>
+            <div class="form-check2">
+              <%= checkbox.check_box(class: "checkmark")%>
+              <%= checkbox.label(class: "form-check")%>
+              <span>
+                <%= checkbox.object.details %>
+              </span>
+              <span>
+                <%= checkbox.object.price %>
+              </span>
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>  
 
 
     <%= f.submit 'Book!', data: { confirm: "Click OK to complete your booking. It will now appear in your \"Pending bookings\".\n\nOnce confirmed by #{@musician.stage_name}, it will move to your \"Confirmed Bookings\"" }, class: 'btn' %>

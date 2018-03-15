@@ -1,5 +1,4 @@
 function searchMusicians(e) {
-  console.log("searching");
   e.preventDefault();
   e.stopPropagation();
   var request = {
@@ -14,9 +13,11 @@ function searchMusicians(e) {
 }
 
 $(document).on('turbolinks:load', function(){
-  var musicianResulstDiv = document.createElement('div');
-  musicianResulstDiv.classList.add('musician-results');
-  new_booking.addEventListener('submit', searchMusicians)
+  if (document.querySelector("#map_container_new_no_musician")) {
+    var musicianResulstDiv = document.createElement('div');
+    musicianResulstDiv.classList.add('musician-results');
+    new_booking.addEventListener('submit', searchMusicians)
+  }
 })
 
 function setupSearchMusicians(place) {

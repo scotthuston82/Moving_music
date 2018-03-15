@@ -35,8 +35,9 @@
           <% @pendingbookings.each do |booking| %>
             <h4><%= booking.event_name %></h4>
             <ul id="booking_<%= booking.id %>">
-              <li>Client name: <%= link_to booking.client.first_name, user_path(booking.client) %></li>
+              <li>Musician name: <%= link_to booking.musician.stage_name, user_path(booking.musician) %></li>
               <li>Address: <%= booking.address %></li>
+              <li>Contact email: <%= booking.musician.email %></li>
               <li>Start Time: <%= booking.start_time %></li>
               <li>End Time: <%= booking.end_time %></li>
               <li>Age Range: <%= booking.age_range %></li>
@@ -60,8 +61,9 @@
           <% @confirmedbookings.each do |booking| %>
             <h4><%= booking.event_name %></h4>
             <ul id="booking_<%= booking.id %>">
-              <li>Client name: <%= link_to booking.client.first_name, user_path(booking.client) %></li>
+              <li>Musician name: <%= link_to booking.musician.stage_name, user_path(booking.musician) %></li>
               <li>Address: <%= booking.address %></li>
+              <li>Contact email: <%= booking.musician.email %></li>
               <li>Start Time: <%= booking.start_time %></li>
               <li>End Time: <%= booking.end_time %></li>
               <li>Age Range: <%= booking.age_range %></li>
@@ -81,32 +83,33 @@
       </div>
       <div class="booking-list">
         <h3>My Past Bookings:</h3>
-        <div class="details">
+        <div class="details" id="past_bookings">
           <% @pastbookings.each do |booking| %>
             <h4><%= booking.event_name %></h4>
             <ul id="booking_<%= booking.id %>"
-              <li>Client name: <%= link_to booking.client.first_name, user_path(booking.client) %></li>
+              <li>Musician name: <%= link_to booking.musician.stage_name, user_path(booking.musician) %></li>
               <li>Address: <%= booking.address %></li>
+              <li>Contact email: <%= booking.musician.email %></li>
               <li>Start Time: <%= booking.start_time %></li>
               <li>End Time: <%= booking.end_time %></li>
               <li>Age Range: <%= booking.age_range %></li>
               <li>Party Size: <%= booking.party_size %></li>
               <li>Total Price: $<%= (((booking.end_time - booking.start_time) * booking.musician.hourly_rate) / 3600) + (booking.equipment.inject(0) { |sum, equip| sum + equip.price }) %></li>
             </ul>
-            <% if !booking.review || booking.review.client_reviewed == false %>
-              <div class="write_review">
-                <%= link_to 'Write review', new_user_booking_review_path(@user, booking) %>
-                <div class="review_form hidden">
-                  <%= form_for(@review, :url => user_booking_reviews_path(@user, booking)) do |f|%>
-                    <button type="button" class="close">x</button>
-                    <p>
-                      <%= f.label :clients_review, "Review for: #{booking.client.first_name}" %>
-                      <%= f.text_area :clients_review, rows: "7", class: "review_text_box" %>
-                    </p>
-                    <p>
-                      <%= f.submit %>
-                    </p>
-                  <% end %>
+            <% if !booking.review || booking.review.musician_reviewed == false %>
+               <div class="write_review btn">
+                 <%= link_to 'Write review', new_user_booking_review_path(@user, booking) %>
+                 <div class="review_form hidden">
+                   <%= form_for(@review, :url => user_booking_reviews_path(@user, booking)) do |f|%>
+                     <button type="button" class="close">x</button>
+                     <p>
+                       <%= f.label :review_for_musician, "Review for: #{booking.musician.first_name}" %>
+                       <%= f.text_area :musicians_review, rows: "7", class: "review_text_box" %>
+                     </p>
+                     <p>
+                       <%= f.submit %>
+                     </p>
+                   <% end %>
                 </div>
               </div>
             <% end %>

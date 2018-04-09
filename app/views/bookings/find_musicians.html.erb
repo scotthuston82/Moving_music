@@ -15,18 +15,22 @@
         <% end %>
       </ul>
     </div>
-    <a class="profile-details-show shown btn btn-light" href="#">Show Details</a>
-    <a class="profile-details-hide hidden btn btn-light" href="#">Hide Details</a>
-    <%= link_to "View Profile", user_path(musician), target: '_blank', class: 'view-profile btn btn-light' %>
-    <%= form_for [musician, @booking], url: "/bookings/#{musician.id}/new/confirmation", method: "get" do |f| %>
-    <%= hidden_field_tag('booking[event_name]', @booking.event_name) %>
-    <%= hidden_field_tag('booking[start_time]', @booking.start_time) %>
-    <%= hidden_field_tag('booking[end_time]', @booking.end_time) %>
-    <%= hidden_field_tag('booking[address]', @booking.address) %>
-    <%= hidden_field_tag('booking[party_size]', @booking.party_size) %>
-    <%= hidden_field_tag('booking[age_range]', @booking.age_range) %>
-    <%= f.submit 'Book Me For This Event', class: "btn book-me" %>
-    <% end %>
+    <div class="partial-profile-buttons">
+      <div class="partial-profile-light-buttons">
+        <a class="profile-details-show shown btn btn-light" href="#">Show Details</a>
+        <a class="profile-details-hide hidden btn btn-light" href="#">Hide Details</a>
+        <%= link_to "View Profile", user_path(musician), target: '_blank', class: 'view-profile btn btn-light' %>
+      </div>
+      <%= form_for [musician, @booking], url: "/bookings/#{musician.id}/new/confirmation", method: "get" do |f| %>
+      <%= hidden_field_tag('booking[event_name]', @booking.event_name) %>
+      <%= hidden_field_tag('booking[start_time]', @booking.start_time) %>
+      <%= hidden_field_tag('booking[end_time]', @booking.end_time) %>
+      <%= hidden_field_tag('booking[address]', @booking.address) %>
+      <%= hidden_field_tag('booking[party_size]', @booking.party_size) %>
+      <%= hidden_field_tag('booking[age_range]', @booking.age_range) %>
+      <%= f.submit 'Book Me For This Event', class: "btn book-me" %>
+      <% end %>
+    </div>
 
   </div>
 

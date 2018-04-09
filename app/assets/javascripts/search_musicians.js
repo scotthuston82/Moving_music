@@ -223,10 +223,9 @@ function addEventListenerToIndexMusicians() {
 }
 
 function showAndHideDetails(e){
-  console.log(e.target);
   if (e.target.localName === 'a' && !e.target.classList.contains('view-profile')) {
     e.preventDefault();
-    var partialProfileContainer = e.target.parentNode
+    var partialProfileContainer = e.target.parentNode.parentNode.parentNode
     var profileDetailsDiv = partialProfileContainer.querySelector('.partial-profile-details')
     var showDetailsLink = partialProfileContainer.querySelector('.profile-details-show')
     var hideDetailsLink = partialProfileContainer.querySelector('.profile-details-hide')

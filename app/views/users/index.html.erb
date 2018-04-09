@@ -15,11 +15,16 @@
         <% end %>
       </ul>
     </div>
-    <a class="profile-details-show shown btn btn-light" href="#">Show Details</a>
-    <a class="profile-details-hide hidden btn btn-light" href="#">Hide Details</a>
-    <%= link_to "View Profile", user_path(user), class: 'view-profile btn btn-light' %>
+    <div class="partial-profile-buttons">
+      <div class="partial-profile-light-buttons">
+        <a class="profile-details-show shown btn btn-light" href="#">Show Details</a>
+        <a class="profile-details-hide hidden btn btn-light" href="#">Hide Details</a>
+        <%= link_to "View Profile", user_path(user), class: 'view-profile btn btn-light' %>
+      </div>
     <% if current_user && current_user.kind == 'client' %>
       <%= link_to 'Book Me For An Event', new_user_booking_path(user), class: "btn book-me" %>
     <% end %>
+    </div>
+  </div>
   <% end %>
 </section>

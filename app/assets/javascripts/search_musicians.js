@@ -17,6 +17,8 @@ $(document).on('turbolinks:load', function(){
     var musicianResulstDiv = document.createElement('div');
     musicianResulstDiv.classList.add('musician-results');
     new_booking.addEventListener('submit', searchMusicians)
+  } else if (document.querySelector(".index-musicians")) {
+    addEventListenerToIndexMusicians()
   }
 })
 
@@ -215,11 +217,15 @@ function addEventListenerToFoundMusicianContainer() {
   foundMusiciansInnerDiv.addEventListener('click', showAndHideDetails)
 }
 
+function addEventListenerToIndexMusicians() {
+  var indexMusiciansDiv = document.querySelector('.index-musicians')
+  indexMusiciansDiv.addEventListener('click', showAndHideDetails)
+}
+
 function showAndHideDetails(e){
-  console.log(e.target);
   if (e.target.localName === 'a' && !e.target.classList.contains('view-profile')) {
     e.preventDefault();
-    var partialProfileContainer = e.target.parentNode
+    var partialProfileContainer = e.target.parentNode.parentNode.parentNode
     var profileDetailsDiv = partialProfileContainer.querySelector('.partial-profile-details')
     var showDetailsLink = partialProfileContainer.querySelector('.profile-details-show')
     var hideDetailsLink = partialProfileContainer.querySelector('.profile-details-hide')

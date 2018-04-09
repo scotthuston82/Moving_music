@@ -17,6 +17,8 @@ $(document).on('turbolinks:load', function(){
     var musicianResulstDiv = document.createElement('div');
     musicianResulstDiv.classList.add('musician-results');
     new_booking.addEventListener('submit', searchMusicians)
+  } else if (document.querySelector(".index-musicians")) {
+    addEventListenerToIndexMusicians()
   }
 })
 
@@ -213,6 +215,11 @@ function initAutocomplete() {
 function addEventListenerToFoundMusicianContainer() {
   var foundMusiciansInnerDiv = document.querySelector('.found-musicians-container')
   foundMusiciansInnerDiv.addEventListener('click', showAndHideDetails)
+}
+
+function addEventListenerToIndexMusicians() {
+  var indexMusiciansDiv = document.querySelector('.index-musicians')
+  indexMusiciansDiv.addEventListener('click', showAndHideDetails)
 }
 
 function showAndHideDetails(e){

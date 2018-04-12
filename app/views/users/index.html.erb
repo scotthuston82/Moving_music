@@ -3,7 +3,11 @@
   <div class="partial-profile-container">
     <h2><%= user.stage_name %></h2>
     <div class='profile-picture-container shown'>
-      <%= image_tag(user.profile_picture) %>
+      <% if user.profile_picture %>
+        <%= image_tag(user.profile_picture) %>
+      <% else %>
+        <%= image_tag "empty_profile.png" %>
+      <% end %>
     </div>
     <div class="partial-profile-details hidden">
       <h4>Bio:</h4>

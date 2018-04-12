@@ -16,7 +16,6 @@ document.addEventListener("turbolinks:load", function() {
       .catch(error => console.error('error', error))
       .then(response => {
         var list = document.querySelector('#booking_' + bookingId)
-        console.log(list);
         list.querySelector('.button_container').remove()
         list.querySelector('.button_container').remove()
         confirmed_bookings.prepend(list);

@@ -56,8 +56,7 @@
 
       <%= f.text_area :bio, placeholder: "Please provide a brief bio / description" %>
 
-      <%= f.label :profile_picture %>
-      <%= f.file_field :profile_picture %>
+      <%= f.text_field :profile_picture, placeholder: "Profile Picture - paste a valid image URL" %>
 
       <%= f.number_field :hourly_rate, placeholder: "Your Performance Rate (in $/hr)" %>
 

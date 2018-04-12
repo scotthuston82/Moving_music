@@ -1,7 +1,11 @@
 <section class='user-show client'>
 
   <div class="profile-picture">
-    <%= image_tag(@user.profile_picture) %>
+    <% if @user.profile_picture %>
+      <%= image_tag(@user.profile_picture) %>
+    <% else %>
+      <%= image_tag "empty_profile.png" %>
+    <% end %>
     <% if current_user && current_user.id == @user.id %>
       <div class='edit-profile'>
         <%= link_to 'Edit Profile', edit_user_path(@user), class: "btn btn-light"%>

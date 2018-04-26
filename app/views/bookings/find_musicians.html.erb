@@ -3,7 +3,11 @@
   <div class="partial-profile-container">
     <h2><%= musician.stage_name %></h2>
     <div class='profile-picture-container shown'>
-      <%= image_tag(musician.profile_picture) %>
+      <% if musician.profile_picture && musician.profile_picture != "" %>
+        <%= image_tag(musician.profile_picture) %>
+      <% else %>
+        <%= image_tag "empty_profile.png" %>
+      <% end %>
     </div>
     <div class="partial-profile-details hidden">
       <h4>Bio:</h4>

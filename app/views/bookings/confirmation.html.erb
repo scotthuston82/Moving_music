@@ -38,7 +38,7 @@
               <span>
                 <%= checkbox.object.details %>
               </span>
-              <span class="booking-price">
+              <span class="equipment-cost">
                 Cost to include: $<%= checkbox.object.price %>
               </span>
             </div>
@@ -52,7 +52,7 @@
         <h3><%= @musician.act_type %> name: <%= @musician.stage_name %></h3>
         <li>Contact email: <%= @musician.email %></li>
         <li>Artist rate: $<%= @musician.hourly_rate %>/hr</li>
-        <li>Total Price: $<%= (((@booking.end_time - @booking.start_time) * @musician.hourly_rate) / 3600) %></li>
+        <li id="booking-price">Total Price: $<%= (((@booking.end_time - @booking.start_time) * @musician.hourly_rate) / 3600) %></li>
       </ul>
     </div>
 

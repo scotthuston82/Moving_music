@@ -5,15 +5,20 @@ $(document).on('turbolinks:load', function(){
 
       function updatePrice(e){
         var equipmentPrice = parseInt(
-          e.target.parentNode.querySelector('.booking-price').innerText.split("$").pop()
+          e.target.parentNode.querySelector('.equipment-cost').innerText.split("$").pop()
         )
+        var currentPrice = parseInt(
+          document.querySelector('#booking-price').innerText.split("$").pop()
+        )
+
         if (this.checked) {
-          console.log("I'm checked");
+          document.querySelector('#booking-price').innerText = "Total Price: $" + (currentPrice + equipmentPrice)
         } else {
-          console.log("Unchecked");
+          document.querySelector('#booking-price').innerText = "Total Price: $" + (currentPrice - equipmentPrice)
         }
       }
 
+      // get an array of all checkboxes and add event listeners to each
       var equipmentCheckboxes = document.querySelectorAll('.checkmark')
       equipmentCheckboxes.forEach(checkbox => checkbox.addEventListener('change', updatePrice))
     }

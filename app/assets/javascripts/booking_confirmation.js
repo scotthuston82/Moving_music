@@ -1,5 +1,7 @@
 $(document).on('turbolinks:load', function(){
   if (document.querySelector('#bookings_confirmation')) {
-    console.log("On booking confirm");
+    if (document.querySelector('.equipment_booking')) {
+      console.log("I see some equipment");
+    }
   }
 })

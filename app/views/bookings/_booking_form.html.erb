@@ -3,7 +3,7 @@
 <p>Artist rate: $<%= musician.hourly_rate.to_i %>/hr</p>
 
 <% if musician.equipment.any? %>
-  <h3>This artist has equipment available (see below!)</h3>
+  <p>This artist has equipment available - see below</p>
 <% end %>
 
 <%= form_for [musician, booking] do |f| %>

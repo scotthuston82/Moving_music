@@ -75,3 +75,39 @@
     }
   }
 }
+
+// ADDITIONAL STYLES FOR bookings/new.html.erb and confirm.html.erb
+
+#bookings_confirmation, #bookings_new {
+  .equipment_booking {
+
+    legend {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .form-check2 {
+      margin-top: 5px;
+      display: flex;
+      justify-content: space-around;
+
+      .checkmark{
+        flex: 1;
+        height: 13px;
+      }
+
+      label {
+        flex: 3;
+      }
+
+      .equipment-details {
+        flex: 5;
+      }
+
+      .equipment-cost {
+        flex: 3;
+      }
+
+    }
+  }
+}

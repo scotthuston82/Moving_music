@@ -2,33 +2,6 @@
 // form.  Its job is to keep the price of the gig updated as start_time,
 // end_time or any of the equipment selections have changed for the event
 
-// $(document).on('turbolinks:load', function(){
-//   // First make sure we're on confirm bookings and that there is some equipment
-//   if (document.querySelector('#bookings_confirmation')) {
-//     if (document.querySelector('.equipment_booking')) {
-//
-//       function updatePrice(e){
-//         var equipmentPrice = parseInt(
-//           e.target.parentNode.querySelector('.equipment-cost').innerText.split("$").pop()
-//         )
-//         var currentPrice = parseInt(
-//           document.querySelector('#booking-price').innerText.split("$").pop()
-//         )
-//
-//         if (this.checked) {
-//           document.querySelector('#booking-price').innerText = "Total Price: $" + (currentPrice + equipmentPrice)
-//         } else {
-//           document.querySelector('#booking-price').innerText = "Total Price: $" + (currentPrice - equipmentPrice)
-//         }
-//       }
-//
-//       // get an array of all checkboxes and add event listeners to each
-//       var equipmentCheckboxes = document.querySelectorAll('.checkmark')
-//       equipmentCheckboxes.forEach(checkbox => checkbox.addEventListener('change', updatePrice))
-//     }
-//   }
-// })
-
 $(document).on('turbolinks:load', function(){
   // First make sure we're on confirm booking or new booking page
   if (document.querySelector('#bookings_confirmation') || document.querySelector('#bookings_new')) {
@@ -71,13 +44,29 @@ $(document).on('turbolinks:load', function(){
       + endYearSelect.selectedOptions[0].value + ' '
       + endHourSelect.selectedOptions[0].value + ':'
       + endMinuteSelect.selectedOptions[0].value + ':00')
-      var priceFromHourlyRate = (endTimeObj - startTimeObj) / 3600000 * artistHourlyRate
-      console.log(priceFromHourlyRate);
+
+      // check for end time later than start time to produce valid price
+      if (endTimeObj - startTimeObj > 0) {
+        var priceFromHourlyRate = (endTimeObj - startTimeObj) / 3600000 * artistHourlyRate
+        var priceFromEquipment = 0;
+        // if there's any equipment available, add it up
+        if (document.querySelector('.equipment_booking')) {
+          equipmentCheckboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+              priceFromEquipment += parseInt(checkbox.parentNode.querySelector('.equipment-cost').innerText.split("$").pop())
+            }
+          })
+        }
+        // modify actual Total Price element
+        totalPriceSentenceEle.innerText = "Total Price: $" + (priceFromHourlyRate + priceFromEquipment)
+      } else {
+        totalPriceSentenceEle.innerText = "Please enter valid start and end times to see total price"
+      }
     }
 
     // run update price on page load
     updatePrice();
-    // add event listeners to each checkbox and date field
+    // add event listeners to each checkbox and date field that trigger updatePrice
     equipmentCheckboxes.forEach(checkbox => checkbox.addEventListener('change', updatePrice))
     timeSelectorsArray.forEach(timeSelect => timeSelect.addEventListener('change', updatePrice))
   }

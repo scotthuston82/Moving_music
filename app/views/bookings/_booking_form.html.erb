@@ -1,6 +1,6 @@
 <h3><%= musician.act_type.capitalize %> name: <%= musician.stage_name %></h3>
 
-<p>Artist rate: $<%= musician.hourly_rate.to_i %>/hr</p>
+<p>Artist rate: $<span id="artist-hourly-rate"><%= musician.hourly_rate.to_i %></span>/hr</p>
 
 <% if musician.equipment.any? %>
   <p>This artist has equipment available - see below</p>

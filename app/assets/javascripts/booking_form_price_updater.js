@@ -75,6 +75,7 @@ $(document).on('turbolinks:load', function(){
       console.log(priceFromHourlyRate);
     }
 
+    updatePrice();
     // add event listeners to each checkbox and date field
     equipmentCheckboxes.forEach(checkbox => checkbox.addEventListener('change', updatePrice))
     timeSelectorsArray.forEach(timeSelect => timeSelect.addEventListener('change', updatePrice))

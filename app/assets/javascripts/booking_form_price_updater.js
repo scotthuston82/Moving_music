@@ -60,10 +60,22 @@ $(document).on('turbolinks:load', function(){
     timeSelectorsArray.push(endMinuteSelect)
 
     function updatePrice(e){
-      console.log("Ch ch ch ch CHANGES");
+      // build time objects from current time selector states
+      var startTimeObj = new Date(startMonthSelect.selectedOptions[0].value + ' '
+      + startDaySelect.selectedOptions[0].value + ', '
+      + startYearSelect.selectedOptions[0].value + ' '
+      + startHourSelect.selectedOptions[0].value + ':'
+      + startMinuteSelect.selectedOptions[0].value + ':00')
+      var endTimeObj = new Date(endMonthSelect.selectedOptions[0].value + ' '
+      + endDaySelect.selectedOptions[0].value + ', '
+      + endYearSelect.selectedOptions[0].value + ' '
+      + endHourSelect.selectedOptions[0].value + ':'
+      + endMinuteSelect.selectedOptions[0].value + ':00')
+      var priceFromHourlyRate = (endTimeObj - startTimeObj) / 3600000 * artistHourlyRate
+      console.log(priceFromHourlyRate);
     }
 
-    // get an array of all checkboxes and add event listeners to each
+    // add event listeners to each checkbox and date field
     equipmentCheckboxes.forEach(checkbox => checkbox.addEventListener('change', updatePrice))
     timeSelectorsArray.forEach(timeSelect => timeSelect.addEventListener('change', updatePrice))
   }

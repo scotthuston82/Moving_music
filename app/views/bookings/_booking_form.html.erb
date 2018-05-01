@@ -47,6 +47,8 @@
 
   <% if booking.start_time %>
     <h2 id="booking-price">Total Price: $<%= (((booking.end_time - booking.start_time) * musician.hourly_rate).to_i / 3600) %></h2>
+  <% else %>
+    <h2 id="booking-price">Please enter valid start and end times to see total price</h2>
   <% end %>
 
   <%= f.submit 'Book!', data: { confirm: "Click OK to complete your booking. It will now appear in your \"Pending bookings\".\n\nOnce confirmed by #{musician.stage_name}, it will move to your \"Confirmed Bookings\"" }, class: 'btn' %>

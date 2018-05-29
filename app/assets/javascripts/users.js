@@ -23,4 +23,12 @@ $(document).on('turbolinks:load', function() {
       }
     }
   }
+
+  $(function() {
+    $('.directUpload').find("input:file").each((i, elem) => {
+      var fileInput    = $(elem);
+      console.log(fileInput);
+    });
+  });
+
 })

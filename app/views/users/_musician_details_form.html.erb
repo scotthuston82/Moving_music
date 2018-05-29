@@ -2,7 +2,7 @@
   <div class='form-wrapper'>
     <h2>Update My Profile</h2>
 
-  <%= form_for user do |f| %>
+  <%= form_for(user, html: { class: 'directUpload', data: { 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host } }) do |f| %>
     <p>
       <%= f.label "Your Band/DJ Name" %>
       <%= f.text_field :stage_name %>
@@ -17,7 +17,8 @@
       <% if @user.profile_picture %>
         <%= image_tag(@user.profile_picture) %>
       <% end %>
-      <%= f.text_field :profile_picture, placeholder: "Profile Picture - paste a valid image URL" %>
+      <%= f.label :profile_picture %>
+      <%= f.file_field :profile_picture, placeholder: "Upload a profile picture" %>
     </p>
 
     <p>

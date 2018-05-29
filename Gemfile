@@ -46,9 +46,11 @@ gem 'jquery-rails'
 
 gem 'geocoder'
 
-gem 'carrierwave', '~> 1.0'
+# gem 'carrierwave', '~> 1.0'
 
-gem "mini_magick"
+# gem "mini_magick"
+
+gem 'aws-sdk', '~> 2'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -59,7 +61,6 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
-  gem 'faker'
 end
 
 group :development do

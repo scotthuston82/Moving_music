@@ -1,6 +1,6 @@
 <div class='form-wrapper'>
 
-  <%= form_for @user do |f| %>
+  <%= form_for(@user, html: { class: 'directUpload', data: { 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host } }) do |f| %>
   <h2>Create New Account</h2>
   <h4>Register for free today.</h4>
 
@@ -56,7 +56,8 @@
 
       <%= f.text_area :bio, placeholder: "Please provide a brief bio / description" %>
 
-      <%= f.text_field :profile_picture, placeholder: "Profile Picture - paste a valid image URL" %>
+      <%= f.label :profile_picture %>
+      <%= f.file_field :profile_picture, placeholder: "Upload a profile picture" %>
 
       <%= f.number_field :hourly_rate, placeholder: "Your Performance Rate (in $/hr)" %>
 

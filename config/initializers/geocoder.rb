@@ -1,1 +1,1 @@
-Geocoder.configure(:api_key => 'AIzaSyCcNr3L8XYiOH0E81G4w_6OJjgrmNCqQrU')
+Geocoder.configure(:api_key => ENV['GOOGLE_MAP_API_KEY'])

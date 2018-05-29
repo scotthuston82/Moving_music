@@ -41,4 +41,17 @@ form {
       border-color: $error;
     }
   }
+
+  .progress {
+    max-width: 80%;
+    // margin:    5% 0 5% 0;
+  }
+
+  .progress .bar {
+    height:  14px;
+    padding-left: 10%;
+    color:   $accent_light;
+    display: none;
+  }
+
 }
